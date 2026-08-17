@@ -1,760 +1,550 @@
 /* =========================================================
-   GLOBAL
-========================================================= */
+   LANDING PAGE STYLES — SCOPED (.landing-page-root)
+   ========================================================= */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.landing-page-root {
+  width: 100%;
+  min-height: 100vh;
+  background: #faf9f5;
+  color: #063b2c;
+  font-family: "DM Sans", Arial, sans-serif;
+  line-height: 1.5;
+  overflow-x: hidden;
 }
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: "DM Sans", Arial, sans-serif;
-    background: #faf9f5;
-    color: #063b2c;
-    line-height: 1.5;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
 
 /* =========================================================
    NAVBAR
-========================================================= */
+   ========================================================= */
 
-.navbar {
-    height: 78px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 48px;
-
-    background: rgba(250, 249, 245, 0.96);
-
-    border-bottom: 1px solid #e8e6df;
-
-    position: relative;
-    z-index: 10;
+.landing-page-root .navbar {
+  height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  background: rgba(250, 249, 245, 0.96);
+  border-bottom: 1px solid #e8e6df;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-
-/* LOGO */
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-
-    font-size: 20px;
-    font-weight: 700;
-
-    color: #063b2c;
+.landing-page-root .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 42px;
+  margin-left: 90px;
 }
 
-.logo-icon {
-    width: 25px;
-    height: 25px;
+.landing-page-root .nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4d514c;
+  transition: color 0.2s ease;
 }
 
-
-/* NAV LINKS */
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 42px;
-
-    margin-left: 90px;
+.landing-page-root .nav-links a:hover {
+  color: #063b2c;
 }
 
-.nav-links a {
-    font-size: 14px;
-    font-weight: 500;
-
-    color: #4d514c;
-
-    transition: color 0.2s ease;
+.landing-page-root .nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 27px;
 }
 
-.nav-links a:hover {
-    color: #063b2c;
+.landing-page-root .login-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: #315246;
+  transition: color 0.2s ease;
 }
 
-
-/* NAV ACTIONS */
-
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 27px;
+.landing-page-root .login-link:hover {
+  color: #063b2c;
 }
 
-.login-link {
-    font-size: 14px;
-    font-weight: 600;
-
-    color: #315246;
+.landing-page-root .get-started-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 24px;
+  border-radius: 24px;
+  background: #003d2c;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  transition: transform 0.2s ease, background 0.2s ease;
 }
 
-.get-started-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 11px 24px;
-
-    border-radius: 24px;
-
-    background: #003d2c;
-    color: white;
-
-    font-size: 13px;
-    font-weight: 600;
-
-    transition: transform 0.2s ease,
-                background 0.2s ease;
+.landing-page-root .get-started-nav:hover {
+  transform: translateY(-1px);
+  background: #00533c;
 }
-
-.get-started-nav:hover {
-    transform: translateY(-1px);
-    background: #00533c;
-}
-
 
 /* =========================================================
    HERO
-========================================================= */
+   ========================================================= */
 
-.hero {
-    min-height: 680px;
-
-    position: relative;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    overflow: hidden;
+.landing-page-root .hero {
+  min-height: 680px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 40px 20px;
 }
 
-
-/* BACKGROUND GLOW */
-
-.hero-glow {
-    position: absolute;
-
-    width: 440px;
-    height: 360px;
-
-    border-radius: 50%;
-
-    filter: blur(80px);
-
-    opacity: 0.42;
-
-    pointer-events: none;
+.landing-page-root .hero-glow {
+  position: absolute;
+  width: 440px;
+  height: 360px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.42;
+  pointer-events: none;
 }
 
-.glow-left {
-    left: -90px;
-    bottom: 80px;
-
-    background: #e7edb8;
+.landing-page-root .glow-left {
+  left: -90px;
+  bottom: 80px;
+  background: #e7edb8;
 }
 
-.glow-right {
-    right: -70px;
-    bottom: 110px;
-
-    background: #dcefdc;
+.landing-page-root .glow-right {
+  right: -70px;
+  bottom: 110px;
+  background: #dcefdc;
 }
 
-
-/* HERO CONTENT */
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-
-    width: 760px;
-
-    text-align: center;
-
-    margin-top: -25px;
+.landing-page-root .hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 760px;
+  text-align: center;
+  margin-top: -25px;
 }
 
-
-/* BADGE */
-
-.hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-
-    padding: 6px 14px;
-
-    border: 1px solid #ccd3cb;
-
-    border-radius: 20px;
-
-    background: rgba(250, 249, 245, 0.8);
-
-    color: #315246;
-
-    font-size: 12px;
-    font-weight: 500;
+.landing-page-root .hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border: 1px solid #ccd3cb;
+  border-radius: 20px;
+  background: rgba(250, 249, 245, 0.8);
+  color: #315246;
+  font-size: 12px;
+  font-weight: 500;
 }
 
-.badge-icon {
-    font-size: 11px;
+.landing-page-root .badge-icon {
+  font-size: 11px;
 }
 
-
-/* HERO TITLE */
-
-.hero h1 {
-    margin-top: 38px;
-
-    font-size: 48px;
-    line-height: 1.12;
-
-    letter-spacing: -1.8px;
-
-    font-weight: 700;
-
-    color: #063b2c;
+.landing-page-root .hero h1 {
+  margin-top: 38px;
+  font-size: clamp(32px, 5vw, 48px);
+  line-height: 1.12;
+  letter-spacing: -1.8px;
+  font-weight: 700;
+  color: #063b2c;
 }
 
-
-/* DESCRIPTION */
-
-.hero-description {
-    width: 590px;
-
-    margin: 25px auto 0;
-
-    font-size: 16px;
-
-    line-height: 1.65;
-
-    color: #6a6d67;
+.landing-page-root .hero-description {
+  width: 100%;
+  max-width: 590px;
+  margin: 25px auto 0;
+  font-size: 16px;
+  line-height: 1.65;
+  color: #6a6d67;
 }
 
-
-/* HERO BUTTONS */
-
-.hero-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    gap: 14px;
-
-    margin-top: 34px;
+.landing-page-root .hero-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin-top: 34px;
+  flex-wrap: wrap;
 }
 
-.primary-button,
-.secondary-button {
-    min-width: 108px;
-
-    padding: 11px 22px;
-
-    border-radius: 24px;
-
-    font-size: 13px;
-    font-weight: 600;
-
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
+.landing-page-root .primary-button,
+.landing-page-root .secondary-button {
+  min-width: 108px;
+  padding: 11px 22px;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 
-.primary-button {
-    background: #003d2c;
-    color: white;
+.landing-page-root .primary-button {
+  background: #003d2c;
+  color: white;
 }
 
-.secondary-button {
-    border: 1.5px solid #c4863e;
-    color: #9a5d1e;
-    background: rgba(255, 255, 255, 0.3);
+.landing-page-root .primary-button:hover {
+  background: #00533c;
+  transform: translateY(-1px);
 }
 
+.landing-page-root .secondary-button {
+  border: 1.5px solid #c4863e;
+  color: #9a5d1e;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.landing-page-root .secondary-button:hover {
+  background: rgba(255, 255, 255, 0.7);
+  transform: translateY(-1px);
+}
 
 /* =========================================================
    WORKFLOW SECTION
-========================================================= */
+   ========================================================= */
 
-.workflow-section {
-    max-width: 960px;
-
-    margin: 0 auto;
-
-    padding: 20px 30px 70px;
+.landing-page-root .workflow-section {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px 30px 70px;
 }
 
-
-/* SECTION HEADING */
-
-.section-heading {
-    text-align: center;
-
-    margin-bottom: 35px;
+.landing-page-root .section-heading {
+  text-align: center;
+  margin-bottom: 35px;
 }
 
-.section-heading h2 {
-    font-size: 27px;
-
-    letter-spacing: -0.7px;
-
-    font-weight: 700;
-
-    color: #064332;
+.landing-page-root .section-heading h2 {
+  font-size: 27px;
+  letter-spacing: -0.7px;
+  font-weight: 700;
+  color: #064332;
 }
 
-.section-heading p {
-    margin-top: 7px;
-
-    font-size: 14px;
-
-    color: #737670;
+.landing-page-root .section-heading p {
+  margin-top: 7px;
+  font-size: 14px;
+  color: #737670;
 }
 
-
-/* WORKFLOW GRID */
-
-.workflow-grid {
-    display: grid;
-
-    grid-template-columns:
-        1fr
-        1.65fr
-        1.35fr;
-
-    grid-template-rows:
-        auto
-        auto;
-
-    gap: 12px;
+.landing-page-root .workflow-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.65fr 1.35fr;
+  grid-template-rows: auto auto;
+  gap: 12px;
 }
 
-
-/* GENERIC WORKFLOW CARD */
-
-.workflow-card {
-    position: relative;
-
-    min-height: 180px;
-
-    padding: 20px;
-
-    border: 1px solid #d5d8d0;
-
-    border-radius: 10px;
-
-    background: #f8f7f2;
-
-    overflow: hidden;
+.landing-page-root .workflow-card {
+  position: relative;
+  min-height: 180px;
+  padding: 20px;
+  border: 1px solid #d5d8d0;
+  border-radius: 10px;
+  background: #f8f7f2;
+  overflow: hidden;
+  min-width: 0;
 }
 
-.workflow-card h3 {
-    margin-top: 5px;
-
-    font-size: 16px;
-
-    font-weight: 600;
-
-    color: #164b3c;
+.landing-page-root .workflow-card h3 {
+  margin-top: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #164b3c;
 }
 
-.workflow-card p {
-    margin-top: 6px;
-
-    font-size: 12px;
-
-    line-height: 1.5;
-
-    color: #747770;
-
-    max-width: 330px;
+.landing-page-root .workflow-card p {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #747770;
+  max-width: 330px;
 }
 
-
-/* STEP LABEL */
-
-.step-label {
-    margin-top: 48px;
-
-    font-size: 9px;
-
-    letter-spacing: 0.4px;
-
-    font-weight: 600;
-
-    color: #8a8c85;
+.landing-page-root .step-label {
+  margin-top: 48px;
+  font-size: 9px;
+  letter-spacing: 0.4px;
+  font-weight: 600;
+  color: #8a8c85;
 }
 
-
-/* ICON */
-
-.workflow-icon {
-    width: 34px;
-    height: 34px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background: #ffffff;
-
-    color: #61703b;
-
-    font-size: 15px;
+.landing-page-root .workflow-icon {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #61703b;
+  font-size: 15px;
 }
 
-.orange-icon {
-    color: #bf6d2d;
+.landing-page-root .orange-icon {
+  color: #bf6d2d;
 }
 
-.dark-icon {
-    background: rgba(255,255,255,0.12);
-    color: white;
+.landing-page-root .dark-icon {
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
 }
 
-
-/* STEP 3 DARK */
-
-.step-three {
-    background: #003d2c;
-
-    border-color: #003d2c;
-
-    color: white;
+.landing-page-root .step-three {
+  background: #003d2c;
+  border-color: #003d2c;
+  color: white;
 }
 
-.step-three h3 {
-    color: white;
+.landing-page-root .step-three h3 {
+  color: white;
 }
 
-.step-three p {
-    color: #a7bdb3;
+.landing-page-root .step-three p {
+  color: #a7bdb3;
 }
 
-.step-three .step-label {
-    color: #88a69a;
+.landing-page-root .step-three .step-label {
+  color: #88a69a;
 }
 
-
-/* STEP 2 */
-
-.step-two {
-    position: relative;
+.landing-page-root .step-two {
+  position: relative;
 }
 
-.orange-corner {
-    position: absolute;
-
-    width: 125px;
-    height: 125px;
-
-    right: -40px;
-    top: -40px;
-
-    border-radius: 50%;
-
-    background: #f7ebdf;
+.landing-page-root .orange-corner {
+  position: absolute;
+  width: 125px;
+  height: 125px;
+  right: -40px;
+  top: -40px;
+  border-radius: 50%;
+  background: #f7ebdf;
+  pointer-events: none;
 }
 
-
-/* STEP 4 */
-
-.step-four {
-    grid-column: 1 / span 2;
+.landing-page-root .step-four {
+  grid-column: 1 / span 2;
 }
 
-.step-four .step-label {
-    margin-top: 28px;
+.landing-page-root .step-four .step-label {
+  margin-top: 28px;
 }
 
-
-/* STEP 5 */
-
-.step-five {
-    grid-column: 3;
+.landing-page-root .step-five {
+  grid-column: 3;
 }
 
-
-/* QUALITY PROGRESS */
-
-.quality-progress {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-
-    position: absolute;
-
-    left: 68px;
-    right: 20px;
-    top: 28px;
+.landing-page-root .quality-progress {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: absolute;
+  left: 68px;
+  right: 20px;
+  top: 28px;
 }
 
-.progress-track {
-    flex: 1;
-
-    height: 5px;
-
-    background: #e5e5df;
-
-    border-radius: 10px;
-
-    overflow: hidden;
+.landing-page-root .progress-track {
+  flex: 1;
+  height: 5px;
+  background: #e5e5df;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.progress-fill {
-    width: 85%;
-    height: 100%;
-
-    background: #344b16;
-
-    border-radius: 10px;
+.landing-page-root .progress-fill {
+  width: 85%;
+  height: 100%;
+  background: #344b16;
+  border-radius: 10px;
 }
 
-.quality-progress span {
-    white-space: nowrap;
-
-    font-size: 10px;
-
-    font-weight: 600;
-
-    color: #697238;
+.landing-page-root .quality-progress span {
+  white-space: nowrap;
+  font-size: 10px;
+  font-weight: 600;
+  color: #697238;
 }
-
 
 /* =========================================================
    FEATURES
-========================================================= */
+   ========================================================= */
 
-.features-section {
-    border-top: 1px solid #e5e3dc;
-
-    padding: 60px 30px 100px;
-
-    background: #f7f6f1;
+.landing-page-root .features-section {
+  border-top: 1px solid #e5e3dc;
+  padding: 60px 30px 100px;
+  background: #f7f6f1;
 }
 
-.features-grid {
-    max-width: 960px;
-
-    margin: 0 auto;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 24px;
+.landing-page-root .features-grid {
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
-
-/* FEATURE CARD */
-
-.feature-card {
-    min-height: 250px;
-
-    padding: 20px;
-
-    border-radius: 9px;
-
-    border: 1px solid #e8e7e2;
-
-    background: white;
-
-    box-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.025);
+.landing-page-root .feature-card {
+  min-height: 250px;
+  padding: 20px;
+  border-radius: 9px;
+  border: 1px solid #e8e7e2;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.025);
+  min-width: 0;
 }
 
-
-/* FEATURE ICON */
-
-.feature-icon {
-    width: 31px;
-    height: 31px;
-
-    border-radius: 6px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-size: 15px;
-
-    margin-bottom: 19px;
+.landing-page-root .feature-icon {
+  width: 31px;
+  height: 31px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  margin-bottom: 19px;
 }
 
-.temperature-icon {
-    background: #e5eee9;
-    color: #356351;
+.landing-page-root .temperature-icon {
+  background: #e5eee9;
+  color: #356351;
 }
 
-.analyze-icon {
-    background: #f7eadc;
-    color: #a5652c;
+.landing-page-root .analyze-icon {
+  background: #f7eadc;
+  color: #a5652c;
 }
 
-.decide-icon {
-    background: #e9ede3;
-    color: #4c633b;
+.landing-page-root .decide-icon {
+  background: #e9ede3;
+  color: #4c633b;
 }
 
-
-/* FEATURE TITLE */
-
-.feature-card h3 {
-    font-size: 16px;
-
-    font-weight: 600;
-
-    color: #164b3c;
+.landing-page-root .feature-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #164b3c;
 }
 
-
-/* DIVIDER */
-
-.feature-divider {
-    height: 1px;
-
-    width: 100%;
-
-    background: #eeeeea;
-
-    margin: 12px 0 13px;
+.landing-page-root .feature-divider {
+  height: 1px;
+  width: 100%;
+  background: #eeeeea;
+  margin: 12px 0 13px;
 }
 
-
-/* FEATURE DESCRIPTION */
-
-.feature-card p {
-    font-size: 13px;
-
-    line-height: 1.55;
-
-    color: #72756f;
+.landing-page-root .feature-card p {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #72756f;
 }
-
 
 /* =========================================================
-   RESPONSIVE
-========================================================= */
+   RESPONSIVE BREAKPOINTS
+   ========================================================= */
 
 @media (max-width: 850px) {
+  .landing-page-root .navbar {
+    padding: 0 24px;
+  }
 
-    .navbar {
-        padding: 0 24px;
-    }
+  .landing-page-root .nav-links {
+    display: none;
+  }
 
-    .nav-links {
-        display: none;
-    }
+  .landing-page-root .hero {
+    min-height: 540px;
+  }
 
-    .hero {
-        min-height: 600px;
-    }
+  .landing-page-root .workflow-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 
-    .hero-content {
-        width: 90%;
-    }
+  .landing-page-root .step-four,
+  .landing-page-root .step-five {
+    grid-column: auto;
+  }
 
-    .hero h1 {
-        font-size: 38px;
-    }
-
-    .hero-description {
-        width: 90%;
-    }
-
-    .workflow-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .step-four,
-    .step-five {
-        grid-column: auto;
-    }
-
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
+  .landing-page-root .features-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
-
 @media (max-width: 550px) {
+  .landing-page-root .navbar {
+    height: 68px;
+    padding: 0 16px;
+  }
 
-    .navbar {
-        height: 68px;
-        padding: 0 18px;
-    }
+  .landing-page-root .login-link {
+    display: none;
+  }
 
-    .login-link {
-        display: none;
-    }
+  .landing-page-root .get-started-nav {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
 
-    .get-started-nav {
-        padding: 9px 17px;
-    }
+  .landing-page-root .hero {
+    min-height: 480px;
+    padding: 30px 12px;
+  }
 
-    .hero {
-        min-height: 570px;
-    }
+  .landing-page-root .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
 
-    .hero h1 {
-        font-size: 32px;
-        letter-spacing: -1px;
-    }
+  .landing-page-root .primary-button,
+  .landing-page-root .secondary-button {
+    width: 100%;
+    max-width: 240px;
+  }
 
-    .hero-description {
-        font-size: 14px;
-    }
+  .landing-page-root .workflow-section {
+    padding: 20px 16px 50px;
+  }
 
-    .hero-buttons {
-        flex-direction: column;
-    }
+  .landing-page-root .workflow-grid {
+    grid-template-columns: 1fr;
+  }
 
-    .primary-button,
-    .secondary-button {
-        width: 150px;
-    }
+  .landing-page-root .workflow-card {
+    min-height: auto;
+  }
 
-    .workflow-grid {
-        grid-template-columns: 1fr;
-    }
+  .landing-page-root .quality-progress {
+    position: static;
+    margin-top: 15px;
+  }
 
-    .workflow-card {
-        min-height: 170px;
-    }
+  .landing-page-root .step-four .step-label {
+    margin-top: 20px;
+  }
 
-    .quality-progress {
-        position: static;
+  .landing-page-root .features-section {
+    padding: 40px 16px 60px;
+  }
+}
 
-        margin-top: 15px;
-    }
+@media (max-width: 280px) {
+  .landing-page-root .navbar {
+    padding: 0 10px;
+  }
 
-    .step-four .step-label {
-        margin-top: 35px;
-    }
+  .landing-page-root .hero h1 {
+    font-size: 24px;
+    letter-spacing: -0.5px;
+  }
 
-    .features-section {
-        padding-left: 18px;
-        padding-right: 18px;
-    }
+  .landing-page-root .workflow-card,
+  .landing-page-root .feature-card {
+    padding: 14px 10px;
+  }
 }

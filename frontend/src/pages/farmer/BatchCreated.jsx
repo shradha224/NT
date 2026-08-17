@@ -1,31 +1,27 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import '../../assets/css/qr-generated.css';
+import NavyaLogo from '../../components/common/NavyaLogo';
 
 const BatchCreated = () => {
   const { batchId } = useParams();
+  const currentBatchId = batchId || 'TOM-024';
 
   const downloadQR = () => {
-    // Dummy download implementation
-    alert("Downloading QR...");
+    alert(`Downloading QR code for ${currentBatchId}...`);
   };
 
   const printQR = () => {
-    // Dummy print implementation
-    alert("Printing QR...");
+    window.print();
   };
 
   return (
-    <>
+    <div className="qr-generated-root">
       {/* Top-left Navya Logo */}
       <header className="top-header">
-        <div className="brand">
-          <div className="brand-icon">
-            <span></span>
-            <span></span>
-          </div>
-          <span className="brand-name">Navya</span>
-        </div>
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <NavyaLogo />
+        </Link>
       </header>
 
       {/* Main Content */}
@@ -41,15 +37,44 @@ const BatchCreated = () => {
 
           {/* Batch ID */}
           <p className="batch-id">
-            Batch ID: <span>{batchId || 'TOM-024'}</span>
+            Batch ID: <span>{currentBatchId}</span>
           </p>
 
           {/* QR Container */}
           <div className="qr-container">
             <div className="qr-image-wrapper">
-              <div className="qr-image" style={{ width: '200px', height: '200px', backgroundColor: '#e5e7eb', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                [QR Image Placeholder]
-              </div>
+              <svg viewBox="0 0 100 100" className="qr-image" fill="#003d2d">
+                {/* Simulated High-Res QR code pattern */}
+                <rect x="0" y="0" width="30" height="30" fill="#003d2d" rx="2" />
+                <rect x="5" y="5" width="20" height="20" fill="#ffffff" rx="1" />
+                <rect x="10" y="10" width="10" height="10" fill="#003d2d" rx="1" />
+
+                <rect x="70" y="0" width="30" height="30" fill="#003d2d" rx="2" />
+                <rect x="75" y="5" width="20" height="20" fill="#ffffff" rx="1" />
+                <rect x="80" y="10" width="10" height="10" fill="#003d2d" rx="1" />
+
+                <rect x="0" y="70" width="30" height="30" fill="#003d2d" rx="2" />
+                <rect x="5" y="75" width="20" height="20" fill="#ffffff" rx="1" />
+                <rect x="10" y="80" width="10" height="10" fill="#003d2d" rx="1" />
+
+                <rect x="36" y="8" width="8" height="8" />
+                <rect x="52" y="12" width="8" height="8" />
+                <rect x="40" y="24" width="8" height="8" />
+                <rect x="56" y="28" width="8" height="8" />
+
+                <rect x="8" y="38" width="8" height="8" />
+                <rect x="22" y="44" width="8" height="8" />
+                <rect x="38" y="40" width="12" height="12" />
+                <rect x="54" y="48" width="8" height="8" />
+                <rect x="68" y="38" width="8" height="8" />
+                <rect x="84" y="44" width="8" height="8" />
+
+                <rect x="38" y="68" width="8" height="8" />
+                <rect x="52" y="72" width="8" height="8" />
+                <rect x="44" y="84" width="8" height="8" />
+                <rect x="68" y="76" width="8" height="8" />
+                <rect x="80" y="84" width="12" height="12" />
+              </svg>
             </div>
             <p className="qr-description">
               Attach this QR code to the physical batch.
@@ -75,7 +100,7 @@ const BatchCreated = () => {
           </Link>
         </section>
       </main>
-    </>
+    </div>
   );
 };
 

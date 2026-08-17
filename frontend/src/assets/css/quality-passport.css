@@ -1,684 +1,449 @@
 /* =========================================================
-   NAVYA - QUALITY PASSPORT
+   NAVYA - QUALITY PASSPORT — SCOPED (.quality-passport-root)
    ========================================================= */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.quality-passport-root {
+  width: 100%;
+  min-height: 100vh;
+  background: #faf8f2;
+  color: #222522;
+  font-family: "Outfit", sans-serif;
+  overflow-x: hidden;
 }
-
-:root {
-    --background: #faf8f2;
-    --card: #fcfbf7;
-    --border: #e6e3da;
-
-    --dark-green: #003f2d;
-    --green: #0d513c;
-    --light-green: #eaf5ec;
-
-    --text: #222522;
-    --muted: #626862;
-
-    --orange: #ff9845;
-    --red: #d62f2f;
-
-    --font: "Outfit", sans-serif;
-}
-
-body {
-    font-family: var(--font);
-    background: var(--background);
-    color: var(--text);
-    min-height: 100vh;
-}
-
 
 /* =========================================================
    HEADER
    ========================================================= */
 
-.header {
-    width: 100%;
-    padding: 18px 38px;
+.quality-passport-root .header {
+  width: 100%;
+  padding: 18px 48px;
+  background: #faf8f2;
+  border-bottom: 1px solid #e6e3da;
+  display: flex;
+  align-items: center;
 }
-
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-}
-
-.brand-name {
-    font-size: 25px;
-    font-weight: 600;
-    color: var(--dark-green);
-}
-
-
-/* Simple Navya leaf logo */
-
-.brand-icon {
-    width: 24px;
-    height: 29px;
-    position: relative;
-}
-
-.brand-icon span {
-    position: absolute;
-    width: 11px;
-    height: 18px;
-    background: var(--dark-green);
-    border-radius: 100% 0 100% 0;
-    transform: rotate(-35deg);
-}
-
-.brand-icon span:first-child {
-    left: 3px;
-    top: 0;
-}
-
-.brand-icon span:last-child {
-    left: 11px;
-    top: 8px;
-    transform: rotate(35deg);
-}
-
 
 /* =========================================================
    MAIN CONTAINER
    ========================================================= */
 
-.passport-container {
-    width: min(1100px, calc(100% - 72px));
-    margin: 40px auto 0;
+.quality-passport-root .passport-container {
+  width: min(1100px, calc(100% - 64px));
+  margin: 36px auto 0;
 }
-
 
 /* =========================================================
-   HERO
+   HERO (NO VERTICAL GAP!)
    ========================================================= */
 
-.hero {
-    text-align: center;
-    margin-bottom: 34px;
+.quality-passport-root .hero {
+  text-align: center;
+  margin-bottom: 28px;
+  min-height: auto;
+  padding: 0;
+  display: block;
 }
 
-.hero h1 {
-    color: var(--dark-green);
-    font-size: 31px;
-    font-weight: 500;
-    margin-bottom: 8px;
+.quality-passport-root .hero h1 {
+  color: #003f2d;
+  font-size: clamp(26px, 3.5vw, 34px);
+  font-weight: 600;
+  margin-bottom: 6px;
 }
 
-.hero-subtitle {
-    color: #555b57;
-    font-size: 16px;
-    margin-bottom: 9px;
+.quality-passport-root .hero-subtitle {
+  color: #555b57;
+  font-size: clamp(14px, 1.8vw, 16px);
+  margin-bottom: 12px;
 }
 
-.batch-pill {
-    width: fit-content;
-    margin: 0 auto 8px;
-
-    display: flex;
-    align-items: center;
-    gap: 9px;
-
-    padding: 8px 16px;
-
-    border: 1px solid #c9cbc4;
-    border-radius: 24px;
-
-    background: #f5f4ee;
-
-    font-size: 13px;
+.quality-passport-root .batch-pill {
+  width: fit-content;
+  margin: 0 auto 10px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 16px;
+  border: 1px solid #c9cbc4;
+  border-radius: 24px;
+  background: #f5f4ee;
+  font-size: 13px;
+  color: #333;
 }
 
-.quality-badge {
-    width: fit-content;
-    margin: 0 auto;
-
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    padding: 8px 17px;
-
-    background: #eef7eb;
-    border-radius: 22px;
-
-    color: var(--dark-green);
-    font-size: 13px;
-    font-weight: 600;
+.quality-passport-root .quality-badge {
+  width: fit-content;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: #eef7eb;
+  border-radius: 22px;
+  color: #003f2d;
+  font-size: 13px;
+  font-weight: 600;
 }
 
-.badge-icon {
-    font-size: 14px;
+.quality-passport-root .badge-icon {
+  font-size: 14px;
 }
-
 
 /* =========================================================
    SECTION
    ========================================================= */
 
-.section {
-    margin-bottom: 30px;
+.quality-passport-root .section {
+  margin-bottom: 26px;
 }
 
-.section-heading {
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 14px;
+.quality-passport-root .section-heading {
+  border-bottom: 1px solid #e6e3da;
+  margin-bottom: 14px;
 }
 
-.section-heading h2 {
-    font-size: 20px;
-    font-weight: 500;
-    padding-bottom: 8px;
+.quality-passport-root .section-heading h2 {
+  font-size: 19px;
+  font-weight: 600;
+  color: #222522;
+  padding-bottom: 8px;
 }
-
 
 /* =========================================================
    QUALITY SUMMARY
    ========================================================= */
 
-.summary-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
+.quality-passport-root .summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
 }
 
-.summary-card {
-    min-height: 108px;
-
-    background: var(--card);
-    border: 1px solid #ece9e1;
-    border-radius: 10px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
+.quality-passport-root .summary-card {
+  min-height: 108px;
+  background: #fcfbf7;
+  border: 1px solid #ece9e1;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12px 8px;
 }
 
-.summary-icon {
-    font-size: 24px;
-    height: 30px;
-    margin-bottom: 4px;
+.quality-passport-root .summary-icon {
+  font-size: 22px;
+  height: 26px;
+  margin-bottom: 4px;
 }
 
-.condition-icon,
-.thumbs-icon,
-.calendar-icon {
-    color: var(--dark-green);
+.quality-passport-root .condition-icon,
+.quality-passport-root .thumbs-icon,
+.quality-passport-root .calendar-icon {
+  color: #003f2d;
 }
 
-.warning-icon {
-    color: var(--orange);
+.quality-passport-root .warning-icon {
+  color: #ff9845;
 }
 
-.summary-label {
-    color: #5e635f;
-    font-size: 11px;
-    margin-bottom: 5px;
+.quality-passport-root .summary-label {
+  color: #5e635f;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
 }
 
-.summary-value {
-    color: var(--dark-green);
+.quality-passport-root .summary-value {
+  color: #003f2d;
 }
 
-.summary-value strong {
-    font-size: 23px;
-    font-weight: 500;
+.quality-passport-root .summary-value strong {
+  font-size: 24px;
+  font-weight: 600;
 }
 
-.summary-value span {
-    font-size: 14px;
-    color: #777b76;
+.quality-passport-root .summary-value span {
+  font-size: 13px;
+  color: #777b76;
 }
 
-.summary-text {
-    font-size: 18px;
-    font-weight: 500;
+.quality-passport-root .summary-text {
+  font-size: 18px;
+  font-weight: 600;
 }
 
-.green {
-    color: var(--dark-green);
+.quality-passport-root .green {
+  color: #003f2d;
 }
-
 
 /* =========================================================
    LATEST ASSESSMENT
    ========================================================= */
 
-.assessment-card {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-
-    border: 1px solid #e8e5dc;
-    border-radius: 11px;
-
-    overflow: hidden;
-
-    background: var(--card);
+.quality-passport-root .assessment-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #e8e5dc;
+  border-radius: 11px;
+  overflow: hidden;
+  background: #fcfbf7;
 }
 
-.produce-image-container {
-    height: 202px;
-    position: relative;
-    overflow: hidden;
+.quality-passport-root .produce-image-container {
+  height: 202px;
+  position: relative;
+  overflow: hidden;
 }
 
-.produce-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+.quality-passport-root .image-label {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 4px 10px;
+  border-radius: 15px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #444;
 }
 
-.image-label {
-    position: absolute;
-    bottom: 12px;
-    left: 14px;
-
-    display: flex;
-    align-items: center;
-    gap: 6px;
-
-    background: rgba(255, 255, 255, 0.92);
-
-    padding: 5px 10px;
-
-    border-radius: 15px;
-
-    font-size: 11px;
+.quality-passport-root .assessment-details {
+  padding: 8px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.assessment-details {
-    padding: 10px 25px;
+.quality-passport-root .assessment-row {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e6e3da;
 }
 
-.assessment-row {
-    height: 46px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    border-bottom: 1px solid var(--border);
+.quality-passport-root .assessment-row:last-child {
+  border-bottom: none;
 }
 
-.assessment-row:last-child {
-    border-bottom: none;
+.quality-passport-root .assessment-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #414641;
+  font-size: 15px;
 }
 
-.assessment-name {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    color: #414641;
-    font-size: 15px;
+.quality-passport-root .detail-icon {
+  color: #657069;
+  font-size: 16px;
 }
 
-.detail-icon {
-    color: #657069;
-    font-size: 18px;
+.quality-passport-root .status {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
 }
 
-.status {
-    padding: 5px 9px;
-    border-radius: 4px;
-
-    font-size: 13px;
+.quality-passport-root .status.good {
+  color: #003f2d;
+  background: #eaf5ec;
 }
 
-.status.good {
-    color: var(--dark-green);
-    background: #eaf5ec;
+.quality-passport-root .status.neutral {
+  color: #343734;
+  background: #f0efe9;
 }
-
-.status.neutral {
-    color: #343734;
-    background: #f0efe9;
-}
-
 
 /* =========================================================
    LOWER GRID
    ========================================================= */
 
-.lower-grid {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 45px;
-
-    margin-top: 28px;
+.quality-passport-root .lower-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 24px;
+  margin-top: 10px;
 }
 
-
-/* =========================================================
-   QUALITY HISTORY
-   ========================================================= */
-
-.history-card {
-    background: var(--card);
-    border: 1px solid #e8e5dc;
-    border-radius: 11px;
-
-    padding: 7px 16px;
+/* QUALITY HISTORY */
+.quality-passport-root .history-card {
+  background: #fcfbf7;
+  border: 1px solid #e8e5dc;
+  border-radius: 11px;
+  padding: 6px 16px;
 }
 
-.history-row {
-    min-height: 39px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    border-bottom: 1px solid var(--border);
-
-    font-size: 15px;
-    color: #5d625d;
+.quality-passport-root .history-row {
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e6e3da;
+  font-size: 14px;
+  color: #5d625d;
 }
 
-.history-row:last-child {
-    border-bottom: none;
+.quality-passport-root .history-row:last-child {
+  border-bottom: none;
 }
 
-.history-row strong {
-    color: var(--dark-green);
-    font-weight: 500;
+.quality-passport-root .history-row strong {
+  color: #003f2d;
+  font-weight: 600;
 }
 
-
-/* =========================================================
-   TRACEABILITY
-   ========================================================= */
-
-.traceability-card {
-    background: var(--card);
-    border: 1px solid #e8e5dc;
-    border-radius: 11px;
-
-    padding: 19px 22px 10px;
+/* TRACEABILITY */
+.quality-passport-root .traceability-card {
+  background: #fcfbf7;
+  border: 1px solid #e8e5dc;
+  border-radius: 11px;
+  padding: 16px 20px 8px;
 }
 
-.timeline-item {
-    position: relative;
-
-    display: flex;
-    gap: 12px;
-
-    min-height: 58px;
+.quality-passport-root .timeline-item {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  min-height: 56px;
 }
 
-.timeline-item:not(:last-child)::after {
-    content: "";
-
-    position: absolute;
-
-    left: 12px;
-    top: 27px;
-
-    width: 1px;
-    height: 43px;
-
-    background: #d8ddd8;
+.quality-passport-root .timeline-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 26px;
+  width: 1px;
+  height: 36px;
+  background: #d8ddd8;
 }
 
-.timeline-dot {
-    width: 24px;
-    height: 24px;
-
-    flex: 0 0 24px;
-
-    border-radius: 50%;
-
-    background: var(--dark-green);
-    color: white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 11px;
-
-    z-index: 1;
+.quality-passport-root .timeline-dot {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  border-radius: 50%;
+  background: #003f2d;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  z-index: 1;
 }
 
-.timeline-dot.inactive {
-    background: #ededeb;
-    color: #999d99;
+.quality-passport-root .timeline-dot.inactive {
+  background: #ededeb;
+  color: #999d99;
 }
 
-.timeline-content {
-    width: 100%;
+.quality-passport-root .timeline-content {
+  width: 100%;
 }
 
-.timeline-top {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
+.quality-passport-root .timeline-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
 }
 
-.timeline-top h3 {
-    font-size: 15px;
-    font-weight: 500;
-    margin-bottom: 3px;
+.quality-passport-root .timeline-top h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 2px;
 }
 
-.timeline-top p {
-    color: #626762;
-    font-size: 13px;
+.quality-passport-root .timeline-top p {
+  color: #626762;
+  font-size: 13px;
 }
 
-.timeline-top > span {
-    color: #626762;
-    font-size: 12px;
-    white-space: nowrap;
+.quality-passport-root .timeline-top > span {
+  color: #626762;
+  font-size: 12px;
+  white-space: nowrap;
 }
 
-.timeline-item.pending {
-    opacity: 0.55;
+.quality-passport-root .timeline-item.pending {
+  opacity: 0.55;
 }
-
 
 /* =========================================================
    FOOTER
    ========================================================= */
 
-.passport-footer {
-    border-top: 1px solid var(--border);
-
-    margin-top: 28px;
-    padding: 24px 20px 35px;
-
-    text-align: center;
+.quality-passport-root .passport-footer {
+  border-top: 1px solid #e6e3da;
+  margin-top: 28px;
+  padding: 22px 20px 35px;
+  text-align: center;
 }
 
-.footer-icon {
-    color: var(--dark-green);
-    font-size: 16px;
-    margin-bottom: 8px;
+.quality-passport-root .passport-footer p {
+  max-width: 480px;
+  margin: auto;
+  color: #555b57;
+  font-size: 12px;
+  line-height: 1.45;
 }
-
-.passport-footer p {
-    max-width: 450px;
-    margin: auto;
-
-    color: #555b57;
-
-    font-size: 11px;
-    line-height: 1.4;
-}
-
 
 /* =========================================================
-   TABLET
+   RESPONSIVE BREAKPOINTS
    ========================================================= */
 
 @media (max-width: 900px) {
+  .quality-passport-root .passport-container {
+    width: min(100% - 36px, 720px);
+  }
 
-    .passport-container {
-        width: min(100% - 40px, 720px);
-        margin-top: 25px;
-    }
+  .quality-passport-root .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-    .summary-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .lower-grid {
-        grid-template-columns: 1fr;
-        gap: 28px;
-    }
-
+  .quality-passport-root .lower-grid {
+    grid-template-columns: 1fr;
+  }
 }
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
 
 @media (max-width: 600px) {
+  .quality-passport-root .header {
+    padding: 14px 20px;
+  }
 
-    .header {
-        padding: 15px 20px;
-    }
+  .quality-passport-root .passport-container {
+    width: calc(100% - 24px);
+    margin-top: 20px;
+  }
 
-    .brand-name {
-        font-size: 21px;
-    }
+  .quality-passport-root .assessment-card {
+    grid-template-columns: 1fr;
+  }
 
-    .passport-container {
-        width: calc(100% - 28px);
-        margin-top: 22px;
-    }
+  .quality-passport-root .produce-image-container {
+    height: 180px;
+  }
 
-    .hero {
-        margin-bottom: 27px;
-    }
+  .quality-passport-root .timeline-top {
+    flex-direction: column;
+    gap: 2px;
+  }
 
-    .hero h1 {
-        font-size: 25px;
-        line-height: 1.2;
-    }
-
-    .hero-subtitle {
-        font-size: 14px;
-    }
-
-    .batch-pill {
-        font-size: 12px;
-        padding: 7px 13px;
-    }
-
-    .quality-badge {
-        font-size: 12px;
-        padding: 7px 14px;
-    }
-
-
-    /* Summary */
-
-    .summary-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 9px;
-    }
-
-    .summary-card {
-        min-height: 105px;
-    }
-
-
-    /* Latest assessment */
-
-    .assessment-card {
-        grid-template-columns: 1fr;
-    }
-
-    .produce-image-container {
-        height: 210px;
-    }
-
-    .assessment-details {
-        padding: 7px 15px;
-    }
-
-    .assessment-row {
-        min-height: 48px;
-    }
-
-
-    /* History */
-
-    .lower-grid {
-        gap: 25px;
-    }
-
-    .history-row {
-        font-size: 14px;
-    }
-
-
-    /* Traceability */
-
-    .traceability-card {
-        padding: 17px 15px 8px;
-    }
-
-    .timeline-top {
-        flex-direction: column;
-        gap: 2px;
-    }
-
-    .timeline-top > span {
-        font-size: 11px;
-        margin-bottom: 12px;
-    }
-
+  .quality-passport-root .timeline-top > span {
+    margin-bottom: 8px;
+  }
 }
 
-
-/* =========================================================
-   VERY SMALL PHONES
-   ========================================================= */
-
-@media (max-width: 380px) {
-
-    .passport-container {
-        width: calc(100% - 20px);
-    }
-
-    .hero h1 {
-        font-size: 22px;
-    }
-
-    .summary-grid {
-        gap: 7px;
-    }
-
-    .summary-card {
-        min-height: 95px;
-    }
-
-    .summary-value strong {
-        font-size: 20px;
-    }
-
-    .summary-text {
-        font-size: 16px;
-    }
-
-    .assessment-name {
-        font-size: 13px;
-    }
-
-    .status {
-        font-size: 11px;
-    }
-
+@media (max-width: 320px) {
+  .quality-passport-root .summary-grid {
+    grid-template-columns: 1fr;
+  }
 }

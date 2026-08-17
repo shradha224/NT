@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import NavyaLogo from '../common/NavyaLogo';
 // Using inline SVGs as present in the original HTML
 
 const FarmerNavbar = () => {
@@ -7,14 +8,9 @@ const FarmerNavbar = () => {
 
   return (
     <header className="navbar">
-      <div className="logo">
-        <div className="logo-mark">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <span className="logo-text">Navya</span>
-      </div>
+      <Link to="/farmer/dashboard" style={{ textDecoration: 'none' }}>
+        <NavyaLogo />
+      </Link>
 
       <nav className="nav-links">
         <Link to="/farmer/dashboard" className={location.pathname === '/farmer/dashboard' ? 'active' : ''}>Dashboard</Link>

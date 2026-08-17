@@ -5,7 +5,7 @@ import '../../assets/css/aggregator-dashboard.css';
 
 const AggregatorDashboard = () => {
   return (
-    <>
+    <div className="aggregator-dashboard-root">
       <AggregatorNavbar />
 
       <main className="dashboard">
@@ -158,7 +158,7 @@ const AggregatorDashboard = () => {
           <span>Monitoring System Connected</span>
         </div>
       </main>
-    </>
+    </div>
   );
 };
 

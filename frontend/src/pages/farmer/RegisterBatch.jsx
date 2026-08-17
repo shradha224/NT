@@ -12,12 +12,12 @@ const RegisterBatch = () => {
   };
 
   return (
-    <>
+    <div className="register-batch-root">
       <FarmerNavbar />
       <main className="page-container">
         <section className="page-heading">
           <h1>Register New Batch</h1>
-          <p>Enter details to initiate tracking for a new<br className="desktop-break" /> harvest cycle.</p>
+          <p>Enter details to initiate tracking for a new harvest cycle.</p>
         </section>
 
         <section className="form-card">
@@ -122,7 +122,7 @@ const RegisterBatch = () => {
           <span>Generate Batch Profile</span>
         </button>
       </main>
-    </>
+    </div>
   );
 };
 

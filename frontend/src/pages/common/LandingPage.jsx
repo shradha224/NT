@@ -1,46 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../assets/css/style.css';
+import NavyaLogo from '../../components/common/NavyaLogo';
 
 const LandingPage = () => {
   return (
-    <>
+    <div className="landing-page-root">
       {/* ================= HEADER ================= */}
       <header className="navbar">
-        <div className="logo">
-          <svg
-            className="logo-icon"
-            viewBox="0 0 32 32"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M16.2 25.8C16.2 18.7 18.8 11.9 25.6 7.1C27.2 12.7 25.7 18.3 21.4 22.2C19.7 23.8 17.9 24.9 16.2 25.8Z"
-              fill="currentColor"
-            />
-            <path
-              d="M15.2 25.8C14.7 19.5 11.1 14.4 5.2 11.5C4.3 17.4 6.8 22.4 11.4 24.5C12.7 25.1 14 25.5 15.2 25.8Z"
-              fill="currentColor"
-            />
-            <path
-              d="M15.7 26.5V17.5"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-            />
-          </svg>
-          <span>Navya</span>
-        </div>
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <NavyaLogo />
+        </Link>
 
         <nav className="nav-links">
           <a href="#solutions">Solutions</a>
-          <a href="#technology">Technology</a>
-          <a href="#about">About</a>
+          <a href="#workflow">Technology</a>
+          <a href="#workflow">About</a>
         </nav>
 
         <div className="nav-actions">
           <Link to="/login" className="login-link">Log In</Link>
-          <a href="#" className="get-started-nav">Get Started</a>
+          <Link to="/register" className="get-started-nav">Get Started</Link>
         </div>
       </header>
 
@@ -67,9 +47,9 @@ const LandingPage = () => {
             </p>
 
             <div className="hero-buttons">
-              <a href="#" className="primary-button">
+              <Link to="/register" className="primary-button">
                 Get Started
-              </a>
+              </Link>
               <a href="#workflow" className="secondary-button">
                 How It Works
               </a>
@@ -173,7 +153,7 @@ const LandingPage = () => {
           </div>
         </section>
       </main>
-    </>
+    </div>
   );
 };
 

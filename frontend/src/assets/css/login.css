@@ -1,523 +1,300 @@
-/* ================================
-   RESET
-================================ */
+/* =========================================================
+   LOGIN PAGE STYLES — SCOPED (.login-page-root)
+   ========================================================= */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.login-page-root {
+  width: 100%;
+  min-height: 100vh;
+  background: #faf8f2;
+  color: #082f23;
+  font-family: "DM Sans", Arial, sans-serif;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  overflow-x: hidden;
 }
-
-html,
-body {
-    width: 100%;
-    min-height: 100%;
-}
-
-body {
-    font-family: "DM Sans", Arial, sans-serif;
-    background: #faf8f2;
-    color: #082f23;
-}
-
 
 /* ================================
    TOP NAVYA LOGO
-================================ */
+   ================================ */
 
-.top-logo {
-    position: absolute;
-    top: 20px;
-    left: 34px;
+.login-page-root .top-logo {
+  position: absolute;
+  top: 24px;
+  left: 34px;
+  z-index: 10;
 }
-
-.navya-logo {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-
-    color: #062f23;
-    font-size: 25px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-}
-
 
 /* ================================
-   LEAF LOGO
-================================ */
+   MAIN CONTAINER
+   ================================ */
 
-.leaf-logo {
-    position: relative;
-
-    width: 27px;
-    height: 29px;
+.login-page-root .login-container {
+  width: 100%;
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
 }
-
-.leaf-logo span {
-    position: absolute;
-
-    width: 12px;
-    height: 20px;
-
-    background: #063f2c;
-
-    border-radius: 100% 0 100% 0;
-
-    transform-origin: bottom center;
-}
-
-
-/* Left leaf */
-
-.leaf-logo span:nth-child(1) {
-    left: 2px;
-    top: 5px;
-
-    transform: rotate(-35deg);
-}
-
-
-/* Right leaf */
-
-.leaf-logo span:nth-child(2) {
-    right: 2px;
-    top: 2px;
-
-    transform: rotate(35deg);
-}
-
-
-/* Middle stem */
-
-.leaf-logo span:nth-child(3) {
-    width: 3px;
-    height: 17px;
-
-    left: 12px;
-    top: 11px;
-
-    border-radius: 3px;
-
-    transform: rotate(-8deg);
-}
-
-
-/* ================================
-   MAIN
-================================ */
-
-.login-container {
-    min-height: 100vh;
-
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
-    justify-content: center;
-
-    padding-top: 25px;
-}
-
 
 /* ================================
    LOGIN CARD
-================================ */
+   ================================ */
 
-.login-card {
-    width: 550px;
-    min-height: 705px;
-
-    padding: 49px 50px 48px;
-
-    background: rgba(255, 255, 255, 0.76);
-
-    border: 1.5px solid #bdc9c4;
-
-    border-radius: 16px;
-
-    box-shadow:
-        0 1px 3px rgba(0, 0, 0, 0.03),
-        0 10px 25px rgba(0, 50, 35, 0.025);
-
-    display: flex;
-    flex-direction: column;
+.login-page-root .login-card {
+  width: 100%;
+  min-height: 600px;
+  padding: 48px 50px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1.5px solid #bdc9c4;
+  border-radius: 16px;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.03),
+    0 10px 25px rgba(0, 50, 35, 0.025);
+  display: flex;
+  flex-direction: column;
 }
-
 
 /* ================================
-   LOGIN LOGO
-================================ */
+   LOGIN LOGO BOX
+   ================================ */
 
-.login-logo-box {
-    width: 61px;
-    height: 48px;
-
-    margin: 0 auto 20px;
-
-    border: 1.5px solid #c2cbc7;
-
-    border-radius: 11px;
-
-    background: #f8f7f1;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.login-page-root .login-logo-box {
+  width: 61px;
+  height: 48px;
+  margin: 0 auto 20px;
+  border: 1.5px solid #c2cbc7;
+  border-radius: 11px;
+  background: #f8f7f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-.leaf-logo.small {
-    width: 27px;
-    height: 28px;
-
-    transform: scale(0.78);
-}
-
 
 /* ================================
-   HEADING
-================================ */
+   HEADING & SUBTITLE
+   ================================ */
 
-.login-card h1 {
-    text-align: center;
-
-    color: #043c2b;
-
-    font-size: 39px;
-    line-height: 1.2;
-
-    font-weight: 600;
-
-    letter-spacing: -1.4px;
-
-    margin-bottom: 7px;
+.login-page-root .login-card h1 {
+  text-align: center;
+  color: #043c2b;
+  font-size: clamp(28px, 4vw, 39px);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -1px;
+  margin-bottom: 7px;
 }
 
-
-/* ================================
-   SUBTITLE
-================================ */
-
-.subtitle {
-    text-align: center;
-
-    color: #5b625f;
-
-    font-size: 21px;
-    line-height: 1.4;
-
-    margin-bottom: 46px;
+.login-page-root .subtitle {
+  text-align: center;
+  color: #5b625f;
+  font-size: clamp(16px, 2.5vw, 21px);
+  line-height: 1.4;
+  margin-bottom: 36px;
 }
-
 
 /* ================================
    FORM
-================================ */
+   =============================== */
 
-.login-form {
-    width: 100%;
+.login-page-root .login-form {
+  width: 100%;
 }
 
+.login-page-root .form-group {
+  margin-bottom: 22px;
+}
+
+.login-page-root .form-group label {
+  display: block;
+  color: #222825;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.login-page-root .input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.login-page-root .input-wrapper input {
+  width: 100%;
+  height: 60px;
+  padding: 0 18px 0 50px;
+  border: 1.5px solid #bdc6c2;
+  border-radius: 11px;
+  background: #f7f5ef;
+  color: #222;
+  font-family: inherit;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-page-root .input-wrapper input::placeholder {
+  color: #7b817e;
+  opacity: 1;
+}
+
+.login-page-root .input-wrapper input:focus {
+  border-color: #07513b;
+  box-shadow: 0 0 0 3px rgba(6, 63, 44, 0.08);
+}
+
+.login-page-root .input-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  transform: translateY(-50%);
+  color: #515a56;
+  pointer-events: none;
+}
+
+.login-page-root .forgot-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -4px;
+  margin-bottom: 28px;
+}
+
+.login-page-root .forgot-wrapper a {
+  color: #073e2e;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-page-root .forgot-wrapper a:hover {
+  text-decoration: underline;
+}
+
+.login-page-root .login-button {
+  width: 100%;
+  height: 56px;
+  border: none;
+  border-radius: 10px;
+  background: #003d2b;
+  color: white;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.login-page-root .login-button:hover {
+  background: #00543c;
+}
+
+.login-page-root .login-button:active {
+  transform: scale(0.99);
+}
+
+.login-page-root .login-button svg {
+  width: 21px;
+  height: 21px;
+}
+
+.login-page-root .divider {
+  width: 100%;
+  height: 1px;
+  background: #d7dbd8;
+  margin-top: 32px;
+  margin-bottom: 22px;
+}
+
+.login-page-root .register-text {
+  text-align: center;
+  color: #626864;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.login-page-root .register-text a {
+  color: #003d2b;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-page-root .register-text a:hover {
+  text-decoration: underline;
+}
+
+.login-page-root .security-text {
+  margin-top: 20px;
+  color: #747b77;
+  font-size: 14px;
+  text-align: center;
+}
 
 /* ================================
-   FORM GROUP
-================================ */
-
-.form-group {
-    margin-bottom: 22px;
-}
-
-.form-group label {
-    display: block;
-
-    color: #222825;
-
-    font-size: 18px;
-
-    font-weight: 600;
-
-    margin-bottom: 10px;
-}
-
-
-/* ================================
-   INPUT
-================================ */
-
-.input-wrapper {
-    position: relative;
-
-    width: 100%;
-}
-
-.input-wrapper input {
-    width: 100%;
-    height: 63px;
-
-    padding: 0 18px 0 51px;
-
-    border: 1.5px solid #bdc6c2;
-
-    border-radius: 11px;
-
-    background: #f7f5ef;
-
-    color: #222;
-
-    font-family: inherit;
-
-    font-size: 19px;
-
-    outline: none;
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.input-wrapper input::placeholder {
-    color: #7b817e;
-    opacity: 1;
-}
-
-.input-wrapper input:focus {
-    border-color: #07513b;
-
-    box-shadow:
-        0 0 0 3px rgba(6, 63, 44, 0.08);
-}
-
-
-/* ================================
-   INPUT ICON
-================================ */
-
-.input-icon {
-    position: absolute;
-
-    left: 16px;
-    top: 50%;
-
-    width: 23px;
-    height: 23px;
-
-    transform: translateY(-50%);
-
-    color: #515a56;
-
-    pointer-events: none;
-}
-
-
-/* ================================
-   FORGOT PASSWORD
-================================ */
-
-.forgot-wrapper {
-    display: flex;
-
-    justify-content: flex-end;
-
-    margin-top: -4px;
-    margin-bottom: 31px;
-}
-
-.forgot-wrapper a {
-    color: #073e2e;
-
-    font-size: 18px;
-
-    font-weight: 600;
-
-    text-decoration: none;
-}
-
-.forgot-wrapper a:hover {
-    text-decoration: underline;
-}
-
-
-/* ================================
-   LOGIN BUTTON
-================================ */
-
-.login-button {
-    width: 100%;
-    height: 56px;
-
-    border: none;
-
-    border-radius: 10px;
-
-    background: #003d2b;
-
-    color: white;
-
-    font-family: inherit;
-
-    font-size: 18px;
-
-    font-weight: 500;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 10px;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        transform 0.15s ease;
-}
-
-.login-button:hover {
-    background: #00543c;
-}
-
-.login-button:active {
-    transform: scale(0.99);
-}
-
-.login-button svg {
-    width: 21px;
-    height: 21px;
-}
-
-
-/* ================================
-   DIVIDER
-================================ */
-
-.divider {
-    width: 100%;
-
-    height: 1px;
-
-    background: #d7dbd8;
-
-    margin-top: 39px;
-    margin-bottom: 26px;
-}
-
-
-/* ================================
-   REGISTER
-================================ */
-
-.register-text {
-    text-align: center;
-
-    color: #626864;
-
-    font-size: 19px;
-
-    line-height: 1.5;
-}
-
-.register-text a {
-    color: #4b5517;
-
-    text-decoration: none;
-
-    font-weight: 500;
-}
-
-.register-text a:hover {
-    text-decoration: underline;
-}
-
-
-/* ================================
-   SECURITY TEXT
-================================ */
-
-.security-text {
-    margin-top: 22px;
-
-    color: #747b77;
-
-    font-size: 16px;
-
-    text-align: center;
-}
-
-
-/* ================================
-   RESPONSIVE
-================================ */
+   RESPONSIVE BREAKPOINTS
+   ================================ */
 
 @media (max-width: 700px) {
+  .login-page-root {
+    padding: 80px 16px 30px;
+  }
 
-    .top-logo {
-        left: 22px;
-        top: 18px;
-    }
+  .login-page-root .top-logo {
+    left: 20px;
+    top: 20px;
+  }
 
-    .navya-logo {
-        font-size: 22px;
-    }
+  .login-page-root .login-card {
+    padding: 36px 24px;
+  }
 
-    .login-container {
-        padding: 85px 20px 30px;
-    }
-
-    .login-card {
-        width: 100%;
-        max-width: 550px;
-
-        min-height: auto;
-
-        padding: 40px 28px;
-    }
-
-    .login-card h1 {
-        font-size: 32px;
-    }
-
-    .subtitle {
-        font-size: 18px;
-        margin-bottom: 35px;
-    }
-
-    .form-group label {
-        font-size: 16px;
-    }
-
-    .input-wrapper input {
-        height: 58px;
-        font-size: 17px;
-    }
-
-    .register-text {
-        font-size: 17px;
-    }
-
-    .security-text {
-        font-size: 14px;
-    }
+  .login-page-root .input-wrapper input {
+    height: 54px;
+    font-size: 15px;
+  }
 }
 
-
 @media (max-width: 420px) {
+  .login-page-root {
+    padding: 70px 12px 20px;
+  }
 
-    .login-container {
-        padding-left: 14px;
-        padding-right: 14px;
-    }
+  .login-page-root .login-card {
+    padding: 28px 16px;
+    border-radius: 12px;
+  }
+}
 
-    .login-card {
-        padding: 32px 20px;
-        border-radius: 13px;
-    }
+@media (max-width: 280px) {
+  .login-page-root {
+    padding: 60px 8px 16px;
+  }
 
-    .login-card h1 {
-        font-size: 28px;
-    }
+  .login-page-root .top-logo {
+    position: static;
+    margin-bottom: 20px;
+  }
 
-    .subtitle {
-        font-size: 17px;
-    }
+  .login-page-root .login-card {
+    padding: 20px 10px;
+  }
+
+  .login-page-root .input-wrapper input {
+    padding-left: 38px;
+  }
+
+  .login-page-root .input-icon {
+    left: 10px;
+    width: 18px;
+    height: 18px;
+  }
 }

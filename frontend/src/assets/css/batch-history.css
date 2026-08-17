@@ -1,1153 +1,646 @@
 /* =========================================================
-   NAVYA - BATCH HISTORY & TRENDS
+   BATCH HISTORY & TRENDS — SCOPED (.batch-history-root)
    ========================================================= */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.batch-history-root {
+  width: 100%;
+  min-height: 100vh;
+  background: #faf8f2;
+  color: #252724;
+  font-family: "Outfit", sans-serif;
+  overflow-x: hidden;
 }
-
-:root {
-    --navya-green: #003f2d;
-    --navya-green-dark: #003326;
-    --navya-green-light: #e7f1eb;
-
-    --cream: #faf8f2;
-    --card: #fcfbf7;
-
-    --border: #e3e1d9;
-    --border-dark: #d3d1c8;
-
-    --text: #252724;
-    --muted: #666963;
-    --light-muted: #999b96;
-
-    --orange: #ad5d00;
-    --orange-light: #f8eee0;
-
-    --gray-tag: #e6e7e2;
-}
-
-body {
-    font-family: "Outfit", sans-serif;
-    background: var(--cream);
-    color: var(--text);
-    min-height: 100vh;
-}
-
 
 /* =========================================================
    HEADER
    ========================================================= */
 
-.top-header {
-    height: 64px;
-    border-bottom: 1px solid var(--border);
-    background: var(--cream);
-
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-
-    padding: 0 20px;
-
-    position: relative;
+.batch-history-root .top-header {
+  height: 70px;
+  border-bottom: 1px solid #e3e1d9;
+  background: #faf8f2;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 32px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }
 
-
-/* Back button */
-
-.back-link {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    color: #3e403d;
-    text-decoration: none;
-
-    font-size: 15px;
-    font-weight: 400;
-
-    width: fit-content;
+.batch-history-root .back-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #3e403d;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  width: fit-content;
 }
 
-.back-arrow {
-    font-size: 28px;
-    line-height: 1;
-    font-weight: 300;
+.batch-history-root .back-arrow {
+  font-size: 24px;
+  line-height: 1;
 }
 
-
-/* Page title */
-
-.page-heading {
-    text-align: center;
+.batch-history-root .page-heading {
+  text-align: center;
 }
 
-.page-heading h1 {
-    color: var(--navya-green);
-
-    font-size: 21px;
-    font-weight: 600;
-
-    line-height: 1.1;
+.batch-history-root .page-heading h1 {
+  color: #003f2d;
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.2;
 }
 
-.page-heading p {
-    color: var(--muted);
-
-    font-size: 13px;
-    margin-top: 4px;
+.batch-history-root .page-heading p {
+  color: #666963;
+  font-size: 13px;
+  margin-top: 2px;
 }
 
-
-/* Batch info */
-
-.batch-mini-info {
-    justify-self: end;
-
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.batch-history-root .batch-mini-info {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.batch-mini-info > div:first-child {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+.batch-history-root .batch-mini-info > div:first-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
-.batch-mini-info strong {
-    font-size: 15px;
-    font-weight: 500;
-
-    color: var(--navya-green);
+.batch-history-root .batch-mini-info strong {
+  font-size: 15px;
+  font-weight: 600;
+  color: #003f2d;
 }
 
-.batch-mini-info span {
-    font-size: 13px;
-    color: var(--muted);
+.batch-history-root .batch-mini-info span {
+  font-size: 13px;
+  color: #666963;
 }
 
-.tomato-image {
-    width: 40px;
-    height: 40px;
-
-    border-radius: 50%;
-    overflow: hidden;
-
-    border: 1px solid var(--border);
+.batch-history-root .tomato-image {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid #e3e1d9;
 }
-
-.tomato-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
 
 /* =========================================================
-   MAIN
+   MAIN CONTAINER
    ========================================================= */
 
-.page-container {
-    width: min(1240px, calc(100% - 64px));
-    margin: 28px auto 50px;
+.batch-history-root .page-container {
+  width: min(1240px, calc(100% - 64px));
+  margin: 28px auto 50px;
 }
-
 
 /* =========================================================
    CARDS
    ========================================================= */
 
-.card {
-    background: rgba(252, 251, 247, 0.9);
-
-    border: 1px solid var(--border);
-    border-radius: 14px;
-
-    box-shadow:
-        0 2px 8px rgba(30, 45, 38, 0.025);
-
-    overflow: hidden;
+.batch-history-root .card {
+  background: rgba(252, 251, 247, 0.95);
+  border: 1px solid #e3e1d9;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(30, 45, 38, 0.025);
+  overflow: hidden;
+  min-width: 0;
 }
 
-.card h2 {
-    font-size: 23px;
-    font-weight: 500;
-
-    color: #262824;
+.batch-history-root .card h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #262824;
 }
 
-
-/* =========================================================
-   SECTION TITLE
-   ========================================================= */
-
-.section-title-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding-bottom: 12px;
-
-    border-bottom: 1px solid var(--border);
+.batch-history-root .section-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e3e1d9;
 }
-
 
 /* =========================================================
    BATCH JOURNEY
    ========================================================= */
 
-.journey-card {
-    padding: 20px 18px 18px;
+.batch-history-root .journey-card {
+  padding: 20px 24px;
+  overflow-x: auto;
 }
 
-.details-button {
-    background: #fffefa;
-
-    border: 1px solid #c8cbc5;
-    border-radius: 5px;
-
-    padding: 7px 12px;
-
-    font-family: inherit;
-    font-size: 15px;
-
-    color: #333632;
-
-    cursor: pointer;
+.batch-history-root .details-button {
+  background: #fffefa;
+  border: 1px solid #c8cbc5;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333632;
+  cursor: pointer;
 }
 
-.journey {
-    position: relative;
-
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-
-    padding: 20px 15px 0;
+.batch-history-root .journey-scroll-wrap {
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 8px;
 }
 
-.journey-line {
-    position: absolute;
-
-    left: 42px;
-    right: 42px;
-
-    top: 46px;
-
-    height: 5px;
-
-    background: #e8e7e1;
-
-    z-index: 0;
+.batch-history-root .journey {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(130px, 1fr));
+  padding: 20px 10px 10px;
+  min-width: 650px;
 }
 
-
-.journey-step {
-    position: relative;
-    z-index: 1;
-
-    text-align: center;
+.batch-history-root .journey-line {
+  position: absolute;
+  left: 65px;
+  right: 65px;
+  top: 45px;
+  height: 4px;
+  background: #e8e7e1;
+  z-index: 0;
 }
 
-.journey-circle {
-    width: 50px;
-    height: 50px;
-
-    margin: 0 auto 18px;
-
-    border-radius: 50%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: var(--cream);
-
-    border: 2px solid var(--navya-green);
-
-    color: #363934;
-
-    font-size: 17px;
+.batch-history-root .journey-step {
+  position: relative;
+  z-index: 1;
+  text-align: center;
 }
 
-
-/* Current */
-
-.journey-step.current .journey-circle {
-    background: var(--navya-green);
-    color: white;
-
-    border: 5px solid #b8e5d2;
-
-    box-shadow: 0 0 0 2px #d9f2e6;
+.batch-history-root .journey-circle {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #faf8f2;
+  border: 2px solid #003f2d;
+  color: #363934;
+  font-size: 16px;
+  font-weight: 600;
 }
 
-
-/* Projected */
-
-.journey-step.projected .journey-circle {
-    border-color: #d4d8d3;
-    border-style: dashed;
-
-    color: #9c9e99;
+.batch-history-root .journey-step.current .journey-circle {
+  background: #003f2d;
+  color: white;
+  border: 4px solid #b8e5d2;
+  box-shadow: 0 0 0 2px #d9f2e6;
 }
 
-.journey-step h3 {
-    font-size: 15px;
-    font-weight: 500;
-
-    margin-bottom: 3px;
+.batch-history-root .journey-step.projected .journey-circle {
+  border-color: #d4d8d3;
+  border-style: dashed;
+  color: #9c9e99;
 }
 
-.journey-step.current h3 {
-    color: var(--navya-green);
-    font-weight: 600;
+.batch-history-root .journey-step h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 2px;
 }
 
-.journey-step.projected h3 {
-    color: #999b96;
+.batch-history-root .journey-step.current h3 {
+  color: #003f2d;
 }
 
-.journey-step p {
-    font-size: 13px;
-    color: #555853;
-
-    margin-bottom: 6px;
+.batch-history-root .journey-step.projected h3 {
+  color: #999b96;
 }
 
-.journey-step.projected p {
-    color: #999b96;
+.batch-history-root .journey-step p {
+  font-size: 13px;
+  color: #555853;
+  margin-bottom: 6px;
 }
 
+.batch-history-root .journey-step.projected p {
+  color: #999b96;
+}
+
+.batch-history-root .status-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.batch-history-root .fresh,
+.batch-history-root .stable {
+  background: #dfe4df;
+  color: #5c625d;
+}
+
+.batch-history-root .monitor {
+  background: #f8eee0;
+  color: #ad5d00;
+}
+
+.batch-history-root .projected-tag {
+  background: #f0f0ec;
+  color: #aaa9a4;
+}
 
 /* =========================================================
-   STATUS TAGS
+   CHARTS GRID
    ========================================================= */
 
-.status-tag {
-    display: inline-block;
-
-    padding: 3px 9px;
-
-    border-radius: 4px;
-
-    font-size: 11px;
+.batch-history-root .charts-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  margin-top: 24px;
 }
 
-.fresh {
-    background: #dfe4df;
-    color: #5c625d;
+.batch-history-root .chart-card {
+  padding: 20px 24px;
+  min-height: 400px;
 }
 
-.stable {
-    background: #dfe4df;
-    color: #5c625d;
+.batch-history-root .legend {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 13px;
+  color: #555853;
 }
 
-.monitor {
-    background: var(--orange-light);
-    color: var(--orange);
+.batch-history-root .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.projected-tag {
-    background: #f0f0ec;
-    color: #aaa9a4;
+.batch-history-root .legend-line {
+  width: 14px;
+  height: 4px;
+  display: inline-block;
+  border-radius: 4px;
 }
 
-
-/* =========================================================
-   CHART GRID
-   ========================================================= */
-
-.charts-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-
-    gap: 20px;
-
-    margin-top: 20px;
+.batch-history-root .legend-line.actual {
+  background: #003f2d;
 }
 
-.chart-card {
-    min-height: 420px;
-    padding: 20px 18px;
+.batch-history-root .legend-line.projected {
+  background: repeating-linear-gradient(
+    to right,
+    #9daa78 0,
+    #9daa78 5px,
+    transparent 5px,
+    transparent 8px
+  );
 }
 
-
-/* =========================================================
-   LEGEND
-   ========================================================= */
-
-.legend {
-    display: flex;
-    align-items: center;
-    gap: 22px;
-
-    font-size: 13px;
-    color: #555853;
+.batch-history-root .trajectory-chart {
+  position: relative;
+  height: 250px;
+  margin-top: 10px;
 }
 
-.legend-item {
-    display: flex;
-    align-items: center;
-    gap: 7px;
+.batch-history-root .chart-svg {
+  width: 100%;
+  height: 200px;
+  display: block;
 }
 
-.legend-line {
-    width: 13px;
-    height: 4px;
-    display: inline-block;
-
-    border-radius: 4px;
+.batch-history-root .grid-line {
+  stroke: #ebe9e2;
+  stroke-width: 1;
 }
 
-.legend-line.actual {
-    background: var(--navya-green);
+.batch-history-root .actual-path {
+  fill: none;
+  stroke: #003f2d;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-.legend-line.projected {
-    background: repeating-linear-gradient(
-        to right,
-        #9daa78 0,
-        #9daa78 5px,
-        transparent 5px,
-        transparent 8px
-    );
+.batch-history-root .projected-path {
+  fill: none;
+  stroke: #a8b37b;
+  stroke-width: 3;
+  stroke-dasharray: 7 6;
+  stroke-linecap: round;
 }
 
-
-/* =========================================================
-   TRAJECTORY CHART
-   ========================================================= */
-
-.trajectory-chart {
-    position: relative;
-
-    height: 275px;
-
-    margin-top: 8px;
+.batch-history-root .actual-point {
+  fill: #003f2d;
 }
 
-.chart-svg {
-    width: 100%;
-    height: 225px;
-
-    display: block;
+.batch-history-root .current-point {
+  fill: #003f2d;
+  stroke: #003f2d;
 }
 
-.grid-line {
-    stroke: #ebe9e2;
-    stroke-width: 1;
+.batch-history-root .projected-point {
+  fill: #faf8f2;
+  stroke: #9aa772;
+  stroke-width: 2;
 }
 
-.actual-path {
-    fill: none;
-
-    stroke: var(--navya-green);
-    stroke-width: 3;
-
-    stroke-linecap: round;
-    stroke-linejoin: round;
+.batch-history-root .chart-value {
+  position: absolute;
+  font-size: 14px;
+  color: #555853;
+  font-weight: 500;
 }
 
-.projected-path {
-    fill: none;
+.batch-history-root .value-1 { top: 10px; left: 7%; }
+.batch-history-root .value-2 { top: 30px; left: 31%; }
+.batch-history-root .value-3 { top: 86px; left: 53%; color: #003f2d; font-weight: 700; }
+.batch-history-root .value-4 { top: 140px; left: 75%; }
+.batch-history-root .value-5 { top: 180px; right: 2%; }
 
-    stroke: #a8b37b;
-    stroke-width: 3;
-
-    stroke-dasharray: 7 6;
-
-    stroke-linecap: round;
+.batch-history-root .x-axis {
+  position: absolute;
+  left: 5%;
+  right: 2%;
+  bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  color: #7d807b;
+  font-size: 13px;
 }
 
-.actual-point {
-    fill: var(--navya-green);
+.batch-history-root .x-axis strong {
+  color: #003f2d;
 }
 
-.current-point {
-    fill: var(--navya-green);
-    stroke: var(--navya-green);
+.batch-history-root .trajectory-message {
+  margin-top: 14px;
+  min-height: 48px;
+  border: 1px solid #e3e1d9;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  font-size: 14px;
+  color: #555853;
 }
 
-.projected-point {
-    fill: var(--cream);
-    stroke: #9aa772;
-    stroke-width: 2;
+.batch-history-root .trend-icon {
+  color: #ff9844;
+  font-size: 22px;
 }
 
-
-/* Values */
-
-.chart-value {
-    position: absolute;
-
-    font-size: 16px;
-    color: #555853;
+/* SENSOR TRENDS */
+.batch-history-root .sensor-tabs {
+  display: flex;
+  border-bottom: 1px solid #e3e1d9;
+  height: 40px;
+  margin-top: 8px;
 }
 
-.value-1 {
-    top: 10px;
-    left: 7%;
+.batch-history-root .sensor-tab {
+  background: transparent;
+  border: none;
+  padding: 0 16px;
+  font-family: inherit;
+  font-size: 14px;
+  color: #555853;
+  cursor: pointer;
+  font-weight: 500;
 }
 
-.value-2 {
-    top: 30px;
-    left: 31%;
+.batch-history-root .sensor-tab.active {
+  color: #003f2d;
+  border-bottom: 2px solid #003f2d;
+  font-weight: 600;
 }
 
-.value-3 {
-    top: 92px;
-    left: 53%;
-
-    color: var(--navya-green);
-    font-weight: 600;
+.batch-history-root .sensor-chart {
+  position: relative;
+  height: 250px;
+  margin-top: 8px;
 }
 
-.value-4 {
-    top: 153px;
-    left: 75%;
+.batch-history-root .sensor-chart .chart-svg {
+  height: 200px;
 }
 
-.value-5 {
-    top: 198px;
-    right: 2%;
+.batch-history-root .temperature-path {
+  fill: none;
+  stroke: #ff9844;
+  stroke-width: 3;
+  stroke-linecap: round;
 }
 
-
-/* X Axis */
-
-.x-axis {
-    position: absolute;
-
-    left: 5%;
-    right: 1%;
-
-    bottom: 29px;
-
-    display: flex;
-    justify-content: space-between;
-
-    color: #7d807b;
-
-    font-size: 13px;
+.batch-history-root .peak-label {
+  position: absolute;
+  top: 70px;
+  left: 51%;
+  color: #858680;
+  font-size: 12px;
+  font-weight: 500;
 }
 
-.x-axis strong {
-    color: var(--navya-green);
+.batch-history-root .sensor-x-axis {
+  position: absolute;
+  bottom: 16px;
+  left: 3%;
+  right: 3%;
+  display: flex;
+  justify-content: space-between;
+  color: #81847f;
+  font-size: 13px;
 }
-
-
-/* Trajectory message */
-
-.trajectory-message {
-    height: 53px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 8px;
-
-    display: flex;
-    align-items: center;
-
-    gap: 10px;
-
-    padding: 0 14px;
-
-    font-size: 15px;
-    color: #555853;
-}
-
-.trend-icon {
-    color: #ff9844;
-    font-size: 25px;
-}
-
-
-/* =========================================================
-   SENSOR TRENDS
-   ========================================================= */
-
-.sensor-card h2 {
-    margin-bottom: 12px;
-}
-
-.sensor-tabs {
-    display: flex;
-
-    border-bottom: 1px solid var(--border);
-
-    height: 42px;
-}
-
-.sensor-tab {
-    background: transparent;
-    border: none;
-
-    padding: 0 16px;
-
-    font-family: inherit;
-    font-size: 15px;
-
-    color: #555853;
-
-    cursor: pointer;
-}
-
-.sensor-tab.active {
-    color: var(--navya-green);
-
-    border-bottom: 2px solid var(--navya-green);
-
-    font-weight: 500;
-}
-
-.sensor-chart {
-    position: relative;
-
-    height: 285px;
-
-    margin-top: 5px;
-}
-
-.sensor-chart .chart-svg {
-    height: 230px;
-}
-
-.temperature-path {
-    fill: none;
-
-    stroke: #ff9844;
-    stroke-width: 3;
-
-    stroke-linecap: round;
-}
-
-.peak-label {
-    position: absolute;
-
-    top: 82px;
-    left: 51%;
-
-    color: #858680;
-
-    font-size: 12px;
-}
-
-.sensor-x-axis {
-    position: absolute;
-
-    bottom: 30px;
-    left: 3%;
-    right: 3%;
-
-    display: flex;
-    justify-content: space-between;
-
-    color: #81847f;
-
-    font-size: 13px;
-}
-
 
 /* =========================================================
    BOTTOM GRID
    ========================================================= */
 
-.bottom-grid {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 20px;
-
-    margin-top: 20px;
+.batch-history-root .bottom-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  margin-top: 24px;
 }
 
-.previous-history,
-.comparison-card {
-    padding: 20px 18px;
-    min-height: 310px;
+.batch-history-root .previous-history,
+.batch-history-root .comparison-card {
+  padding: 20px 24px;
+  min-height: 290px;
 }
 
-.previous-history h2,
-.comparison-card h2 {
-    padding-bottom: 12px;
-
-    border-bottom: 1px solid var(--border);
+.batch-history-root .table-wrapper {
+  width: 100%;
+  overflow-x: auto;
 }
 
+.batch-history-root table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+.batch-history-root th {
+  font-size: 12px;
+  font-weight: 500;
+  color: #4d504c;
+  padding: 8px 8px;
+  text-align: left;
+  border-bottom: 1px solid #e3e1d9;
+}
+
+.batch-history-root td {
+  font-size: 15px;
+  padding: 12px 8px;
+  border-bottom: 1px solid #eeece6;
+  color: #444742;
+}
+
+.batch-history-root .score {
+  color: #003f2d;
+  font-weight: 600;
+}
+
+/* BATCH COMPARISON */
+.batch-history-root .comparison-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.batch-history-root .comparison-controls select {
+  flex: 1;
+  min-width: 160px;
+  padding: 8px 12px;
+  background: #fffefa;
+  border: 1px solid #c8cbc5;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  color: #3c3e3a;
+  cursor: pointer;
+}
+
+.batch-history-root .vs {
+  color: #737670;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.batch-history-root .comparison-results {
+  display: grid;
+  grid-template-columns: 1fr 50px 1fr;
+  align-items: center;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.batch-history-root .comparison-side {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.batch-history-root .comparison-side span {
+  font-size: 13px;
+  color: #6f726d;
+}
+
+.batch-history-root .comparison-side strong {
+  font-size: 24px;
+  font-weight: 600;
+  color: #282a27;
+}
+
+.batch-history-root .comparison-side small {
+  color: #003f2d;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.batch-history-root .comparison-icon {
+  color: #b5bab5;
+  font-size: 22px;
+}
+
+.batch-history-root .warning-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 12px 14px;
+  border: 1px solid #e3e1d9;
+  border-radius: 8px;
+  color: #5b5e59;
+  font-size: 13px;
+  background: #fdfbf7;
+}
+
+.batch-history-root .warning-icon {
+  color: #ff9844;
+  font-size: 18px;
+}
 
 /* =========================================================
-   TABLE
+   RESPONSIVE BREAKPOINTS
    ========================================================= */
-
-.table-wrapper {
-    width: 100%;
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-
-    margin-top: 14px;
-}
-
-th {
-    font-size: 12px;
-    font-weight: 400;
-
-    color: #4d504c;
-
-    padding: 8px 8px;
-
-    text-align: left;
-
-    border-bottom: 1px solid var(--border);
-}
-
-td {
-    font-size: 16px;
-
-    padding: 13px 8px;
-
-    border-bottom: 1px solid #eeece6;
-
-    color: #444742;
-}
-
-.score {
-    color: var(--navya-green);
-    font-weight: 500;
-}
-
-
-/* =========================================================
-   BATCH COMPARISON
-   ========================================================= */
-
-.comparison-controls {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-
-    margin-top: 16px;
-}
-
-.comparison-controls select {
-    min-width: 205px;
-
-    padding: 10px 12px;
-
-    background: #fffefa;
-
-    border: 1px solid #c8cbc5;
-    border-radius: 6px;
-
-    font-family: inherit;
-    font-size: 15px;
-
-    color: #3c3e3a;
-
-    cursor: pointer;
-}
-
-.vs {
-    color: #737670;
-    font-size: 14px;
-}
-
-
-.comparison-results {
-    display: grid;
-
-    grid-template-columns: 1fr 60px 1fr;
-
-    align-items: center;
-
-    margin-top: 25px;
-
-    text-align: center;
-}
-
-.comparison-side {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.comparison-side span {
-    font-size: 13px;
-    color: #6f726d;
-}
-
-.comparison-side strong {
-    font-size: 24px;
-    font-weight: 500;
-
-    color: #282a27;
-}
-
-.comparison-side small {
-    color: var(--navya-green);
-    font-size: 12px;
-}
-
-.comparison-icon {
-    color: #b5bab5;
-    font-size: 25px;
-}
-
-
-/* =========================================================
-   WARNING
-   ========================================================= */
-
-.warning-box {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    margin-top: 24px;
-
-    padding: 14px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 8px;
-
-    color: #5b5e59;
-
-    font-size: 14px;
-}
-
-.warning-icon {
-    color: #ff9844;
-    font-size: 21px;
-}
-
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-/* Tablets */
 
 @media (max-width: 900px) {
+  .batch-history-root .top-header {
+    grid-template-columns: 1fr auto;
+    height: auto;
+    padding: 14px 20px;
+    gap: 10px;
+  }
 
-    .top-header {
-        grid-template-columns: 1fr auto;
-        height: auto;
-        min-height: 70px;
+  .batch-history-root .page-heading {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
 
-        padding: 12px 20px;
-    }
+  .batch-history-root .charts-grid,
+  .batch-history-root .bottom-grid {
+    grid-template-columns: 1fr;
+  }
 
-    .page-heading {
-        grid-column: 1 / -1;
-        grid-row: 2;
-
-        padding: 5px 0 8px;
-    }
-
-    .batch-mini-info {
-        grid-column: 2;
-        grid-row: 1;
-    }
-
-    .page-container {
-        width: min(100% - 32px, 700px);
-    }
-
-    .charts-grid,
-    .bottom-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .journey {
-        overflow-x: auto;
-
-        grid-template-columns: repeat(5, 150px);
-
-        padding-bottom: 10px;
-    }
-
-    .journey-line {
-        left: 50px;
-        width: 550px;
-        right: auto;
-    }
-
-    .journey-card {
-        overflow-x: auto;
-    }
+  .batch-history-root .page-container {
+    width: min(100% - 36px, 700px);
+  }
 }
-
-
-/* Mobile */
 
 @media (max-width: 600px) {
-
-    .top-header {
-        padding: 12px 15px;
-    }
-
-    .back-link {
-        font-size: 13px;
-    }
-
-    .back-arrow {
-        font-size: 22px;
-    }
-
-    .batch-mini-info {
-        gap: 7px;
-    }
-
-    .batch-mini-info strong,
-    .batch-mini-info span {
-        font-size: 11px;
-    }
-
-    .tomato-image {
-        width: 34px;
-        height: 34px;
-    }
-
-    .page-heading h1 {
-        font-size: 19px;
-    }
-
-    .page-heading p {
-        font-size: 11px;
-    }
-
-
-    .page-container {
-        width: calc(100% - 20px);
-        margin-top: 15px;
-    }
-
-
-    .card {
-        border-radius: 11px;
-    }
-
-
-    .journey-card,
-    .chart-card,
-    .previous-history,
-    .comparison-card {
-        padding: 15px;
-    }
-
-
-    .section-title-row {
-        gap: 10px;
-    }
-
-    .card h2 {
-        font-size: 19px;
-    }
-
-    .details-button {
-        font-size: 12px;
-        padding: 6px 8px;
-    }
-
-
-    /* Horizontal journey on mobile */
-
-    .journey {
-        grid-template-columns: repeat(5, 125px);
-
-        padding-left: 5px;
-        padding-right: 5px;
-    }
-
-    .journey-line {
-        width: 455px;
-        left: 35px;
-        top: 45px;
-    }
-
-    .journey-circle {
-        width: 46px;
-        height: 46px;
-    }
-
-
-    /* Charts */
-
-    .charts-grid,
-    .bottom-grid {
-        gap: 12px;
-        margin-top: 12px;
-    }
-
-    .chart-card {
-        min-height: 370px;
-    }
-
-    .legend {
-        gap: 8px;
-        font-size: 11px;
-    }
-
-    .trajectory-chart {
-        height: 245px;
-    }
-
-    .trajectory-chart .chart-svg {
-        height: 190px;
-    }
-
-    .chart-value {
-        font-size: 13px;
-    }
-
-    .x-axis {
-        font-size: 10px;
-        bottom: 32px;
-    }
-
-    .value-1 {
-        top: 7px;
-    }
-
-    .value-2 {
-        top: 26px;
-    }
-
-    .value-3 {
-        top: 78px;
-    }
-
-    .value-4 {
-        top: 130px;
-    }
-
-    .value-5 {
-        top: 170px;
-    }
-
-    .trajectory-message {
-        height: auto;
-        min-height: 48px;
-
-        font-size: 12px;
-    }
-
-
-    /* Sensor tabs */
-
-    .sensor-tab {
-        padding: 0 8px;
-        font-size: 12px;
-    }
-
-    .sensor-chart {
-        height: 250px;
-    }
-
-    .sensor-chart .chart-svg {
-        height: 190px;
-    }
-
-    .peak-label {
-        font-size: 10px;
-    }
-
-    .sensor-x-axis {
-        font-size: 10px;
-    }
-
-
-    /* Table */
-
-    th {
-        font-size: 9px;
-        white-space: nowrap;
-    }
-
-    td {
-        font-size: 13px;
-        white-space: nowrap;
-    }
-
-
-    /* Comparison */
-
-    .comparison-controls {
-        gap: 7px;
-    }
-
-    .comparison-controls select {
-        min-width: 0;
-        width: 100%;
-
-        font-size: 12px;
-        padding: 8px;
-    }
-
-    .comparison-results {
-        grid-template-columns: 1fr 35px 1fr;
-    }
-
-    .comparison-side strong {
-        font-size: 21px;
-    }
-
-    .warning-box {
-        font-size: 11px;
-    }
-
-}
-
-
-/* Very small phones */
-
-@media (max-width: 380px) {
-
-    .page-heading h1 {
-        font-size: 17px;
-    }
-
-    .page-heading p {
-        font-size: 10px;
-    }
-
-    .batch-mini-info > div:first-child {
-        display: none;
-    }
-
-    .journey {
-        grid-template-columns: repeat(5, 110px);
-    }
-
-    .journey-line {
-        width: 400px;
-    }
-
-    .card h2 {
-        font-size: 17px;
-    }
-
-    .legend {
-        display: none;
-    }
-
-    .comparison-controls {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .vs {
-        text-align: center;
-    }
-
+  .batch-history-root .top-header {
+    padding: 12px 16px;
+  }
+
+  .batch-history-root .page-container {
+    width: calc(100% - 24px);
+    margin-top: 16px;
+  }
+
+  .batch-history-root .card {
+    padding: 16px 14px;
+  }
+
+  .batch-history-root .comparison-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .batch-history-root .vs {
+    text-align: center;
+  }
 }
