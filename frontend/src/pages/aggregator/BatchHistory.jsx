@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import '../../assets/css/batch-history.css';
 
 const BatchHistory = () => {
   const { batchId } = useParams();
+  const [activeTab, setActiveTab] = useState('Temperature');
 
   return (
-    <>
+    <div className="batch-history-root">
       {/* HEADER */}
       <header className="top-header">
         <Link to={`/aggregator/batch-assessment/${batchId || 'TOM-024'}`} className="back-link">
@@ -23,7 +24,7 @@ const BatchHistory = () => {
             <span>{batchId || 'TOM-024'}</span>
           </div>
           <div className="tomato-image">
-            <div style={{width: '40px', height: '40px', backgroundColor: '#ef4444', borderRadius: '50%'}}></div>
+            <div style={{width: '38px', height: '38px', backgroundColor: '#ef4444', borderRadius: '50%'}}></div>
           </div>
         </div>
       </header>
@@ -33,44 +34,48 @@ const BatchHistory = () => {
         <section className="card journey-card">
           <div className="section-title-row">
             <h2>Batch Journey</h2>
-            <button className="details-button">Click for Details</button>
+            <Link to={`/aggregator/batch-assessment/${batchId || 'TOM-024'}`} className="details-button">
+              Click for Details
+            </Link>
           </div>
-          <div className="journey">
-            <div className="journey-line"></div>
-            {/* STEP 1 */}
-            <div className="journey-step completed">
-              <div className="journey-circle">1</div>
-              <h3>Harvested</h3>
-              <p>Cond: 96</p>
-              <span className="status-tag fresh">Fresh</span>
-            </div>
-            {/* STEP 2 */}
-            <div className="journey-step completed">
-              <div className="journey-circle">2</div>
-              <h3>Monitoring</h3>
-              <p>Cond: 92</p>
-              <span className="status-tag stable">Stable</span>
-            </div>
-            {/* STEP 3 */}
-            <div className="journey-step current">
-              <div className="journey-circle">3</div>
-              <h3>Today</h3>
-              <p>Cond: 82</p>
-              <span className="status-tag monitor">Monitor</span>
-            </div>
-            {/* STEP 4 */}
-            <div className="journey-step projected">
-              <div className="journey-circle">4</div>
-              <h3>Projected</h3>
-              <p>Cond: 74</p>
-              <span className="status-tag projected-tag">Projected</span>
-            </div>
-            {/* STEP 5 */}
-            <div className="journey-step projected">
-              <div className="journey-circle">5</div>
-              <h3>Projected</h3>
-              <p>Cond: 65</p>
-              <span className="status-tag projected-tag">Projected</span>
+          <div className="journey-scroll-wrap">
+            <div className="journey">
+              <div className="journey-line"></div>
+              {/* STEP 1 */}
+              <div className="journey-step completed">
+                <div className="journey-circle">1</div>
+                <h3>Harvested</h3>
+                <p>Cond: 96</p>
+                <span className="status-tag fresh">Fresh</span>
+              </div>
+              {/* STEP 2 */}
+              <div className="journey-step completed">
+                <div className="journey-circle">2</div>
+                <h3>Monitoring</h3>
+                <p>Cond: 92</p>
+                <span className="status-tag stable">Stable</span>
+              </div>
+              {/* STEP 3 */}
+              <div className="journey-step current">
+                <div className="journey-circle">3</div>
+                <h3>Today</h3>
+                <p>Cond: 82</p>
+                <span className="status-tag monitor">Monitor</span>
+              </div>
+              {/* STEP 4 */}
+              <div className="journey-step projected">
+                <div className="journey-circle">4</div>
+                <h3>Projected</h3>
+                <p>Cond: 74</p>
+                <span className="status-tag projected-tag">Projected</span>
+              </div>
+              {/* STEP 5 */}
+              <div className="journey-step projected">
+                <div className="journey-circle">5</div>
+                <h3>Projected</h3>
+                <p>Cond: 65</p>
+                <span className="status-tag projected-tag">Projected</span>
+              </div>
             </div>
           </div>
         </section>
@@ -118,18 +123,36 @@ const BatchHistory = () => {
           <section className="card chart-card sensor-card">
             <h2>Sensor Trends</h2>
             <div className="sensor-tabs">
-              <button className="sensor-tab active">Temperature</button>
-              <button className="sensor-tab">Humidity</button>
-              <button className="sensor-tab">VOC / Gas</button>
+              <button className={`sensor-tab ${activeTab === 'Temperature' ? 'active' : ''}`} onClick={() => setActiveTab('Temperature')}>
+                Temperature
+              </button>
+              <button className={`sensor-tab ${activeTab === 'Humidity' ? 'active' : ''}`} onClick={() => setActiveTab('Humidity')}>
+                Humidity
+              </button>
+              <button className={`sensor-tab ${activeTab === 'VOC / Gas' ? 'active' : ''}`} onClick={() => setActiveTab('VOC / Gas')}>
+                VOC / Gas
+              </button>
             </div>
             <div className="sensor-chart">
               <svg viewBox="0 0 600 300" preserveAspectRatio="none" className="chart-svg">
                 <line x1="20" y1="80" x2="580" y2="80" className="grid-line"/>
                 <line x1="20" y1="150" x2="580" y2="150" className="grid-line"/>
                 <line x1="20" y1="220" x2="580" y2="220" className="grid-line"/>
-                <path d="M 20 175 C 90 180, 140 175, 200 155 C 260 140, 320 105, 390 85 C 455 70, 520 90, 580 165" className="temperature-path" />
+                {activeTab === 'Temperature' && (
+                  <path d="M 20 175 C 90 180, 140 175, 200 155 C 260 140, 320 105, 390 85 C 455 70, 520 90, 580 165" className="temperature-path" />
+                )}
+                {activeTab === 'Humidity' && (
+                  <path d="M 20 120 C 100 140, 200 110, 300 130 C 400 150, 500 100, 580 115" stroke="#23804e" strokeWidth="3" fill="none" strokeLinecap="round" />
+                )}
+                {activeTab === 'VOC / Gas' && (
+                  <path d="M 20 200 C 120 190, 220 210, 340 160 C 420 130, 510 110, 580 95" stroke="#a45b00" strokeWidth="3" fill="none" strokeLinecap="round" />
+                )}
               </svg>
-              <div className="peak-label">Peak: 28.4°C</div>
+              <div className="peak-label">
+                {activeTab === 'Temperature' && 'Peak: 28.4°C'}
+                {activeTab === 'Humidity' && 'Peak: 74%'}
+                {activeTab === 'VOC / Gas' && 'Peak: 420 ppm'}
+              </div>
               <div className="sensor-x-axis">
                 <span>Day 1</span><span>Day 2</span><span>Day 3</span>
               </div>
@@ -193,7 +216,7 @@ const BatchHistory = () => {
           </section>
         </div>
       </main>
-    </>
+    </div>
   );
 };
 

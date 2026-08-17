@@ -1,21 +1,16 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import NavyaLogo from '../common/NavyaLogo';
 
 const AggregatorNavbar = () => {
   const location = useLocation();
 
   return (
     <header className="navbar">
-      <div className="nav-container">
+      <div className="nav-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
         {/* Logo */}
-        <Link to="/aggregator/dashboard" className="brand">
-          <span className="brand-icon">
-            <svg viewBox="0 0 32 32" aria-hidden="true">
-              <path d="M16 4C10.2 7.2 7.3 11.7 7.3 16.5C7.3 21.7 11.1 25.5 16 28C20.9 25.5 24.7 21.7 24.7 16.5C24.7 11.7 21.8 7.2 16 4Z" fill="currentColor"/>
-              <path d="M16 10C13.8 13.2 12.9 16.2 13.2 19.1C13.5 22.2 15 24.6 16 26" fill="none" stroke="#f7f5ef" strokeWidth="1.8" strokeLinecap="round"/>
-            </svg>
-          </span>
-          <span>Navya</span>
+        <Link to="/aggregator/dashboard" className="brand" style={{ textDecoration: 'none' }}>
+          <NavyaLogo />
         </Link>
 
         {/* Navigation */}

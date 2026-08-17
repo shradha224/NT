@@ -12,7 +12,7 @@ const AggregatorScanBatch = () => {
   };
 
   return (
-    <>
+    <div className="scan-qr-root">
       <AggregatorNavbar />
       
       <main className="scan-page">
@@ -48,7 +48,7 @@ const AggregatorScanBatch = () => {
           </button>
         </section>
       </main>
-    </>
+    </div>
   );
 };
 

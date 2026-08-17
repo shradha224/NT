@@ -8,7 +8,7 @@ const BatchAssessment = () => {
   const { batchId } = useParams();
 
   return (
-    <>
+    <div className="batch-assessment-root">
       <AggregatorNavbar />
 
       <main className="page-container">
@@ -124,8 +124,8 @@ const BatchAssessment = () => {
             </div>
             <div className="visual-content">
               <div className="produce-image">
-                <div style={{width: '100%', height: '100%', backgroundColor: '#374151', borderRadius: '12px'}}>
-                  {/* <img src="assets/tomato-batch.jpg" alt="Latest produce image" /> */}
+                <div style={{width: '100%', height: '100%', backgroundColor: '#374151', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#9ca3af', fontSize: '13px'}}>
+                  Produce Camera View
                 </div>
                 <div className="image-label">
                   <Camera />
@@ -206,7 +206,7 @@ const BatchAssessment = () => {
           </div>
         </section>
       </main>
-    </>
+    </div>
   );
 };
 

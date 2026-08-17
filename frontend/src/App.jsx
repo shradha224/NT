@@ -18,8 +18,23 @@ import BatchHistory from './pages/aggregator/BatchHistory';
 
 import QualityPassport from './pages/public/QualityPassport';
 
-// In a real app, you would use auth context to protect these routes.
-// For now, we will assume standard routing.
+// Protected Route component
+const ProtectedRoute = ({ children, allowedRole }) => {
+  const token = localStorage.getItem('token');
+  const role = localStorage.getItem('role');
+
+  if (!token) {
+    return <Navigate to="/login" replace />;
+  }
+  
+  if (allowedRole && role !== allowedRole) {
+    // If they have wrong role, send them back home or login
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
+};
+
 function App() {
   return (
     <Router>
@@ -30,16 +45,16 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
 
         {/* Farmer Routes */}
-        <Route path="/farmer/dashboard" element={<FarmerDashboard />} />
-        <Route path="/farmer/register-batch" element={<RegisterBatch />} />
-        <Route path="/farmer/batch-created/:batchId" element={<BatchCreated />} />
-        <Route path="/farmer/scan-batch" element={<FarmerScanBatch />} />
+        <Route path="/farmer/dashboard" element={<ProtectedRoute allowedRole="FARMER"><FarmerDashboard /></ProtectedRoute>} />
+        <Route path="/farmer/register-batch" element={<ProtectedRoute allowedRole="FARMER"><RegisterBatch /></ProtectedRoute>} />
+        <Route path="/farmer/batch-created/:batchId" element={<ProtectedRoute allowedRole="FARMER"><BatchCreated /></ProtectedRoute>} />
+        <Route path="/farmer/scan-batch" element={<ProtectedRoute allowedRole="FARMER"><FarmerScanBatch /></ProtectedRoute>} />
 
         {/* Aggregator Routes */}
-        <Route path="/aggregator/dashboard" element={<AggregatorDashboard />} />
-        <Route path="/aggregator/scan-batch" element={<AggregatorScanBatch />} />
-        <Route path="/aggregator/batch-assessment/:batchId" element={<BatchAssessment />} />
-        <Route path="/aggregator/batch-history/:batchId" element={<BatchHistory />} />
+        <Route path="/aggregator/dashboard" element={<ProtectedRoute allowedRole="AGGREGATOR"><AggregatorDashboard /></ProtectedRoute>} />
+        <Route path="/aggregator/scan-batch" element={<ProtectedRoute allowedRole="AGGREGATOR"><AggregatorScanBatch /></ProtectedRoute>} />
+        <Route path="/aggregator/batch-assessment/:batchId" element={<ProtectedRoute allowedRole="AGGREGATOR"><BatchAssessment /></ProtectedRoute>} />
+        <Route path="/aggregator/batch-history/:batchId" element={<ProtectedRoute allowedRole="AGGREGATOR"><BatchHistory /></ProtectedRoute>} />
 
         {/* Public Routes */}
         <Route path="/quality-passport/:batchId" element={<QualityPassport />} />

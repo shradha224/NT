@@ -1,19 +1,16 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import '../../assets/css/quality-passport.css';
+import NavyaLogo from '../../components/common/NavyaLogo';
 
 const QualityPassport = () => {
   const { batchId } = useParams();
 
   return (
-    <>
+    <div className="quality-passport-root">
       <header className="header">
         <div className="brand">
-          <div className="brand-icon">
-            <span></span>
-            <span></span>
-          </div>
-          <span className="brand-name">Navya</span>
+          <NavyaLogo />
         </div>
       </header>
 
@@ -69,7 +66,9 @@ const QualityPassport = () => {
           </div>
           <div className="assessment-card">
             <div className="produce-image-container">
-              <div style={{width: '100%', height: '200px', backgroundColor: '#374151', borderRadius: '12px'}}></div>
+              <div style={{width: '100%', height: '100%', backgroundColor: '#374151', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#9ca3af', fontSize: '13px'}}>
+                Produce Camera View
+              </div>
               <div className="image-label">
                 <span>▣</span>
                 Captured 2 hrs ago
@@ -177,7 +176,7 @@ const QualityPassport = () => {
           </p>
         </footer>
       </main>
-    </>
+    </div>
   );
 };
 

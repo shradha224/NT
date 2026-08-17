@@ -1,20 +1,55 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import '../../assets/css/login.css';
+import NavyaLogo from '../../components/common/NavyaLogo';
 
 const LoginPage = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError('');
+    
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Login failed');
+      }
+
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('role', data.role);
+      
+      if (data.role === 'FARMER') {
+        navigate('/farmer/dashboard');
+      } else if (data.role === 'AGGREGATOR') {
+        navigate('/aggregator/dashboard');
+      } else {
+        navigate('/');
+      }
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   return (
-    <>
+    <div className="login-page-root">
       {/* Top-left Navya Logo */}
       <header className="top-logo">
-        <div className="navya-logo">
-          <div className="leaf-logo">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <span>Navya</span>
-        </div>
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <NavyaLogo />
+        </Link>
       </header>
 
       {/* Login Section */}
@@ -22,19 +57,17 @@ const LoginPage = () => {
         <div className="login-card">
           {/* Small Logo */}
           <div className="login-logo-box">
-            <div className="leaf-logo small">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
+            <NavyaLogo className="" />
           </div>
 
           {/* Heading */}
           <h1>Welcome to Navya</h1>
           <p className="subtitle">Sign in to your agricultural dashboard</p>
 
+          {error && <div style={{ color: '#c72222', marginBottom: '1rem', textAlign: 'center', fontSize: '14px', fontWeight: '500' }}>{error}</div>}
+
           {/* Login Form */}
-          <form className="login-form">
+          <form className="login-form" onSubmit={handleLogin}>
             {/* Email */}
             <div className="form-group">
               <label htmlFor="email">Email / Phone</label>
@@ -53,6 +86,9 @@ const LoginPage = () => {
                   type="text"
                   id="email"
                   placeholder="Enter your email or phone"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </div>
             </div>
@@ -75,6 +111,9 @@ const LoginPage = () => {
                   type="password"
                   id="password"
                   placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
               </div>
             </div>
@@ -113,7 +152,7 @@ const LoginPage = () => {
           Secure connection. Powered by Navya System.
         </p>
       </main>
-    </>
+    </div>
   );
 };
 

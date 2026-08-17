@@ -1,453 +1,246 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* =========================================================
+   QR GENERATED / BATCH CREATED — SCOPED (.qr-generated-root)
+   ========================================================= */
 
-body {
-    min-height: 100vh;
-    background: #faf8f3;
-    color: #003d2d;
-    font-family: Arial, Helvetica, sans-serif;
+.qr-generated-root {
+  width: 100%;
+  min-height: 100vh;
+  background: #faf8f3;
+  color: #003d2d;
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  overflow-x: hidden;
 }
-
 
 /* =========================
    HEADER
-========================= */
+   ========================= */
 
-.top-header {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 90px;
-
-    display: flex;
-    align-items: center;
-
-    padding-left: 48px;
+.qr-generated-root .top-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  padding-left: 48px;
+  z-index: 10;
 }
-
-
-/* Navya logo */
-
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.brand-name {
-    font-size: 28px;
-    font-weight: 600;
-    letter-spacing: -0.5px;
-}
-
-
-/* Simple leaf logo */
-
-.brand-icon {
-    position: relative;
-
-    width: 26px;
-    height: 32px;
-}
-
-.brand-icon span {
-    position: absolute;
-
-    width: 11px;
-    height: 22px;
-
-    background: #004631;
-
-    border-radius: 100% 0 100% 0;
-}
-
-.brand-icon span:first-child {
-    left: 3px;
-    top: 1px;
-
-    transform: rotate(-30deg);
-}
-
-.brand-icon span:last-child {
-    right: 3px;
-    top: 7px;
-
-    transform: rotate(30deg);
-}
-
 
 /* =========================
-   PAGE
-========================= */
+   PAGE CONTAINER
+   ========================= */
 
-.page-container {
-    min-height: 100vh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 110px 20px 60px;
+.qr-generated-root .page-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 20px 60px;
 }
-
 
 /* =========================
    SUCCESS CARD
-========================= */
+   ========================= */
 
-.success-card {
-    width: 538px;
-    min-height: 715px;
-
-    border: 1px solid #c5ccc7;
-    border-radius: 14px;
-
-    background: #faf9f5;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    padding: 34px 34px 36px;
-
-    text-align: center;
+.qr-generated-root .success-card {
+  width: 100%;
+  max-width: 538px;
+  border: 1px solid #c5ccc7;
+  border-radius: 14px;
+  background: #faf9f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 34px 34px 36px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
-
 
 /* =========================
    SUCCESS ICON
-========================= */
+   ========================= */
 
-.success-icon {
-    width: 86px;
-    height: 86px;
-
-    border-radius: 50%;
-
-    background: #164d3b;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin-top: 0;
-    margin-bottom: 24px;
+.qr-generated-root .success-icon {
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  background: #164d3b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
 }
 
-.checkmark {
-    width: 37px;
-    height: 37px;
-
-    border-radius: 50%;
-
-    background: #8bc6a8;
-
-    color: #164d3b;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 28px;
-    font-weight: bold;
-
-    line-height: 1;
+.qr-generated-root .checkmark {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #8bc6a8;
+  color: #164d3b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 1;
 }
-
 
 /* =========================
-   HEADING
-========================= */
+   HEADING & BATCH ID
+   ========================= */
 
-.success-card h1 {
-    font-size: 36px;
-    line-height: 1.15;
-
-    font-weight: 500;
-
-    letter-spacing: -1px;
-
-    color: #003d2d;
-
-    margin-bottom: 14px;
+.qr-generated-root .success-card h1 {
+  font-size: clamp(26px, 4vw, 36px);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -1px;
+  color: #003d2d;
+  margin-bottom: 10px;
 }
 
-
-/* =========================
-   BATCH ID
-========================= */
-
-.batch-id {
-    font-size: 18px;
-    color: #555c59;
-
-    margin-bottom: 36px;
+.qr-generated-root .batch-id {
+  font-size: 18px;
+  color: #555c59;
+  margin-bottom: 28px;
 }
 
-.batch-id span {
-    color: #414744;
+.qr-generated-root .batch-id span {
+  color: #003d2d;
+  font-weight: 600;
 }
-
 
 /* =========================
    QR SECTION
-========================= */
+   ========================= */
 
-.qr-container {
-    width: 288px;
-    height: 270px;
-
-    border: 1px solid #c7cec9;
-    border-radius: 9px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    background: #fbfaf6;
-
-    padding-top: 34px;
-
-    margin-bottom: 18px;
+.qr-generated-root .qr-container {
+  width: 100%;
+  max-width: 288px;
+  border: 1px solid #c7cec9;
+  border-radius: 9px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fbfaf6;
+  padding: 24px 16px 20px;
+  margin-bottom: 22px;
 }
 
-
-/* QR image box */
-
-.qr-image-wrapper {
-    width: 205px;
-    height: 155px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: white;
-
-    overflow: hidden;
+.qr-generated-root .qr-image-wrapper {
+  width: 190px;
+  height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 6px;
+  border: 1px solid #e0e4e1;
+  padding: 10px;
 }
 
-
-/* Actual QR */
-
-.qr-image {
-    width: 145px;
-    height: 145px;
-
-    object-fit: contain;
+.qr-generated-root .qr-image {
+  width: 100%;
+  height: 100%;
 }
 
-
-/* Description */
-
-.qr-description {
-    margin-top: 25px;
-
-    font-size: 14px;
-
-    color: #4f5753;
+.qr-generated-root .qr-description {
+  margin-top: 16px;
+  font-size: 13px;
+  color: #4f5753;
 }
-
 
 /* =========================
-   DOWNLOAD BUTTON
-========================= */
+   BUTTONS
+   ========================= */
 
-.download-btn {
-    width: 100%;
-    height: 48px;
-
-    border: none;
-    border-radius: 7px;
-
-    background: #003d2d;
-    color: white;
-
-    font-size: 16px;
-    font-weight: 500;
-
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    gap: 10px;
-
-    margin-top: 0;
-    margin-bottom: 9px;
-
-    transition: background 0.2s ease;
+.qr-generated-root .download-btn {
+  width: 100%;
+  max-width: 288px;
+  height: 48px;
+  border: none;
+  border-radius: 7px;
+  background: #003d2d;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  transition: background 0.2s ease;
 }
 
-.download-btn:hover {
-    background: #00523c;
+.qr-generated-root .download-btn:hover {
+  background: #00523c;
 }
 
-
-/* Download icon */
-
-.download-icon {
-    font-size: 24px;
-    font-weight: 300;
-
-    line-height: 1;
-
-    transform: translateY(-2px);
+.qr-generated-root .print-btn {
+  width: 100%;
+  max-width: 288px;
+  height: 48px;
+  border: 1.5px solid #b86a16;
+  border-radius: 7px;
+  background: transparent;
+  color: #a65d0e;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 22px;
+  transition: all 0.2s ease;
 }
 
-
-/* =========================
-   PRINT BUTTON
-========================= */
-
-.print-btn {
-    width: 100%;
-    height: 48px;
-
-    border: 1.5px solid #b86a16;
-    border-radius: 7px;
-
-    background: transparent;
-
-    color: #a65d0e;
-
-    font-size: 16px;
-    font-weight: 500;
-
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    gap: 10px;
-
-    margin-bottom: 25px;
-
-    transition: all 0.2s ease;
+.qr-generated-root .print-btn:hover {
+  background: #fff5e8;
 }
 
-.print-btn:hover {
-    background: #fff5e8;
+.qr-generated-root .back-link {
+  text-decoration: none;
+  color: #003d2d;
+  font-size: 15px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 7px;
 }
 
-
-/* Print icon */
-
-.print-icon {
-    font-size: 21px;
+.qr-generated-root .back-link:hover {
+  text-decoration: underline;
 }
-
-
-/* =========================
-   BACK LINK
-========================= */
-
-.back-link {
-    text-decoration: none;
-
-    color: #003d2d;
-
-    font-size: 15px;
-    font-weight: 500;
-
-    display: flex;
-    align-items: center;
-    gap: 7px;
-
-    margin-top: 0;
-}
-
-.back-link span:first-child {
-    font-size: 22px;
-}
-
-.back-link:hover {
-    text-decoration: underline;
-}
-
 
 /* =========================
    RESPONSIVE
-========================= */
+   ========================= */
 
 @media (max-width: 650px) {
+  .qr-generated-root .top-header {
+    padding-left: 20px;
+    height: 70px;
+  }
 
-    .top-header {
-        height: 70px;
-        padding-left: 24px;
-    }
+  .qr-generated-root .page-container {
+    padding: 80px 16px 40px;
+  }
 
-    .brand-name {
-        font-size: 23px;
-    }
-
-    .page-container {
-        padding: 90px 16px 40px;
-    }
-
-    .success-card {
-        width: 100%;
-        max-width: 538px;
-
-        min-height: auto;
-
-        padding: 30px 20px 32px;
-    }
-
-    .success-card h1 {
-        font-size: 29px;
-    }
-
-    .batch-id {
-        font-size: 16px;
-        margin-bottom: 28px;
-    }
-
-    .success-icon {
-        width: 76px;
-        height: 76px;
-    }
-
-    .qr-container {
-        width: 100%;
-        max-width: 288px;
-    }
-
-    .download-btn,
-    .print-btn {
-        max-width: 100%;
-    }
+  .qr-generated-root .success-card {
+    padding: 26px 18px 28px;
+  }
 }
 
+@media (max-width: 320px) {
+  .qr-generated-root .success-card {
+    padding: 20px 12px;
+  }
 
-@media (max-width: 400px) {
-
-    .success-card {
-        padding: 26px 15px 30px;
-    }
-
-    .success-card h1 {
-        font-size: 25px;
-    }
-
-    .qr-container {
-        height: 255px;
-    }
-
-    .qr-image-wrapper {
-        width: 190px;
-        height: 145px;
-    }
-
-    .qr-image {
-        width: 130px;
-        height: 130px;
-    }
+  .qr-generated-root .qr-image-wrapper {
+    width: 150px;
+    height: 150px;
+  }
 }

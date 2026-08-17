@@ -7,7 +7,7 @@ const FarmerDashboard = () => {
   const navigate = useNavigate();
 
   return (
-    <>
+    <div className="farmer-dashboard-root">
       <FarmerNavbar />
       <main className="dashboard">
         <section className="welcome-section">
@@ -50,7 +50,7 @@ const FarmerDashboard = () => {
           </button>
         </section>
       </main>
-    </>
+    </div>
   );
 };
 
