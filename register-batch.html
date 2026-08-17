@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Navya — Register Batch</title>
+  <link rel="stylesheet" href="register-batch.css" />
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="navbar">
+    <div class="brand">
+      <div class="brand-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <span class="brand-name">Navya</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="#" class="nav-link">Dashboard</a>
+      <a href="#" class="nav-link">Scan Batch</a>
+      <a href="#" class="nav-link active">Register Batch</a>
+    </nav>
+
+    <button class="profile-button" aria-label="Profile">
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <circle cx="12" cy="12" r="9"></circle>
+        <circle cx="12" cy="9" r="3"></circle>
+        <path d="M7 19c.8-2.3 2.5-3.5 5-3.5s4.2 1.2 5 3.5"></path>
+      </svg>
+    </button>
+  </header>
+
+
+  <!-- Main -->
+  <main class="page-container">
+
+    <section class="page-heading">
+      <h1>Register New Batch</h1>
+      <p>Enter details to initiate tracking for a new<br class="desktop-break" /> harvest cycle.</p>
+    </section>
+
+
+    <!-- Form Card -->
+    <section class="form-card">
+
+      <!-- Quantity -->
+      <div class="form-group">
+        <label for="quantity">Quantity</label>
+
+        <input
+          type="text"
+          id="quantity"
+          name="quantity"
+          placeholder="e.g. 100kg"
+        />
+      </div>
+
+
+      <!-- Crop Variety -->
+      <div class="form-group">
+        <label for="crop-variety">Crop Variety</label>
+
+        <div class="select-wrapper">
+          <select id="crop-variety" name="crop-variety">
+            <option value="" selected disabled>Select variety...</option>
+            <option value="tomato">Tomato</option>
+            <option value="potato">Potato</option>
+            <option value="onion">Onion</option>
+            <option value="cabbage">Cabbage</option>
+            <option value="cauliflower">Cauliflower</option>
+          </select>
+
+          <span class="select-arrow">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+
+      <!-- Harvest Date -->
+      <div class="form-group">
+        <label for="harvest-date">Harvest Date</label>
+
+        <input
+          type="date"
+          id="harvest-date"
+          name="harvest-date"
+        />
+      </div>
+
+
+      <!-- Origin Field -->
+      <div class="form-group">
+        <label for="origin">Origin Field</label>
+
+        <button type="button" class="origin-field" id="origin">
+          <span class="location-icon">
+            <svg
+              width="23"
+              height="23"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path>
+              <circle cx="12" cy="10" r="2.5"></circle>
+            </svg>
+          </span>
+
+          <span class="origin-placeholder">Select place</span>
+
+          <span class="origin-arrow">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="m9 18 6-6-6-6"></path>
+            </svg>
+          </span>
+        </button>
+      </div>
+
+    </section>
+
+
+    <!-- Generate Button -->
+    <button type="button" class="generate-button">
+
+      <span class="plus-icon">
+        <svg
+          width="21"
+          height="21"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"
+        >
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M12 8v8"></path>
+          <path d="M8 12h8"></path>
+        </svg>
+      </span>
+
+      <span>Generate Batch Profile</span>
+
+    </button>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,760 @@
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "DM Sans", Arial, sans-serif;
+    background: #faf9f5;
+    color: #063b2c;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+    height: 78px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 48px;
+
+    background: rgba(250, 249, 245, 0.96);
+
+    border-bottom: 1px solid #e8e6df;
+
+    position: relative;
+    z-index: 10;
+}
+
+
+/* LOGO */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    color: #063b2c;
+}
+
+.logo-icon {
+    width: 25px;
+    height: 25px;
+}
+
+
+/* NAV LINKS */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 42px;
+
+    margin-left: 90px;
+}
+
+.nav-links a {
+    font-size: 14px;
+    font-weight: 500;
+
+    color: #4d514c;
+
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: #063b2c;
+}
+
+
+/* NAV ACTIONS */
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 27px;
+}
+
+.login-link {
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #315246;
+}
+
+.get-started-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 11px 24px;
+
+    border-radius: 24px;
+
+    background: #003d2c;
+    color: white;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: transform 0.2s ease,
+                background 0.2s ease;
+}
+
+.get-started-nav:hover {
+    transform: translateY(-1px);
+    background: #00533c;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    min-height: 680px;
+
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+
+/* BACKGROUND GLOW */
+
+.hero-glow {
+    position: absolute;
+
+    width: 440px;
+    height: 360px;
+
+    border-radius: 50%;
+
+    filter: blur(80px);
+
+    opacity: 0.42;
+
+    pointer-events: none;
+}
+
+.glow-left {
+    left: -90px;
+    bottom: 80px;
+
+    background: #e7edb8;
+}
+
+.glow-right {
+    right: -70px;
+    bottom: 110px;
+
+    background: #dcefdc;
+}
+
+
+/* HERO CONTENT */
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    width: 760px;
+
+    text-align: center;
+
+    margin-top: -25px;
+}
+
+
+/* BADGE */
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 6px 14px;
+
+    border: 1px solid #ccd3cb;
+
+    border-radius: 20px;
+
+    background: rgba(250, 249, 245, 0.8);
+
+    color: #315246;
+
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.badge-icon {
+    font-size: 11px;
+}
+
+
+/* HERO TITLE */
+
+.hero h1 {
+    margin-top: 38px;
+
+    font-size: 48px;
+    line-height: 1.12;
+
+    letter-spacing: -1.8px;
+
+    font-weight: 700;
+
+    color: #063b2c;
+}
+
+
+/* DESCRIPTION */
+
+.hero-description {
+    width: 590px;
+
+    margin: 25px auto 0;
+
+    font-size: 16px;
+
+    line-height: 1.65;
+
+    color: #6a6d67;
+}
+
+
+/* HERO BUTTONS */
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 14px;
+
+    margin-top: 34px;
+}
+
+.primary-button,
+.secondary-button {
+    min-width: 108px;
+
+    padding: 11px 22px;
+
+    border-radius: 24px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.primary-button {
+    background: #003d2c;
+    color: white;
+}
+
+.secondary-button {
+    border: 1.5px solid #c4863e;
+    color: #9a5d1e;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+
+/* =========================================================
+   WORKFLOW SECTION
+========================================================= */
+
+.workflow-section {
+    max-width: 960px;
+
+    margin: 0 auto;
+
+    padding: 20px 30px 70px;
+}
+
+
+/* SECTION HEADING */
+
+.section-heading {
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+.section-heading h2 {
+    font-size: 27px;
+
+    letter-spacing: -0.7px;
+
+    font-weight: 700;
+
+    color: #064332;
+}
+
+.section-heading p {
+    margin-top: 7px;
+
+    font-size: 14px;
+
+    color: #737670;
+}
+
+
+/* WORKFLOW GRID */
+
+.workflow-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1.65fr
+        1.35fr;
+
+    grid-template-rows:
+        auto
+        auto;
+
+    gap: 12px;
+}
+
+
+/* GENERIC WORKFLOW CARD */
+
+.workflow-card {
+    position: relative;
+
+    min-height: 180px;
+
+    padding: 20px;
+
+    border: 1px solid #d5d8d0;
+
+    border-radius: 10px;
+
+    background: #f8f7f2;
+
+    overflow: hidden;
+}
+
+.workflow-card h3 {
+    margin-top: 5px;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    color: #164b3c;
+}
+
+.workflow-card p {
+    margin-top: 6px;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    color: #747770;
+
+    max-width: 330px;
+}
+
+
+/* STEP LABEL */
+
+.step-label {
+    margin-top: 48px;
+
+    font-size: 9px;
+
+    letter-spacing: 0.4px;
+
+    font-weight: 600;
+
+    color: #8a8c85;
+}
+
+
+/* ICON */
+
+.workflow-icon {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    color: #61703b;
+
+    font-size: 15px;
+}
+
+.orange-icon {
+    color: #bf6d2d;
+}
+
+.dark-icon {
+    background: rgba(255,255,255,0.12);
+    color: white;
+}
+
+
+/* STEP 3 DARK */
+
+.step-three {
+    background: #003d2c;
+
+    border-color: #003d2c;
+
+    color: white;
+}
+
+.step-three h3 {
+    color: white;
+}
+
+.step-three p {
+    color: #a7bdb3;
+}
+
+.step-three .step-label {
+    color: #88a69a;
+}
+
+
+/* STEP 2 */
+
+.step-two {
+    position: relative;
+}
+
+.orange-corner {
+    position: absolute;
+
+    width: 125px;
+    height: 125px;
+
+    right: -40px;
+    top: -40px;
+
+    border-radius: 50%;
+
+    background: #f7ebdf;
+}
+
+
+/* STEP 4 */
+
+.step-four {
+    grid-column: 1 / span 2;
+}
+
+.step-four .step-label {
+    margin-top: 28px;
+}
+
+
+/* STEP 5 */
+
+.step-five {
+    grid-column: 3;
+}
+
+
+/* QUALITY PROGRESS */
+
+.quality-progress {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    position: absolute;
+
+    left: 68px;
+    right: 20px;
+    top: 28px;
+}
+
+.progress-track {
+    flex: 1;
+
+    height: 5px;
+
+    background: #e5e5df;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 85%;
+    height: 100%;
+
+    background: #344b16;
+
+    border-radius: 10px;
+}
+
+.quality-progress span {
+    white-space: nowrap;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    color: #697238;
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.features-section {
+    border-top: 1px solid #e5e3dc;
+
+    padding: 60px 30px 100px;
+
+    background: #f7f6f1;
+}
+
+.features-grid {
+    max-width: 960px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 24px;
+}
+
+
+/* FEATURE CARD */
+
+.feature-card {
+    min-height: 250px;
+
+    padding: 20px;
+
+    border-radius: 9px;
+
+    border: 1px solid #e8e7e2;
+
+    background: white;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.025);
+}
+
+
+/* FEATURE ICON */
+
+.feature-icon {
+    width: 31px;
+    height: 31px;
+
+    border-radius: 6px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 15px;
+
+    margin-bottom: 19px;
+}
+
+.temperature-icon {
+    background: #e5eee9;
+    color: #356351;
+}
+
+.analyze-icon {
+    background: #f7eadc;
+    color: #a5652c;
+}
+
+.decide-icon {
+    background: #e9ede3;
+    color: #4c633b;
+}
+
+
+/* FEATURE TITLE */
+
+.feature-card h3 {
+    font-size: 16px;
+
+    font-weight: 600;
+
+    color: #164b3c;
+}
+
+
+/* DIVIDER */
+
+.feature-divider {
+    height: 1px;
+
+    width: 100%;
+
+    background: #eeeeea;
+
+    margin: 12px 0 13px;
+}
+
+
+/* FEATURE DESCRIPTION */
+
+.feature-card p {
+    font-size: 13px;
+
+    line-height: 1.55;
+
+    color: #72756f;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .navbar {
+        padding: 0 24px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        min-height: 600px;
+    }
+
+    .hero-content {
+        width: 90%;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .hero-description {
+        width: 90%;
+    }
+
+    .workflow-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .step-four,
+    .step-five {
+        grid-column: auto;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 550px) {
+
+    .navbar {
+        height: 68px;
+        padding: 0 18px;
+    }
+
+    .login-link {
+        display: none;
+    }
+
+    .get-started-nav {
+        padding: 9px 17px;
+    }
+
+    .hero {
+        min-height: 570px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+        letter-spacing: -1px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .primary-button,
+    .secondary-button {
+        width: 150px;
+    }
+
+    .workflow-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .workflow-card {
+        min-height: 170px;
+    }
+
+    .quality-progress {
+        position: static;
+
+        margin-top: 15px;
+    }
+
+    .step-four .step-label {
+        margin-top: 35px;
+    }
+
+    .features-section {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+}

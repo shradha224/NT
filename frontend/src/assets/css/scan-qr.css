@@ -1,0 +1,799 @@
+/* =========================================================
+   NAVYA - SCAN QR PAGE
+   ========================================================= */
+
+
+/* =========================
+   RESET
+   ========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background: #faf8f2;
+    color: #0b3d2e;
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+
+/* =========================
+   NAVBAR
+   ========================= */
+
+.navbar {
+    width: 100%;
+    height: 82px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 48px;
+
+    background: #faf8f2;
+}
+
+
+/* Brand */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    flex: 1;
+}
+
+.brand-name {
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #073b2b;
+}
+
+
+/* =========================
+   NAVYA LOGO
+   ========================= */
+
+.brand-logo {
+    width: 28px;
+    height: 30px;
+
+    position: relative;
+}
+
+.brand-logo span {
+    position: absolute;
+
+    background: #063d2c;
+
+    border-radius: 100% 0 100% 0;
+}
+
+
+/* Left leaf */
+
+.brand-logo span:nth-child(1) {
+    width: 11px;
+    height: 20px;
+
+    left: 4px;
+    top: 5px;
+
+    transform: rotate(-35deg);
+}
+
+
+/* Right leaf */
+
+.brand-logo span:nth-child(2) {
+    width: 11px;
+    height: 20px;
+
+    right: 4px;
+    top: 2px;
+
+    transform: rotate(35deg);
+}
+
+
+/* Bottom leaf */
+
+.brand-logo span:nth-child(3) {
+    width: 9px;
+    height: 16px;
+
+    left: 9px;
+    bottom: 0;
+
+    transform: rotate(0deg);
+}
+
+
+/* =========================
+   NAVIGATION
+   ========================= */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 48px;
+}
+
+.nav-links a {
+    text-decoration: none;
+
+    color: #4b504d;
+
+    font-size: 18px;
+    font-weight: 500;
+
+    transition:
+        color 0.2s ease,
+        font-weight 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: #073b2b;
+}
+
+.nav-links a.active {
+    color: #073b2b;
+    font-weight: 700;
+}
+
+
+/* =========================
+   PROFILE
+   ========================= */
+
+.profile-button {
+    flex: 1;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    background: transparent;
+
+    border: none;
+
+    color: #063d2c;
+
+    cursor: pointer;
+}
+
+.profile-button svg {
+    width: 29px;
+    height: 29px;
+    stroke-width: 2;
+}
+
+
+/* =========================
+   MAIN
+   ========================= */
+
+.scan-page {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+
+    padding: 54px 24px 80px;
+}
+
+.scan-container {
+    width: 100%;
+    max-width: 700px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* =========================
+   HEADING
+   ========================= */
+
+.scan-container h1 {
+    color: #063d2c;
+
+    font-size: 40px;
+    line-height: 1.2;
+
+    font-weight: 700;
+
+    letter-spacing: -1.2px;
+
+    text-align: center;
+}
+
+.subtitle {
+    margin-top: 14px;
+
+    color: #565c58;
+
+    font-size: 20px;
+    line-height: 1.5;
+
+    text-align: center;
+}
+
+
+/* =========================
+   SCANNER
+   ========================= */
+
+.scanner {
+    width: 424px;
+    height: 420px;
+
+    margin-top: 14px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 16px;
+
+    background: #e9e7e1;
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Scanner background */
+
+.scanner-background {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    filter: blur(2px);
+}
+
+
+/* Dark/white scanner overlay */
+
+.scanner-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.55),
+            rgba(255, 255, 255, 0.12) 30%,
+            rgba(0, 0, 0, 0.08)
+        );
+}
+
+
+/* =========================
+   SCAN LINE
+   ========================= */
+
+.scan-line {
+    position: absolute;
+
+    top: 67px;
+    left: 38px;
+    right: 38px;
+
+    height: 2px;
+
+    background: #a6f0d3;
+
+    box-shadow:
+        0 0 7px rgba(166, 240, 211, 0.8);
+}
+
+
+/* =========================
+   SCANNER CORNERS
+   ========================= */
+
+.corner {
+    position: absolute;
+
+    width: 45px;
+    height: 45px;
+
+    border-color: #a6f0d3;
+    border-style: solid;
+
+    opacity: 0.9;
+}
+
+.top-left {
+    top: 70px;
+    left: 78px;
+
+    border-width: 3px 0 0 3px;
+}
+
+.top-right {
+    top: 70px;
+    right: 78px;
+
+    border-width: 3px 3px 0 0;
+}
+
+.bottom-left {
+    bottom: 120px;
+    left: 78px;
+
+    border-width: 0 0 3px 3px;
+}
+
+.bottom-right {
+    bottom: 120px;
+    right: 78px;
+
+    border-width: 0 3px 3px 0;
+}
+
+
+/* =========================
+   SCANNER MESSAGE
+   ========================= */
+
+.scanner-message {
+    position: absolute;
+
+    top: 78px;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: white;
+
+    text-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+.scanner-title {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.scanner-subtitle {
+    margin-top: 5px;
+
+    font-size: 12px;
+
+    color: rgba(255, 255, 255, 0.9);
+}
+
+
+/* =========================
+   BATCH FOUND CARD
+   ========================= */
+
+.batch-found {
+    position: absolute;
+
+    left: 22px;
+    right: 22px;
+    bottom: 16px;
+
+    min-height: 76px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 13px 17px;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.12);
+}
+
+
+/* Success circle */
+
+.success-icon {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #c6f4df;
+
+    color: #063d2c;
+}
+
+.success-icon svg {
+    width: 23px;
+    height: 23px;
+
+    stroke-width: 3;
+}
+
+
+/* Batch text */
+
+.batch-info {
+    display: flex;
+    flex-direction: column;
+
+    margin-left: 14px;
+}
+
+.batch-info strong {
+    color: #073b2b;
+
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.batch-info span {
+    margin-top: 3px;
+
+    color: #626763;
+
+    font-size: 15px;
+}
+
+
+/* =========================
+   INSTRUCTION
+   ========================= */
+
+.scan-instruction {
+    margin-top: 44px;
+
+    color: #073b2b;
+
+    font-size: 20px;
+    font-weight: 500;
+
+    text-align: center;
+}
+
+
+/* =========================
+   SCAN BUTTON
+   ========================= */
+
+.scan-button {
+    width: 100%;
+    height: 58px;
+
+    margin-top: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    background: transparent;
+
+    border: 2px solid #b86b05;
+
+    border-radius: 10px;
+
+    color: #a65c00;
+
+    font-family: inherit;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.scan-button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.scan-button:hover {
+    background: #fff4e5;
+}
+
+
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+
+/* =========================
+   TABLETS
+   ========================= */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        height: 72px;
+
+        padding: 0 24px;
+    }
+
+    .nav-links {
+        gap: 25px;
+    }
+
+    .nav-links a {
+        font-size: 15px;
+    }
+
+    .brand-name {
+        font-size: 22px;
+    }
+
+    .scan-page {
+        padding-top: 40px;
+    }
+
+    .scan-container h1 {
+        font-size: 34px;
+    }
+
+    .subtitle {
+        font-size: 17px;
+    }
+
+    .scanner {
+        width: min(424px, 90vw);
+        height: min(420px, 88vw);
+    }
+
+    .scan-button {
+        width: min(100%, 600px);
+    }
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 600px) {
+
+    .navbar {
+        height: auto;
+        min-height: 70px;
+
+        padding: 16px 20px;
+
+        flex-wrap: wrap;
+    }
+
+    .brand {
+        flex: 1;
+    }
+
+    .brand-name {
+        font-size: 21px;
+    }
+
+    .profile-button {
+        flex: 0;
+        margin-left: 15px;
+    }
+
+    .nav-links {
+        order: 3;
+
+        width: 100%;
+
+        margin-top: 15px;
+
+        gap: 0;
+
+        justify-content: space-between;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+
+    .scan-page {
+        padding:
+            35px
+            18px
+            60px;
+    }
+
+    .scan-container {
+        max-width: 100%;
+    }
+
+    .scan-container h1 {
+        font-size: 32px;
+    }
+
+    .subtitle {
+        margin-top: 10px;
+
+        font-size: 16px;
+
+        max-width: 330px;
+    }
+
+
+    /* Scanner */
+
+    .scanner {
+        width: 100%;
+        max-width: 424px;
+
+        height: auto;
+        aspect-ratio: 424 / 420;
+
+        margin-top: 20px;
+    }
+
+
+    /* Scanner corners */
+
+    .top-left {
+        top: 17%;
+        left: 17%;
+    }
+
+    .top-right {
+        top: 17%;
+        right: 17%;
+    }
+
+    .bottom-left {
+        bottom: 29%;
+        left: 17%;
+    }
+
+    .bottom-right {
+        bottom: 29%;
+        right: 17%;
+    }
+
+
+    .scan-line {
+        top: 16%;
+
+        left: 9%;
+        right: 9%;
+    }
+
+
+    .scanner-message {
+        top: 19%;
+    }
+
+
+    .batch-found {
+        left: 5%;
+        right: 5%;
+        bottom: 4%;
+
+        min-height: 68px;
+
+        padding: 11px;
+    }
+
+    .success-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+    .batch-info strong {
+        font-size: 15px;
+    }
+
+    .batch-info span {
+        font-size: 13px;
+    }
+
+
+    .scan-instruction {
+        margin-top: 30px;
+
+        font-size: 17px;
+    }
+
+
+    .scan-button {
+        height: 54px;
+
+        margin-top: 28px;
+
+        font-size: 17px;
+    }
+}
+
+
+/* =========================
+   VERY SMALL PHONES
+   ========================= */
+
+@media (max-width: 380px) {
+
+    .navbar {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .nav-links {
+        gap: 12px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    .scan-container h1 {
+        font-size: 28px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .scanner {
+        border-radius: 12px;
+    }
+
+    .scanner-title {
+        font-size: 14px;
+    }
+
+    .scanner-subtitle {
+        font-size: 10px;
+    }
+
+    .batch-info strong {
+        font-size: 14px;
+    }
+
+    .batch-info span {
+        font-size: 12px;
+    }
+
+    .scan-instruction {
+        font-size: 15px;
+    }
+}

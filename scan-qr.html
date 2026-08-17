@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navya - Scan Batch</title>
+
+    <link rel="stylesheet" href="scan-qr.css">
+
+    <!-- Optional: Lucide icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="navbar">
+
+        <div class="brand">
+            <div class="brand-logo">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <span class="brand-name">Navya</span>
+        </div>
+
+        <nav class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="scan-qr.html" class="active">Scan Batch</a>
+            <a href="register-batch.html">Register Batch</a>
+        </nav>
+
+        <button class="profile-button" aria-label="Profile">
+            <i data-lucide="circle-user-round"></i>
+        </button>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+    <main class="scan-page">
+
+        <section class="scan-container">
+
+            <h1>Scan Batch</h1>
+
+            <p class="subtitle">
+                Scan the QR code attached to the produce batch.
+            </p>
+
+
+            <!-- ================= SCANNER ================= -->
+            <div class="scanner">
+
+                <!--
+                    Replace this image with your own Figma/
+                    scanner background image if you have one.
+                -->
+                <img
+                    src="assets/scanner-background.jpg"
+                    alt=""
+                    class="scanner-background"
+                >
+
+                <div class="scanner-overlay"></div>
+
+                <!-- Top scanning line -->
+                <div class="scan-line"></div>
+
+
+                <!-- Scanner corners -->
+                <div class="corner top-left"></div>
+                <div class="corner top-right"></div>
+                <div class="corner bottom-left"></div>
+                <div class="corner bottom-right"></div>
+
+
+                <!-- Scanner interface text -->
+                <div class="scanner-message">
+                    <span class="scanner-title">QR Scanner Interface</span>
+                    <span class="scanner-subtitle">
+                        Align QR code within the frame
+                    </span>
+                </div>
+
+
+                <!-- Batch Found notification -->
+                <div class="batch-found">
+
+                    <div class="success-icon">
+                        <i data-lucide="check"></i>
+                    </div>
+
+                    <div class="batch-info">
+                        <strong>Batch Found</strong>
+                        <span>Tomato (TOM-024)</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Instruction -->
+            <p class="scan-instruction">
+                Point your camera at the QR code
+            </p>
+
+
+            <!-- Scan button -->
+            <button class="scan-button">
+
+                <i data-lucide="scan-line"></i>
+
+                <span>Scan QR</span>
+
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+</html>

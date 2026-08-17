@@ -1,0 +1,884 @@
+/* =========================================================
+   NAVYA AGGREGATOR DASHBOARD
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background: #faf8f2;
+    --card: #ffffff;
+    --dark-green: #003d2b;
+    --green: #174f3d;
+    --light-green: #9ac8b4;
+    --text: #202321;
+    --muted: #5d625f;
+    --border: #d7d8d2;
+    --orange: #a65b00;
+    --orange-bg: #fff1df;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--background);
+    color: var(--text);
+    font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.navbar {
+    width: 100%;
+    height: 82px;
+    background: var(--background);
+}
+
+.nav-container {
+    width: min(1400px, calc(100% - 96px));
+    height: 100%;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+}
+
+
+/* ---------- Logo ---------- */
+
+.brand {
+    justify-self: start;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    text-decoration: none;
+    color: var(--dark-green);
+
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.brand-icon {
+    width: 29px;
+    height: 29px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand-icon svg {
+    width: 29px;
+    height: 29px;
+}
+
+
+/* ---------- Navigation ---------- */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 42px;
+}
+
+.nav-links a {
+    text-decoration: none;
+
+    color: #464a47;
+
+    font-size: 17px;
+    font-weight: 500;
+
+    white-space: nowrap;
+
+    transition:
+        color 0.2s ease,
+        font-weight 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--dark-green);
+}
+
+.nav-links a.active {
+    color: var(--dark-green);
+    font-weight: 700;
+}
+
+
+/* ---------- Profile ---------- */
+
+.profile-button {
+    justify-self: end;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    background: transparent;
+
+    color: var(--dark-green);
+
+    cursor: pointer;
+}
+
+.profile-button svg {
+    width: 29px;
+    height: 29px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+}
+
+
+/* =========================================================
+   MAIN DASHBOARD
+   ========================================================= */
+
+.dashboard {
+    width: min(1400px, calc(100% - 96px));
+    margin: 0 auto;
+
+    padding-top: 31px;
+    padding-bottom: 45px;
+}
+
+
+/* =========================================================
+   WELCOME SECTION
+   ========================================================= */
+
+.welcome-section {
+    text-align: center;
+
+    margin-bottom: 40px;
+}
+
+.welcome-section h1 {
+    color: #202321;
+
+    font-size: clamp(38px, 4vw, 52px);
+    line-height: 1.15;
+
+    font-weight: 500;
+    letter-spacing: -1.8px;
+
+    margin-bottom: 14px;
+}
+
+.welcome-section p {
+    color: var(--muted);
+
+    font-size: clamp(18px, 1.5vw, 22px);
+    line-height: 1.5;
+
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   DASHBOARD GRID
+   ========================================================= */
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        455px;
+
+    gap: 28px;
+
+    align-items: stretch;
+}
+
+
+/* =========================================================
+   SCAN CARD
+   ========================================================= */
+
+.scan-card {
+    min-height: 482px;
+
+    background: rgba(255, 255, 255, 0.42);
+
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 50px;
+}
+
+.scan-content {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+
+/* ---------- QR Icon ---------- */
+
+.qr-icon {
+    width: 92px;
+    height: 92px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--light-green);
+
+    margin-bottom: 31px;
+}
+
+.qr-icon svg {
+    width: 48px;
+    height: 48px;
+}
+
+
+/* ---------- Scan heading ---------- */
+
+.scan-content h2 {
+    color: #222522;
+
+    font-size: 28px;
+    line-height: 1.2;
+
+    font-weight: 500;
+
+    margin-bottom: 12px;
+}
+
+.scan-content p {
+    max-width: 540px;
+
+    color: #5d625f;
+
+    font-size: 20px;
+    line-height: 1.45;
+
+    margin-bottom: 37px;
+}
+
+
+/* ---------- Scan button ---------- */
+
+.scan-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 163px;
+    height: 51px;
+
+    padding: 0 28px;
+
+    border-radius: 8px;
+
+    background: var(--dark-green);
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 17px;
+    font-weight: 500;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.scan-button:hover {
+    background: #00543b;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   RIGHT COLUMN
+   ========================================================= */
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+
+/* =========================================================
+   NEEDS ATTENTION CARD
+   ========================================================= */
+
+.attention-card {
+    background: transparent;
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    padding: 29px 28px 28px;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+}
+
+.attention-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.attention-title svg {
+    width: 27px;
+    height: 27px;
+
+    fill: none;
+    stroke: var(--orange);
+    stroke-width: 1.8;
+}
+
+.attention-title h2 {
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+
+    background: #dddcd6;
+
+    margin: 14px 0 18px;
+}
+
+
+/* ---------- Alert ---------- */
+
+.alert-item {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    padding: 17px 16px;
+
+    background: var(--orange-bg);
+
+    border: 1px solid #f2d7b5;
+
+    border-radius: 9px;
+}
+
+.alert-icon {
+    width: 21px;
+    height: 21px;
+
+    flex: 0 0 21px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alert-icon span {
+    width: 18px;
+    height: 18px;
+
+    border-radius: 50%;
+
+    background: #ed8b00;
+
+    display: block;
+}
+
+.alert-content {
+    min-width: 0;
+}
+
+.alert-content p {
+    font-size: 18px;
+    line-height: 1.35;
+
+    color: #343634;
+
+    margin-bottom: 3px;
+}
+
+.alert-content span {
+    font-size: 14px;
+    color: #575b58;
+}
+
+
+/* =========================================================
+   MONITORING CARD
+   ========================================================= */
+
+.monitoring-card {
+    flex: 1;
+
+    background: transparent;
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    padding: 29px 28px 27px;
+}
+
+.monitoring-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.monitoring-header h2 {
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.monitoring-header span {
+    color: #555a56;
+
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+
+/* ---------- Sensor rows ---------- */
+
+.sensor-row {
+    min-height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.sensor-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #565b57;
+
+    font-size: 18px;
+}
+
+.sensor-name svg {
+    width: 18px;
+    height: 18px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+
+    flex-shrink: 0;
+}
+
+
+/* ---------- Status dots ---------- */
+
+.status-dot {
+    width: 14px;
+    height: 14px;
+
+    flex: 0 0 14px;
+
+    border-radius: 50%;
+
+    display: block;
+}
+
+.status-dot.green {
+    background: #17513e;
+
+    box-shadow:
+        0 0 0 1px rgba(23, 81, 62, 0.08),
+        0 2px 5px rgba(23, 81, 62, 0.18);
+}
+
+.status-dot.orange {
+    background: #a65b00;
+
+    box-shadow:
+        0 0 0 1px rgba(166, 91, 0, 0.08),
+        0 2px 5px rgba(166, 91, 0, 0.18);
+}
+
+
+/* =========================================================
+   SYSTEM STATUS
+   ========================================================= */
+
+.system-status {
+    width: fit-content;
+
+    margin: 30px auto 0;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 10px 18px;
+
+    background: #ebe9e3;
+
+    border-radius: 30px;
+
+    color: #555a56;
+
+    font-size: 15px;
+}
+
+.system-dot {
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: #17513e;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .nav-container,
+    .dashboard {
+        width: min(100% - 48px, 900px);
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .right-column {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 20px;
+    }
+
+    .scan-card {
+        min-height: 420px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL TABLET
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .navbar {
+        height: auto;
+
+        padding: 20px 0;
+    }
+
+    .nav-container {
+        width: calc(100% - 40px);
+
+        grid-template-columns: 1fr auto;
+        row-gap: 20px;
+    }
+
+    .brand {
+        font-size: 23px;
+    }
+
+    .nav-links {
+        grid-column: 1 / -1;
+        grid-row: 2;
+
+        justify-content: center;
+
+        gap: 25px;
+
+        order: 3;
+    }
+
+    .nav-links a {
+        font-size: 15px;
+    }
+
+    .dashboard {
+        width: calc(100% - 40px);
+
+        padding-top: 25px;
+    }
+
+    .welcome-section {
+        margin-bottom: 30px;
+    }
+
+    .welcome-section h1 {
+        font-size: 38px;
+    }
+
+    .welcome-section p {
+        font-size: 17px;
+    }
+
+    .right-column {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .navbar {
+        padding: 16px 0;
+    }
+
+    .nav-container {
+        width: calc(100% - 28px);
+    }
+
+    .brand {
+        font-size: 21px;
+    }
+
+    .brand-icon,
+    .brand-icon svg {
+        width: 25px;
+        height: 25px;
+    }
+
+    .profile-button {
+        width: 32px;
+        height: 32px;
+    }
+
+    .profile-button svg {
+        width: 25px;
+        height: 25px;
+    }
+
+    .nav-links {
+        width: 100%;
+
+        gap: 0;
+
+        justify-content: space-between;
+
+        padding: 0 5px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+
+    .dashboard {
+        width: calc(100% - 28px);
+
+        padding-top: 20px;
+        padding-bottom: 30px;
+    }
+
+
+    .welcome-section {
+        margin-bottom: 25px;
+    }
+
+    .welcome-section h1 {
+        font-size: 32px;
+
+        letter-spacing: -1px;
+
+        margin-bottom: 10px;
+    }
+
+    .welcome-section p {
+        font-size: 16px;
+
+        line-height: 1.45;
+    }
+
+
+    .dashboard-grid {
+        gap: 16px;
+    }
+
+
+    .scan-card {
+        min-height: 390px;
+
+        padding: 35px 20px;
+
+        border-radius: 12px;
+    }
+
+    .qr-icon {
+        width: 78px;
+        height: 78px;
+
+        margin-bottom: 25px;
+    }
+
+    .qr-icon svg {
+        width: 42px;
+        height: 42px;
+    }
+
+    .scan-content h2 {
+        font-size: 25px;
+    }
+
+    .scan-content p {
+        font-size: 17px;
+
+        margin-bottom: 28px;
+    }
+
+    .scan-button {
+        height: 48px;
+
+        min-width: 150px;
+
+        font-size: 16px;
+    }
+
+
+    .attention-card,
+    .monitoring-card {
+        padding: 23px 20px;
+    }
+
+    .attention-title h2,
+    .monitoring-header h2 {
+        font-size: 22px;
+    }
+
+    .attention-title svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .alert-item {
+        padding: 14px 12px;
+    }
+
+    .alert-content p {
+        font-size: 16px;
+    }
+
+    .alert-content span {
+        font-size: 13px;
+    }
+
+    .monitoring-header {
+        align-items: flex-start;
+    }
+
+    .monitoring-header span {
+        font-size: 12px;
+    }
+
+    .sensor-name {
+        font-size: 16px;
+    }
+
+    .sensor-row {
+        min-height: 44px;
+    }
+
+    .system-status {
+        margin-top: 20px;
+
+        font-size: 13px;
+
+        padding: 9px 14px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    .welcome-section h1 {
+        font-size: 29px;
+    }
+
+    .welcome-section p {
+        font-size: 15px;
+    }
+
+    .scan-card {
+        min-height: 350px;
+    }
+
+    .monitoring-header {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .monitoring-header span {
+        white-space: normal;
+    }
+
+}

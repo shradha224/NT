@@ -1,0 +1,684 @@
+/* =========================================================
+   NAVYA - QUALITY PASSPORT
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background: #faf8f2;
+    --card: #fcfbf7;
+    --border: #e6e3da;
+
+    --dark-green: #003f2d;
+    --green: #0d513c;
+    --light-green: #eaf5ec;
+
+    --text: #222522;
+    --muted: #626862;
+
+    --orange: #ff9845;
+    --red: #d62f2f;
+
+    --font: "Outfit", sans-serif;
+}
+
+body {
+    font-family: var(--font);
+    background: var(--background);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+    width: 100%;
+    padding: 18px 38px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.brand-name {
+    font-size: 25px;
+    font-weight: 600;
+    color: var(--dark-green);
+}
+
+
+/* Simple Navya leaf logo */
+
+.brand-icon {
+    width: 24px;
+    height: 29px;
+    position: relative;
+}
+
+.brand-icon span {
+    position: absolute;
+    width: 11px;
+    height: 18px;
+    background: var(--dark-green);
+    border-radius: 100% 0 100% 0;
+    transform: rotate(-35deg);
+}
+
+.brand-icon span:first-child {
+    left: 3px;
+    top: 0;
+}
+
+.brand-icon span:last-child {
+    left: 11px;
+    top: 8px;
+    transform: rotate(35deg);
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.passport-container {
+    width: min(1100px, calc(100% - 72px));
+    margin: 40px auto 0;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+    text-align: center;
+    margin-bottom: 34px;
+}
+
+.hero h1 {
+    color: var(--dark-green);
+    font-size: 31px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.hero-subtitle {
+    color: #555b57;
+    font-size: 16px;
+    margin-bottom: 9px;
+}
+
+.batch-pill {
+    width: fit-content;
+    margin: 0 auto 8px;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 8px 16px;
+
+    border: 1px solid #c9cbc4;
+    border-radius: 24px;
+
+    background: #f5f4ee;
+
+    font-size: 13px;
+}
+
+.quality-badge {
+    width: fit-content;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 17px;
+
+    background: #eef7eb;
+    border-radius: 22px;
+
+    color: var(--dark-green);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.badge-icon {
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   SECTION
+   ========================================================= */
+
+.section {
+    margin-bottom: 30px;
+}
+
+.section-heading {
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 14px;
+}
+
+.section-heading h2 {
+    font-size: 20px;
+    font-weight: 500;
+    padding-bottom: 8px;
+}
+
+
+/* =========================================================
+   QUALITY SUMMARY
+   ========================================================= */
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.summary-card {
+    min-height: 108px;
+
+    background: var(--card);
+    border: 1px solid #ece9e1;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.summary-icon {
+    font-size: 24px;
+    height: 30px;
+    margin-bottom: 4px;
+}
+
+.condition-icon,
+.thumbs-icon,
+.calendar-icon {
+    color: var(--dark-green);
+}
+
+.warning-icon {
+    color: var(--orange);
+}
+
+.summary-label {
+    color: #5e635f;
+    font-size: 11px;
+    margin-bottom: 5px;
+}
+
+.summary-value {
+    color: var(--dark-green);
+}
+
+.summary-value strong {
+    font-size: 23px;
+    font-weight: 500;
+}
+
+.summary-value span {
+    font-size: 14px;
+    color: #777b76;
+}
+
+.summary-text {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.green {
+    color: var(--dark-green);
+}
+
+
+/* =========================================================
+   LATEST ASSESSMENT
+   ========================================================= */
+
+.assessment-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    border: 1px solid #e8e5dc;
+    border-radius: 11px;
+
+    overflow: hidden;
+
+    background: var(--card);
+}
+
+.produce-image-container {
+    height: 202px;
+    position: relative;
+    overflow: hidden;
+}
+
+.produce-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.image-label {
+    position: absolute;
+    bottom: 12px;
+    left: 14px;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    background: rgba(255, 255, 255, 0.92);
+
+    padding: 5px 10px;
+
+    border-radius: 15px;
+
+    font-size: 11px;
+}
+
+.assessment-details {
+    padding: 10px 25px;
+}
+
+.assessment-row {
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.assessment-row:last-child {
+    border-bottom: none;
+}
+
+.assessment-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #414641;
+    font-size: 15px;
+}
+
+.detail-icon {
+    color: #657069;
+    font-size: 18px;
+}
+
+.status {
+    padding: 5px 9px;
+    border-radius: 4px;
+
+    font-size: 13px;
+}
+
+.status.good {
+    color: var(--dark-green);
+    background: #eaf5ec;
+}
+
+.status.neutral {
+    color: #343734;
+    background: #f0efe9;
+}
+
+
+/* =========================================================
+   LOWER GRID
+   ========================================================= */
+
+.lower-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 45px;
+
+    margin-top: 28px;
+}
+
+
+/* =========================================================
+   QUALITY HISTORY
+   ========================================================= */
+
+.history-card {
+    background: var(--card);
+    border: 1px solid #e8e5dc;
+    border-radius: 11px;
+
+    padding: 7px 16px;
+}
+
+.history-row {
+    min-height: 39px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid var(--border);
+
+    font-size: 15px;
+    color: #5d625d;
+}
+
+.history-row:last-child {
+    border-bottom: none;
+}
+
+.history-row strong {
+    color: var(--dark-green);
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   TRACEABILITY
+   ========================================================= */
+
+.traceability-card {
+    background: var(--card);
+    border: 1px solid #e8e5dc;
+    border-radius: 11px;
+
+    padding: 19px 22px 10px;
+}
+
+.timeline-item {
+    position: relative;
+
+    display: flex;
+    gap: 12px;
+
+    min-height: 58px;
+}
+
+.timeline-item:not(:last-child)::after {
+    content: "";
+
+    position: absolute;
+
+    left: 12px;
+    top: 27px;
+
+    width: 1px;
+    height: 43px;
+
+    background: #d8ddd8;
+}
+
+.timeline-dot {
+    width: 24px;
+    height: 24px;
+
+    flex: 0 0 24px;
+
+    border-radius: 50%;
+
+    background: var(--dark-green);
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 11px;
+
+    z-index: 1;
+}
+
+.timeline-dot.inactive {
+    background: #ededeb;
+    color: #999d99;
+}
+
+.timeline-content {
+    width: 100%;
+}
+
+.timeline-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.timeline-top h3 {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+
+.timeline-top p {
+    color: #626762;
+    font-size: 13px;
+}
+
+.timeline-top > span {
+    color: #626762;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.timeline-item.pending {
+    opacity: 0.55;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.passport-footer {
+    border-top: 1px solid var(--border);
+
+    margin-top: 28px;
+    padding: 24px 20px 35px;
+
+    text-align: center;
+}
+
+.footer-icon {
+    color: var(--dark-green);
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.passport-footer p {
+    max-width: 450px;
+    margin: auto;
+
+    color: #555b57;
+
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .passport-container {
+        width: min(100% - 40px, 720px);
+        margin-top: 25px;
+    }
+
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .lower-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .header {
+        padding: 15px 20px;
+    }
+
+    .brand-name {
+        font-size: 21px;
+    }
+
+    .passport-container {
+        width: calc(100% - 28px);
+        margin-top: 22px;
+    }
+
+    .hero {
+        margin-bottom: 27px;
+    }
+
+    .hero h1 {
+        font-size: 25px;
+        line-height: 1.2;
+    }
+
+    .hero-subtitle {
+        font-size: 14px;
+    }
+
+    .batch-pill {
+        font-size: 12px;
+        padding: 7px 13px;
+    }
+
+    .quality-badge {
+        font-size: 12px;
+        padding: 7px 14px;
+    }
+
+
+    /* Summary */
+
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 9px;
+    }
+
+    .summary-card {
+        min-height: 105px;
+    }
+
+
+    /* Latest assessment */
+
+    .assessment-card {
+        grid-template-columns: 1fr;
+    }
+
+    .produce-image-container {
+        height: 210px;
+    }
+
+    .assessment-details {
+        padding: 7px 15px;
+    }
+
+    .assessment-row {
+        min-height: 48px;
+    }
+
+
+    /* History */
+
+    .lower-grid {
+        gap: 25px;
+    }
+
+    .history-row {
+        font-size: 14px;
+    }
+
+
+    /* Traceability */
+
+    .traceability-card {
+        padding: 17px 15px 8px;
+    }
+
+    .timeline-top {
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .timeline-top > span {
+        font-size: 11px;
+        margin-bottom: 12px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .passport-container {
+        width: calc(100% - 20px);
+    }
+
+    .hero h1 {
+        font-size: 22px;
+    }
+
+    .summary-grid {
+        gap: 7px;
+    }
+
+    .summary-card {
+        min-height: 95px;
+    }
+
+    .summary-value strong {
+        font-size: 20px;
+    }
+
+    .summary-text {
+        font-size: 16px;
+    }
+
+    .assessment-name {
+        font-size: 13px;
+    }
+
+    .status {
+        font-size: 11px;
+    }
+
+}
