@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Batch Assessment | Navya</title>
+
+    <link rel="stylesheet" href="batch-assessment.css">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="navbar">
+
+        <div class="brand">
+            <div class="brand-logo">
+                <span></span>
+                <span></span>
+            </div>
+            <span>Navya</span>
+        </div>
+
+        <nav class="nav-links">
+            <a href="#">Dashboard</a>
+            <a href="#">Scan Batch</a>
+            <a href="#" class="active">Batch Assessment</a>
+        </nav>
+
+        <button class="profile-btn" aria-label="Profile">
+            <i data-lucide="circle-user-round"></i>
+        </button>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+    <main class="page-container">
+
+        <!-- ================= BATCH HEADER ================= -->
+        <section class="batch-header">
+
+            <div class="batch-info">
+
+                <div class="batch-title-row">
+                    <h1>Tomato</h1>
+
+                    <span class="batch-id">
+                        Batch ID: TOM-024
+                    </span>
+                </div>
+
+                <div class="batch-meta">
+
+                    <span>
+                        <i data-lucide="hourglass"></i>
+                        Quantity: 250 kg
+                    </span>
+
+                    <span>
+                        <i data-lucide="calendar-days"></i>
+                        Harvested: 12 Aug 2026
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="assessment-status">
+
+                <a href="#" class="detailed-analysis">
+                    View Detailed Analysis
+                    <i data-lucide="arrow-right"></i>
+                </a>
+
+                <div class="quality-badge">
+                    <i data-lucide="badge-check"></i>
+                    GOOD QUALITY
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= TOP GRID ================= -->
+        <section class="top-grid">
+
+            <!-- ===== NAVYA CONDITION SCORE ===== -->
+            <div class="card condition-card">
+
+                <div class="card-heading">
+                    <i data-lucide="gauge"></i>
+                    <h2>NAVYA Condition Score</h2>
+                </div>
+
+                <div class="score-area">
+
+                    <div class="score-ring">
+                        <div class="score-inner">
+                            <strong>82</strong>
+                            <span>/100</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="score-footer">
+
+                    <div>
+                        <span>Spoilage Risk</span>
+                        <strong class="risk-value">28%</strong>
+                    </div>
+
+                    <div class="vertical-divider"></div>
+
+                    <div>
+                        <span>Shelf Life</span>
+                        <strong>4 Days</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ===== ENVIRONMENTAL MONITORING ===== -->
+            <div class="card environment-card">
+
+                <div class="card-heading">
+                    <i data-lucide="radio-tower"></i>
+                    <h2>Environmental Monitoring</h2>
+                </div>
+
+                <div class="environment-grid">
+
+                    <!-- Temperature -->
+                    <div class="environment-item temperature">
+
+                        <div class="environment-top">
+                            <i data-lucide="thermometer"></i>
+                            <span>↑ 3.4°C</span>
+                        </div>
+
+                        <h3>Temperature</h3>
+
+                        <strong>28.4°C</strong>
+
+                        <p>
+                            Above optimal range<br>
+                            (&lt; 25°C)
+                        </p>
+
+                    </div>
+
+
+                    <!-- VOC -->
+                    <div class="environment-item">
+
+                        <div class="environment-top">
+                            <i data-lucide="wind"></i>
+                            <span>↑18%</span>
+                        </div>
+
+                        <h3>VOC/Gas</h3>
+
+                        <strong>412 ppm</strong>
+
+                        <p class="normal">
+                            Normal
+                        </p>
+
+                    </div>
+
+
+                    <!-- Humidity -->
+                    <div class="environment-item">
+
+                        <div class="environment-top">
+                            <i data-lucide="droplets"></i>
+                            <span>↓3%</span>
+                        </div>
+
+                        <h3>Humidity</h3>
+
+                        <strong>72 %</strong>
+
+                        <p class="normal">
+                            Normal
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= MIDDLE GRID ================= -->
+        <section class="middle-grid">
+
+            <!-- ===== VISUAL ASSESSMENT ===== -->
+            <div class="card visual-card">
+
+                <div class="card-heading">
+                    <i data-lucide="eye"></i>
+                    <h2>Visual Assessment Deep Dive</h2>
+                </div>
+
+                <div class="visual-content">
+
+                    <div class="produce-image">
+
+                        <img
+                            src="assets/tomato-batch.jpg"
+                            alt="Latest produce image"
+                        >
+
+                        <div class="image-label">
+                            <i data-lucide="camera"></i>
+                            Latest Produce Image
+                        </div>
+
+                    </div>
+
+
+                    <div class="visual-metrics">
+
+                        <div class="metric-box">
+                            <span>Appearance</span>
+                            <strong>Good</strong>
+                        </div>
+
+                        <div class="metric-box">
+                            <span>Ripeness</span>
+                            <strong class="orange">76%</strong>
+                        </div>
+
+                        <div class="metric-box">
+                            <span>Colour Change</span>
+                            <strong>Low</strong>
+                        </div>
+
+                        <div class="metric-box">
+                            <span>Visible Defects</span>
+                            <strong>Low</strong>
+                        </div>
+
+                        <div class="metric-box">
+                            <span>Bruising</span>
+                            <strong>Minimal</strong>
+                        </div>
+
+                        <div class="metric-box">
+                            <span>Deterioration</span>
+                            <strong class="orange">Early</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ===== WHAT NAVYA IS SEEING ===== -->
+            <div class="card seeing-card">
+
+                <div class="card-heading seeing-heading">
+
+                    <div>
+                        <i data-lucide="brain"></i>
+                        <h2>What NAVYA is seeing</h2>
+                    </div>
+
+                    <span class="confidence">
+                        Confidence: 91%
+                    </span>
+
+                </div>
+
+
+                <p class="analysis-text">
+                    Deterioration is increasing gradually based on visual
+                    and environmental signals. The combination of slightly
+                    elevated VOC and early visual ripening signs suggests
+                    the batch will reach peak maturity sooner than initially
+                    projected.
+                </p>
+
+
+                <div class="storage-status">
+
+                    <i data-lucide="circle-check"></i>
+
+                    <div>
+                        <strong>Storage Environment</strong>
+                        <span>Status: Favourable</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= AI ASSESSMENT ================= -->
+        <section class="ai-assessment">
+
+            <div class="ai-content">
+
+                <div class="ai-title">
+                    <i data-lucide="brain"></i>
+                    <h2>AI Assessment</h2>
+                </div>
+
+                <p>
+                    "Current conditions indicate good quality with a
+                    relatively low spoilage risk."
+                </p>
+
+            </div>
+
+
+            <div class="recommendation">
+
+                <span>ACTION RECOMMENDATION</span>
+
+                <strong>
+                    Prioritize this batch for sale within 2 days.
+                </strong>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+</html>
+```

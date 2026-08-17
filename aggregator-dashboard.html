@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navya - Aggregator Dashboard</title>
+    <link rel="stylesheet" href="aggregator-dashboard.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <!-- Logo -->
+            <a href="#" class="brand">
+                <span class="brand-icon">
+                    <svg viewBox="0 0 32 32" aria-hidden="true">
+                        <path d="M16 4C10.2 7.2 7.3 11.7 7.3 16.5C7.3 21.7 11.1 25.5 16 28C20.9 25.5 24.7 21.7 24.7 16.5C24.7 11.7 21.8 7.2 16 4Z"
+                              fill="currentColor"/>
+                        <path d="M16 10C13.8 13.2 12.9 16.2 13.2 19.1C13.5 22.2 15 24.6 16 26"
+                              fill="none"
+                              stroke="#f7f5ef"
+                              stroke-width="1.8"
+                              stroke-linecap="round"/>
+                    </svg>
+                </span>
+                <span>Navya</span>
+            </a>
+
+            <!-- Navigation -->
+            <nav class="nav-links">
+                <a href="aggregator-dashboard.html" class="active">
+                    Dashboard
+                </a>
+
+                <a href="scan-qr.html">
+                    Scan Batch
+                </a>
+
+                <a href="batch-assessment.html">
+                    Batch Assessment
+                </a>
+            </nav>
+
+            <!-- Profile -->
+            <button class="profile-button" aria-label="Profile">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="9.5"></circle>
+                    <circle cx="12" cy="9" r="3"></circle>
+                    <path d="M6.8 18c1.4-2.2 3.2-3.3 5.2-3.3s3.8 1.1 5.2 3.3"></path>
+                </svg>
+            </button>
+
+        </div>
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+    <main class="dashboard">
+
+        <!-- Welcome -->
+        <section class="welcome-section">
+
+            <h1>Welcome, Sarah</h1>
+
+            <p>
+                Monitor incoming produce and scan a batch to view its latest
+                quality assessment.
+            </p>
+
+        </section>
+
+
+        <!-- ================= DASHBOARD GRID ================= -->
+        <section class="dashboard-grid">
+
+            <!-- ================= SCAN CARD ================= -->
+            <div class="scan-card">
+
+                <div class="scan-content">
+
+                    <!-- QR icon -->
+                    <div class="qr-icon">
+
+                        <svg viewBox="0 0 48 48" aria-hidden="true">
+
+                            <path d="M8 8h11v11H8z"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="3"/>
+
+                            <path d="M29 8h11v11H29z"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="3"/>
+
+                            <path d="M8 29h11v11H8z"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="3"/>
+
+                            <path d="M29 29h4v4h-4z"
+                                  fill="currentColor"/>
+
+                            <path d="M36 29h4v11h-4z"
+                                  fill="currentColor"/>
+
+                            <path d="M29 36h4v4h-4z"
+                                  fill="currentColor"/>
+
+                            <path d="M22 22h4v4h-4z"
+                                  fill="currentColor"/>
+
+                            <path d="M29 22h4v4h-4z"
+                                  fill="currentColor"/>
+
+                        </svg>
+
+                    </div>
+
+
+                    <h2>Scan Batch</h2>
+
+                    <p>
+                        Scan the QR attached to a produce batch to begin
+                        monitoring.
+                    </p>
+
+
+                    <a href="scan-qr.html" class="scan-button">
+                        Scan Batch
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= RIGHT COLUMN ================= -->
+            <div class="right-column">
+
+
+                <!-- ================= NEEDS ATTENTION ================= -->
+                <section class="attention-card">
+
+                    <div class="card-header">
+
+                        <div class="attention-title">
+
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 3L2.5 20h19L12 3z"></path>
+                                <path d="M12 9v5"></path>
+                                <circle cx="12" cy="17.5" r=".7"
+                                        fill="currentColor"
+                                        stroke="none"></circle>
+                            </svg>
+
+                            <h2>Needs Attention</h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="divider"></div>
+
+
+                    <div class="alert-item">
+
+                        <div class="alert-icon">
+                            <span></span>
+                        </div>
+
+                        <div class="alert-content">
+
+                            <p>
+                                Temperature above preferred range
+                            </p>
+
+                            <span>
+                                Batch: TOM-024
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= MONITORING UNIT ================= -->
+                <section class="monitoring-card">
+
+                    <div class="monitoring-header">
+
+                        <h2>Monitoring Unit</h2>
+
+                        <span>
+                            Last Sync: 2 min ago
+                        </span>
+
+                    </div>
+
+
+                    <div class="divider"></div>
+
+
+                    <!-- Device -->
+                    <div class="sensor-row">
+
+                        <div class="sensor-name">
+
+                            <svg viewBox="0 0 24 24">
+                                <rect x="6" y="6" width="12" height="12"
+                                      rx="2"></rect>
+                                <path d="M9 3v3M15 3v3M9 18v3M15 18v3"></path>
+                                <path d="M3 9h3M3 15h3M18 9h3M18 15h3"></path>
+                            </svg>
+
+                            <span>Device</span>
+
+                        </div>
+
+                        <span class="status-dot green"></span>
+
+                    </div>
+
+
+                    <!-- Camera -->
+                    <div class="sensor-row">
+
+                        <div class="sensor-name">
+
+                            <svg viewBox="0 0 24 24">
+                                <rect x="3" y="7" width="14" height="10"
+                                      rx="2"></rect>
+                                <path d="M17 10l4-2v8l-4-2"></path>
+                            </svg>
+
+                            <span>Camera</span>
+
+                        </div>
+
+                        <span class="status-dot green"></span>
+
+                    </div>
+
+
+                    <!-- Temperature -->
+                    <div class="sensor-row">
+
+                        <div class="sensor-name">
+
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 4v10"></path>
+                                <circle cx="12" cy="17" r="4"></circle>
+                                <path d="M12 8h2M12 11h2"></path>
+                            </svg>
+
+                            <span>Temperature</span>
+
+                        </div>
+
+                        <span class="status-dot orange"></span>
+
+                    </div>
+
+
+                    <!-- Humidity -->
+                    <div class="sensor-row">
+
+                        <div class="sensor-name">
+
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 3C12 3 6.5 10 6.5 14.5
+                                         A5.5 5.5 0 0 0 17.5 14.5
+                                         C17.5 10 12 3 12 3Z"></path>
+                            </svg>
+
+                            <span>Humidity</span>
+
+                        </div>
+
+                        <span class="status-dot green"></span>
+
+                    </div>
+
+
+                    <!-- VOC -->
+                    <div class="sensor-row">
+
+                        <div class="sensor-name">
+
+                            <svg viewBox="0 0 24 24">
+                                <path d="M4 10h7"></path>
+                                <path d="M4 14h10"></path>
+                                <path d="M4 18h5"></path>
+                                <path d="M14 8c3 0 5 2 5 4s-2 4-5 4"></path>
+                            </svg>
+
+                            <span>VOC/Gas</span>
+
+                        </div>
+
+                        <span class="status-dot green"></span>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SYSTEM STATUS ================= -->
+        <div class="system-status">
+
+            <span class="system-dot"></span>
+
+            <span>Monitoring System Connected</span>
+
+        </div>
+
+    </main>
+
+</body>
+</html>

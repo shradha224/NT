@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Navya — Farmer Dashboard</title>
+  <link rel="stylesheet" href="farmer-dashboard.css" />
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">
+      <div class="logo-mark">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <span class="logo-text">Navya</span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="#" class="active">Dashboard</a>
+      <a href="scan-qr.html">Scan Batch</a>
+      <a href="register-batch.html">Register Batch</a>
+    </nav>
+
+    <button class="profile-btn" aria-label="Profile">
+      <svg viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="9.5" stroke="currentColor" stroke-width="2"/>
+        <circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="2"/>
+        <path d="M7.5 17.5C8.5 15.7 10 14.8 12 14.8C14 14.8 15.5 15.7 16.5 17.5"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </header>
+
+
+  <!-- Main Content -->
+  <main class="dashboard">
+
+    <section class="welcome-section">
+      <h1>Welcome, Rajesh</h1>
+      <p>
+        Register a new produce batch or scan a batch to view its latest assessment.
+      </p>
+    </section>
+
+
+    <!-- Action Cards -->
+    <section class="action-grid">
+
+      <!-- Register Batch -->
+      <button class="action-card">
+        <div class="action-icon plus-icon">
+          <span></span>
+          <span></span>
+        </div>
+
+        <h2>Register New Batch</h2>
+
+        <p>
+          Log new harvest details into the Navya system.
+        </p>
+      </button>
+
+
+      <!-- Scan Batch -->
+      <button class="action-card">
+        <div class="action-icon qr-icon">
+          <div class="qr-pattern">
+            <span class="corner top-left"></span>
+            <span class="corner top-right"></span>
+            <span class="corner bottom-left"></span>
+            <span class="qr-square square-one"></span>
+            <span class="qr-square square-two"></span>
+            <span class="qr-square square-three"></span>
+            <span class="qr-dot"></span>
+          </div>
+        </div>
+
+        <h2>Scan Batch</h2>
+
+        <p>
+          Scan a QR code to view real-time assessment data.
+        </p>
+      </button>
+
+    </section>
+
+  </main>
+
+</body>
+</html>

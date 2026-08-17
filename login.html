@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navya - Login</title>
+
+    <link rel="stylesheet" href="login.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Top-left Navya Logo -->
+    <header class="top-logo">
+        <div class="navya-logo">
+            <div class="leaf-logo">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <span>Navya</span>
+        </div>
+    </header>
+
+
+    <!-- Login Section -->
+    <main class="login-container">
+
+        <div class="login-card">
+
+            <!-- Small Logo -->
+            <div class="login-logo-box">
+                <div class="leaf-logo small">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <!-- Heading -->
+            <h1>Welcome to Navya</h1>
+
+            <p class="subtitle">
+                Sign in to your agricultural dashboard
+            </p>
+
+
+            <!-- Login Form -->
+            <form class="login-form">
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">Email / Phone</label>
+
+                    <div class="input-wrapper">
+
+                        <svg
+                            class="input-icon"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+
+                        <input
+                            type="text"
+                            id="email"
+                            placeholder="Enter your email or phone"
+                        >
+
+                    </div>
+                </div>
+
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="password">Password</label>
+
+                    <div class="input-wrapper">
+
+                        <svg
+                            class="input-icon"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <rect
+                                x="3"
+                                y="11"
+                                width="18"
+                                height="10"
+                                rx="2"
+                            ></rect>
+
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                        >
+
+                    </div>
+                </div>
+
+
+                <!-- Forgot Password -->
+                <div class="forgot-wrapper">
+                    <a href="#">Forgot password?</a>
+                </div>
+
+
+                <!-- Login Button -->
+                <button type="submit" class="login-button">
+                    <span>Login</span>
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+
+            </form>
+
+
+            <!-- Divider -->
+            <div class="divider"></div>
+
+
+            <!-- Register -->
+            <div class="register-text">
+                Don't have an account?
+                <a href="#">Register</a>
+            </div>
+
+        </div>
+
+
+        <!-- Security Text -->
+        <p class="security-text">
+            Secure connection. Powered by Navya System.
+        </p>
+
+    </main>
+
+</body>
+</html>

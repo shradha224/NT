@@ -1,0 +1,1093 @@
+
+/* =========================================================
+   NAVYA — BATCH ASSESSMENT
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cream: #faf8f2;
+    --card: #fdfcf8;
+    --dark-green: #003d2c;
+    --green: #174f3d;
+    --light-green: #dff1e5;
+    --normal-green: #23804e;
+    --orange: #a45b00;
+    --red: #c72222;
+    --border: #e1ded5;
+    --text: #252525;
+    --muted: #5c625e;
+}
+
+body {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: var(--cream);
+    color: var(--text);
+
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.navbar {
+    height: 78px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 3.1vw;
+
+    background: var(--cream);
+}
+
+
+/* Brand */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 27px;
+    font-weight: 700;
+    color: var(--dark-green);
+}
+
+
+/* Simple Navya leaf logo */
+
+.brand-logo {
+    width: 28px;
+    height: 28px;
+
+    position: relative;
+}
+
+.brand-logo span {
+    position: absolute;
+
+    width: 12px;
+    height: 20px;
+
+    background: var(--dark-green);
+
+    border-radius: 100% 0 100% 0;
+}
+
+.brand-logo span:first-child {
+    left: 4px;
+    top: 1px;
+    transform: rotate(-35deg);
+}
+
+.brand-logo span:last-child {
+    right: 3px;
+    top: 6px;
+    transform: rotate(35deg);
+}
+
+.brand-logo::after {
+    content: "";
+
+    position: absolute;
+
+    width: 2px;
+    height: 19px;
+
+    background: var(--dark-green);
+
+    left: 14px;
+    top: 9px;
+
+    transform: rotate(-8deg);
+}
+
+
+/* Navigation */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 44px;
+
+    margin-left: 90px;
+}
+
+.nav-links a {
+    text-decoration: none;
+
+    color: #4d504d;
+
+    font-size: 17px;
+    font-weight: 500;
+
+    transition: 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--dark-green);
+}
+
+.nav-links a.active {
+    color: var(--dark-green);
+    font-weight: 700;
+}
+
+
+/* Profile */
+
+.profile-btn {
+    border: none;
+    background: transparent;
+
+    color: var(--dark-green);
+
+    cursor: pointer;
+
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-btn svg {
+    width: 27px;
+    height: 27px;
+    stroke-width: 2;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.page-container {
+    width: 94%;
+
+    max-width: 1420px;
+
+    margin: 0 auto;
+
+    padding: 18px 0 55px;
+}
+
+
+/* =========================================================
+   BATCH HEADER
+   ========================================================= */
+
+.batch-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    padding: 0 5px 17px;
+
+    border-bottom: 1px solid #ddd9cf;
+}
+
+
+.batch-title-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.batch-title-row h1 {
+    font-size: 34px;
+    font-weight: 500;
+
+    color: var(--dark-green);
+}
+
+
+.batch-id {
+    background: #e8e6df;
+
+    color: #4f514e;
+
+    padding: 6px 9px;
+
+    border-radius: 5px;
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+.batch-meta {
+    display: flex;
+    gap: 18px;
+
+    margin-top: 9px;
+
+    color: #555a56;
+
+    font-size: 14px;
+}
+
+.batch-meta span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.batch-meta svg {
+    width: 17px;
+    height: 17px;
+}
+
+
+/* Right side */
+
+.assessment-status {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.detailed-analysis {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    text-decoration: none;
+
+    color: var(--dark-green);
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.detailed-analysis svg {
+    width: 18px;
+}
+
+
+.quality-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 18px;
+
+    border: 1px solid #b9c980;
+
+    border-radius: 30px;
+
+    color: #3b4a12;
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.quality-badge svg {
+    width: 24px;
+    height: 24px;
+}
+
+
+/* =========================================================
+   COMMON CARD
+   ========================================================= */
+
+.card {
+    background: rgba(253, 252, 248, 0.75);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    box-shadow: 0 5px 18px rgba(30, 40, 30, 0.035);
+
+    overflow: hidden;
+}
+
+
+.card-heading {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 18px 17px 12px;
+
+    border-bottom: 1px solid #e8e5dd;
+}
+
+.card-heading svg {
+    width: 23px;
+    height: 23px;
+
+    color: var(--dark-green);
+
+    stroke-width: 2;
+}
+
+.card-heading h2 {
+    font-size: 20px;
+    font-weight: 500;
+
+    color: var(--dark-green);
+}
+
+
+/* =========================================================
+   TOP GRID
+   ========================================================= */
+
+.top-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 24px;
+
+    margin-top: 18px;
+}
+
+
+/* =========================================================
+   CONDITION SCORE
+   ========================================================= */
+
+.condition-card {
+    min-height: 335px;
+}
+
+
+.score-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 30px;
+}
+
+
+.score-ring {
+    width: 182px;
+    height: 182px;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            var(--green) 0deg 295deg,
+            transparent 295deg 360deg
+        );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.score-inner {
+    width: 140px;
+    height: 140px;
+
+    border-radius: 50%;
+
+    background: var(--cream);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.score-inner strong {
+    font-size: 51px;
+    line-height: 1;
+
+    color: var(--dark-green);
+
+    font-weight: 700;
+}
+
+.score-inner span {
+    font-size: 13px;
+    margin-top: 3px;
+}
+
+
+/* Score bottom */
+
+.score-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 12px 34px 20px;
+
+    text-align: center;
+}
+
+.score-footer div:not(.vertical-divider) {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.score-footer span {
+    font-size: 13px;
+    color: #555a56;
+}
+
+.score-footer strong {
+    font-size: 20px;
+    color: var(--dark-green);
+}
+
+.score-footer .risk-value {
+    color: var(--orange);
+}
+
+.vertical-divider {
+    width: 1px;
+    height: 32px;
+
+    background: #e4e1d9;
+}
+
+
+/* =========================================================
+   ENVIRONMENTAL MONITORING
+   ========================================================= */
+
+.environment-card {
+    min-height: 335px;
+}
+
+.environment-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+
+    padding: 18px;
+}
+
+
+.environment-item {
+    background: #faf8f1;
+
+    border: 1px solid #eeeae0;
+
+    border-radius: 8px;
+
+    padding: 13px;
+
+    min-height: 247px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+.environment-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+.environment-top svg {
+    width: 18px;
+    height: 18px;
+
+    color: var(--dark-green);
+}
+
+.environment-top span {
+    font-size: 12px;
+    color: var(--orange);
+}
+
+.environment-item h3 {
+    font-size: 20px;
+
+    font-weight: 400;
+
+    color: #484b48;
+
+    margin-bottom: 32px;
+}
+
+.environment-item > strong {
+    font-size: 29px;
+
+    color: var(--normal-green);
+
+    font-weight: 600;
+}
+
+.environment-item.temperature > strong {
+    color: var(--red);
+}
+
+.environment-item p {
+    margin-top: auto;
+
+    color: var(--red);
+
+    font-size: 13px;
+
+    line-height: 1.3;
+}
+
+.environment-item p.normal {
+    color: var(--normal-green);
+}
+
+
+/* =========================================================
+   MIDDLE GRID
+   ========================================================= */
+
+.middle-grid {
+    display: grid;
+
+    grid-template-columns: 1.15fr 0.92fr;
+
+    gap: 24px;
+
+    margin-top: 26px;
+}
+
+
+/* =========================================================
+   VISUAL ASSESSMENT
+   ========================================================= */
+
+.visual-card {
+    min-height: 295px;
+}
+
+.visual-content {
+    display: grid;
+
+    grid-template-columns: 255px 1fr;
+
+    gap: 20px;
+
+    padding: 14px;
+}
+
+
+/* Produce image */
+
+.produce-image {
+    position: relative;
+
+    width: 100%;
+    height: 222px;
+
+    overflow: hidden;
+
+    border-radius: 7px;
+}
+
+.produce-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.image-label {
+    position: absolute;
+
+    left: 8px;
+    bottom: 8px;
+
+    background: rgba(255, 255, 255, 0.9);
+
+    padding: 4px 7px;
+
+    border-radius: 4px;
+
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    font-size: 11px;
+
+    color: #555;
+}
+
+.image-label svg {
+    width: 14px;
+    height: 14px;
+}
+
+
+/* Metrics */
+
+.visual-metrics {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+}
+
+.metric-box {
+    border: 1px solid #e5e1d8;
+
+    border-radius: 4px;
+
+    padding: 12px 9px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 15px;
+
+    color: #555;
+}
+
+.metric-box strong {
+    color: var(--dark-green);
+
+    font-size: 14px;
+}
+
+.metric-box .orange,
+.orange {
+    color: var(--orange);
+}
+
+
+/* =========================================================
+   WHAT NAVYA IS SEEING
+   ========================================================= */
+
+.seeing-card {
+    min-height: 295px;
+}
+
+
+.seeing-heading {
+    justify-content: space-between;
+}
+
+.seeing-heading > div {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.confidence {
+    background: #c8edd9;
+
+    color: #165b3d;
+
+    padding: 5px 8px;
+
+    border-radius: 4px;
+
+    font-size: 12px;
+}
+
+
+.analysis-text {
+    padding: 19px 20px 15px;
+
+    color: #555a56;
+
+    font-size: 15px;
+
+    line-height: 1.55;
+}
+
+
+.storage-status {
+    margin: 0 20px 17px;
+
+    padding: 10px 12px;
+
+    border-radius: 6px;
+
+    background: #e5f4e7;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: var(--dark-green);
+}
+
+.storage-status > svg {
+    width: 22px;
+    height: 22px;
+}
+
+.storage-status div {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+.storage-status strong {
+    font-size: 14px;
+}
+
+.storage-status span {
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   AI ASSESSMENT
+   ========================================================= */
+
+.ai-assessment {
+    margin-top: 27px;
+
+    background: #fbf8e9;
+
+    border-radius: 13px;
+
+    padding: 28px 32px;
+
+    display: grid;
+
+    grid-template-columns: 1.05fr 1fr;
+
+    gap: 35px;
+
+    align-items: center;
+}
+
+
+.ai-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: var(--dark-green);
+}
+
+.ai-title svg {
+    width: 25px;
+    height: 25px;
+}
+
+.ai-title h2 {
+    font-size: 21px;
+
+    font-weight: 500;
+}
+
+.ai-content p {
+    margin-top: 15px;
+
+    font-size: 20px;
+
+    line-height: 1.5;
+
+    color: #262926;
+}
+
+
+/* Recommendation */
+
+.recommendation {
+    background: #faf9f4;
+
+    border: 1px solid #e3dfd4;
+
+    border-radius: 8px;
+
+    padding: 20px;
+}
+
+.recommendation span {
+    display: block;
+
+    font-size: 13px;
+
+    color: #303c13;
+
+    letter-spacing: 0.3px;
+
+    margin-bottom: 8px;
+}
+
+.recommendation strong {
+    display: block;
+
+    font-size: 21px;
+
+    color: var(--red);
+
+    font-weight: 500;
+
+    line-height: 1.35;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+    .navbar {
+        padding: 0 25px;
+    }
+
+    .nav-links {
+        gap: 25px;
+        margin-left: 0;
+    }
+
+    .page-container {
+        width: 92%;
+    }
+
+    .top-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .middle-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .visual-content {
+        grid-template-columns: 260px 1fr;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .navbar {
+        height: auto;
+
+        padding: 18px 20px;
+
+        flex-wrap: wrap;
+
+        gap: 15px;
+    }
+
+    .brand {
+        font-size: 23px;
+    }
+
+    .nav-links {
+        order: 3;
+
+        width: 100%;
+
+        justify-content: center;
+
+        gap: 20px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+    .profile-btn {
+        margin-left: auto;
+    }
+
+
+    .page-container {
+        width: 92%;
+
+        padding-top: 15px;
+    }
+
+
+    /* Batch header */
+
+    .batch-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 17px;
+    }
+
+    .batch-title-row {
+        flex-wrap: wrap;
+    }
+
+    .batch-title-row h1 {
+        font-size: 29px;
+    }
+
+    .batch-meta {
+        flex-wrap: wrap;
+
+        gap: 8px 15px;
+    }
+
+    .assessment-status {
+        width: 100%;
+
+        justify-content: space-between;
+
+        gap: 10px;
+    }
+
+    .detailed-analysis {
+        font-size: 13px;
+    }
+
+    .quality-badge {
+        padding: 8px 12px;
+
+        font-size: 12px;
+    }
+
+
+    /* Environmental cards */
+
+    .environment-grid {
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+    }
+
+    .environment-item {
+        min-height: 180px;
+    }
+
+    .environment-top {
+        margin-bottom: 12px;
+    }
+
+    .environment-item h3 {
+        margin-bottom: 15px;
+    }
+
+
+    /* Visual */
+
+    .visual-content {
+        grid-template-columns: 1fr;
+    }
+
+    .produce-image {
+        height: 230px;
+    }
+
+    .visual-metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .metric-box {
+        min-height: 48px;
+    }
+
+
+    /* AI */
+
+    .ai-assessment {
+        grid-template-columns: 1fr;
+
+        padding: 22px 18px;
+
+        gap: 20px;
+    }
+
+    .ai-content p {
+        font-size: 17px;
+    }
+
+    .recommendation strong {
+        font-size: 18px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+    .nav-links {
+        gap: 13px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    .batch-title-row h1 {
+        font-size: 26px;
+    }
+
+    .batch-id {
+        font-size: 12px;
+    }
+
+    .assessment-status {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .condition-card {
+        min-height: auto;
+    }
+
+    .score-ring {
+        width: 160px;
+        height: 160px;
+    }
+
+    .score-inner {
+        width: 122px;
+        height: 122px;
+    }
+
+    .score-inner strong {
+        font-size: 43px;
+    }
+
+    .score-footer {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .card-heading h2 {
+        font-size: 17px;
+    }
+
+    .ai-title h2 {
+        font-size: 18px;
+    }
+}
+
