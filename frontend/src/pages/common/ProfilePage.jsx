@@ -24,13 +24,35 @@ const ProfilePage = () => {
         const data = await response.json();
         setProfile(data);
         setFormData({ name: data.name || '', email: data.email || '', phone: data.phone || '' });
+        localStorage.setItem('cachedProfile', JSON.stringify(data));
       } else {
-        setError('Failed to load profile');
+        loadOfflineProfile();
       }
     } catch (err) {
-      setError('Connection error');
+      loadOfflineProfile();
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const loadOfflineProfile = () => {
+    const cached = localStorage.getItem('cachedProfile');
+    if (cached) {
+      const data = JSON.parse(cached);
+      setProfile(data);
+      setFormData({ name: data.name || '', email: data.email || '', phone: data.phone || '' });
+      setError('You are offline. Showing cached profile data.');
+    } else {
+      // Create a basic profile from login data
+      const basicData = {
+        name: localStorage.getItem('name') || 'User',
+        role: localStorage.getItem('role') || 'farmer',
+        email: '',
+        phone: ''
+      };
+      setProfile(basicData);
+      setFormData(basicData);
+      setError('You are offline. Some details may not be available.');
     }
   };
 
@@ -48,14 +70,17 @@ const ProfilePage = () => {
       if (response.ok) {
         const updated = await response.json();
         setProfile(updated);
+        localStorage.setItem('cachedProfile', JSON.stringify(updated));
+        localStorage.setItem('name', updated.name); // update top level name too
         setIsEditing(false);
         setMessage('Profile updated successfully!');
+        setError('');
         setTimeout(() => setMessage(''), 3000);
       } else {
         setError('Failed to update profile');
       }
     } catch (err) {
-      setError('Connection error while saving');
+      setError('Cannot update profile while offline.');
     }
   };
 

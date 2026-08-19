@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FarmerNavbar from '../../components/navigation/FarmerNavbar';
 import '../../assets/css/register-batch.css';
 
 const RegisterBatch = () => {
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    quantity: '',
+    crop: '',
+    date: '',
+    origin: 'Pune Farm' // Default or selected origin
+  });
 
   const handleGenerate = () => {
-    // Navigate to dummy generated batch page for now
-    navigate('/farmer/batch-created/TOM-024');
+    // Navigate to dummy generated batch page for now with form data
+    const batchId = `BATCH-${Math.floor(Math.random() * 10000)}`;
+    navigate(`/farmer/batch-created/${batchId}`, { state: formData });
   };
 
   return (
@@ -29,6 +36,8 @@ const RegisterBatch = () => {
               id="quantity"
               name="quantity"
               placeholder="e.g. 100kg"
+              value={formData.quantity}
+              onChange={(e) => setFormData({...formData, quantity: e.target.value})}
             />
           </div>
 
@@ -36,7 +45,12 @@ const RegisterBatch = () => {
           <div className="form-group">
             <label htmlFor="crop-variety">Crop Variety</label>
             <div className="select-wrapper">
-              <select id="crop-variety" name="crop-variety" defaultValue="">
+              <select 
+                id="crop-variety" 
+                name="crop-variety" 
+                value={formData.crop}
+                onChange={(e) => setFormData({...formData, crop: e.target.value})}
+              >
                 <option value="" disabled>Select variety...</option>
                 <option value="tomato">Tomato</option>
                 <option value="potato">Potato</option>
@@ -66,6 +80,8 @@ const RegisterBatch = () => {
               type="date"
               id="harvest-date"
               name="harvest-date"
+              value={formData.date}
+              onChange={(e) => setFormData({...formData, date: e.target.value})}
             />
           </div>
 
@@ -86,7 +102,7 @@ const RegisterBatch = () => {
                   <circle cx="12" cy="10" r="2.5"></circle>
                 </svg>
               </span>
-              <span className="origin-placeholder">Select place</span>
+              <span className="origin-placeholder">{formData.origin}</span>
               <span className="origin-arrow">
                 <svg
                   width="20"

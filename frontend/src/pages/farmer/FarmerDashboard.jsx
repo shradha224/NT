@@ -6,13 +6,14 @@ import { mockDashboardData } from '../../services/mockData';
 
 const FarmerDashboard = () => {
   const navigate = useNavigate();
+  const userName = localStorage.getItem('name') || 'Farmer';
 
   return (
     <div className="farmer-dashboard-root">
       <FarmerNavbar />
       <main className="dashboard">
         <section className="welcome-section">
-          <h1>Welcome, {mockDashboardData.farmerUser}</h1>
+          <h1>Welcome, {userName}</h1>
           <p>
             Register a new produce batch or scan a batch to view its latest assessment.
           </p>

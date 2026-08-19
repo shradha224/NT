@@ -1,0 +1,28 @@
+feat(auth/ui): Overhaul Registration Flow & UI/UX Enhancements
+
+This update brings major quality-of-life improvements to the Navya platform. 
+We've made the dashboards personalized, added a sleek profile dropdown to the navigation bar, 
+upgraded the QR code system to store full crop details, implemented an offline-first profile page, 
+and completely overhauled the registration wizard to be 5 steps with optional fingerprint setup and instant login.
+
+### Detailed Technical Changes
+
+1. **Authentication & Registration Overhaul**
+   - Refactored RegisterPage.jsx into a 5-step wizard, separating Password creation (Step 4) from Fingerprint Setup (Step 5).
+   - Added a "Skip for now" option for Fingerprint setup to prevent blocking users on devices without biometric sensors.
+   - Updated backend/src/routes/auth.js POST /api/auth/register to generate and return a signed JWT token on successful creation.
+   - Wired frontend createAccount to automatically save the JWT and user data to localStorage and redirect to the dashboard (bypassing the login screen).
+
+2. **Rich Data QR Code Implementation**
+   - Modified RegisterBatch.jsx to pass complete form state (crop, quantity, origin, date) through React Router navigation.
+   - Updated BatchCreated.jsx to parse the state and embed it as URL query parameters into the generated QR code.
+   - Enhanced FarmerScanBatch.jsx and AggregatorScanBatch.jsx Html5QrcodeScanner success callbacks to parse the rich URL, extracting query parameters and displaying full crop details in the UI before executing redirects.
+
+3. **Offline-Resilient Architecture**
+   - Rewrote ProfilePage.jsx data fetching to aggressively cache profile data to localStorage.
+   - Built a robust fallback mechanism loadOfflineProfile that intercepts network failures and elegantly degrades to displaying cached data with a warning alert, preventing white screens when disconnected.
+
+4. **UI/UX Polish**
+   - Created ProfileDropdown.jsx (and accompanying CSS) to replace the direct profile link with an animated, non-blocking floating menu.
+   - Integrated the dropdown into FarmerNavbar.jsx and AggregatorNavbar.jsx.
+   - Updated FarmerDashboard.jsx and AggregatorDashboard.jsx to read and display the dynamic userName from local storage instead of hardcoded strings.
