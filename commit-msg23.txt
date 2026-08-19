@@ -1,0 +1,4 @@
+style(layout): make footer logo white for contrast
+
+- Modified NavyaLogo.jsx to accept an optional 'color' prop (defaulting to the original dark green '#063b2c').
+- Updated GlobalFooter.jsx to explicitly pass 'color="#ffffff"' to the NavyaLogo component, fixing the issue where the dark green logo was invisible against the dark green footer background.
