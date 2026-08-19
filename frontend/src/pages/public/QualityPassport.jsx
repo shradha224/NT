@@ -2,9 +2,11 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import '../../assets/css/quality-passport.css';
 import NavyaLogo from '../../components/common/NavyaLogo';
+import { mockIoTData } from '../../services/mockData';
 
 const QualityPassport = () => {
   const { batchId } = useParams();
+  const data = mockIoTData;
 
   return (
     <div className="quality-passport-root">
@@ -20,13 +22,13 @@ const QualityPassport = () => {
           <h1>Produce Quality Passport</h1>
           <p className="hero-subtitle">Verified by Navya Agricultural Intelligence</p>
           <div className="batch-pill">
-            <strong>Batch ID: {batchId || 'TOM-024'}</strong>
+            <strong>Batch ID: {batchId || data.currentBatch.id}</strong>
             <span>•</span>
-            <strong>Tomato</strong>
+            <strong>{data.currentBatch.type}</strong>
           </div>
           <div className="quality-badge">
             <span className="badge-icon">✿</span>
-            Good Quality
+            {data.qualitySummary.overallQuality} Quality
           </div>
         </section>
 
@@ -39,22 +41,22 @@ const QualityPassport = () => {
             <div className="summary-card">
               <div className="summary-icon condition-icon">◩</div>
               <span className="summary-label">CONDITION SCORE</span>
-              <div className="summary-value"><strong>82</strong><span>/100</span></div>
+              <div className="summary-value"><strong>{data.qualitySummary.conditionScore}</strong><span>/100</span></div>
             </div>
             <div className="summary-card">
               <div className="summary-icon thumbs-icon">♧</div>
               <span className="summary-label">OVERALL QUALITY</span>
-              <div className="summary-text green">Good</div>
+              <div className="summary-text green">{data.qualitySummary.overallQuality}</div>
             </div>
             <div className="summary-card">
               <div className="summary-icon warning-icon">△</div>
               <span className="summary-label">SPOILAGE RISK</span>
-              <div className="summary-text">28%</div>
+              <div className="summary-text">{data.qualitySummary.spoilageRisk}</div>
             </div>
             <div className="summary-card">
               <div className="summary-icon calendar-icon">▣</div>
               <span className="summary-label">EST. SHELF LIFE</span>
-              <div className="summary-text green">4 Days</div>
+              <div className="summary-text green">{data.qualitySummary.shelfLife}</div>
             </div>
           </div>
         </section>
@@ -66,30 +68,32 @@ const QualityPassport = () => {
           </div>
           <div className="assessment-card">
             <div className="produce-image-container">
-              <div style={{width: '100%', height: '100%', backgroundColor: '#374151', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#9ca3af', fontSize: '13px'}}>
-                Produce Camera View
-              </div>
+              <img
+                src={data.latestAssessment.image}
+                alt="Produce Camera View"
+                className="produce-image"
+              />
               <div className="image-label">
                 <span>▣</span>
-                Captured 2 hrs ago
+                Captured {data.latestAssessment.capturedTime}
               </div>
             </div>
             <div className="assessment-details">
               <div className="assessment-row">
                 <div className="assessment-name"><span className="detail-icon">◉</span>Appearance</div>
-                <span className="status good">Good</span>
+                <span className={`status ${data.latestAssessment.appearance.cssClass}`}>{data.latestAssessment.appearance.status}</span>
               </div>
               <div className="assessment-row">
                 <div className="assessment-name"><span className="detail-icon">⁙</span>Ripeness</div>
-                <span className="status good">Optimal</span>
+                <span className={`status ${data.latestAssessment.ripeness.cssClass}`}>{data.latestAssessment.ripeness.status}</span>
               </div>
               <div className="assessment-row">
                 <div className="assessment-name"><span className="detail-icon">▦</span>Defects</div>
-                <span className="status neutral">Minimal</span>
+                <span className={`status ${data.latestAssessment.defects.cssClass}`}>{data.latestAssessment.defects.status}</span>
               </div>
               <div className="assessment-row">
                 <div className="assessment-name"><span className="detail-icon">▤</span>Size Uniformity</div>
-                <span className="status good">Consistent</span>
+                <span className={`status ${data.latestAssessment.sizeUniformity.cssClass}`}>{data.latestAssessment.sizeUniformity.status}</span>
               </div>
             </div>
           </div>
@@ -103,13 +107,12 @@ const QualityPassport = () => {
               <h2>Quality History</h2>
             </div>
             <div className="history-card">
-              <div className="history-row"><span>Today (Day 4)</span><strong>Good</strong></div>
-              <div className="history-row"><span>Today (Day 4)</span><strong>Good</strong></div>
-              <div className="history-row"><span>Yesterday (Day 3)</span><strong>Good</strong></div>
-              <div className="history-row"><span>Yesterday (Day 3)</span><strong>Good</strong></div>
-              <div className="history-row"><span>Yesterday (Day 3)</span><strong>Good</strong></div>
-              <div className="history-row"><span>Oct 24 (Day 2)</span><strong>Excellent</strong></div>
-              <div className="history-row"><span>Oct 23 (Day 1)</span><strong>Fresh Picked</strong></div>
+              {data.qualityHistory.map((item, index) => (
+                <div className="history-row" key={index}>
+                  <span>{item.day}</span>
+                  <strong>{item.result}</strong>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -123,8 +126,8 @@ const QualityPassport = () => {
                 <div className="timeline-dot">✓</div>
                 <div className="timeline-content">
                   <div className="timeline-top">
-                    <div><h3>Origin Farm</h3><p>Sunnyvale Acres, California</p></div>
-                    <span>Oct 22, 2023</span>
+                    <div><h3>Origin Farm</h3><p>{data.currentBatch.originFarm}</p></div>
+                    <span></span>
                   </div>
                 </div>
               </div>
@@ -133,7 +136,7 @@ const QualityPassport = () => {
                 <div className="timeline-content">
                   <div className="timeline-top">
                     <div><h3>Harvested</h3></div>
-                    <span>Oct 23, 2023 - 06:00 AM</span>
+                    <span>{data.currentBatch.harvestDate}</span>
                   </div>
                 </div>
               </div>
@@ -142,25 +145,16 @@ const QualityPassport = () => {
                 <div className="timeline-content">
                   <div className="timeline-top">
                     <div><h3>Quality Monitored</h3><p>Last Assessment by NAVYA</p></div>
-                    <span>Oct 23, 2023 - 02:00 PM</span>
+                    <span>{data.currentBatch.qualityMonitoredDate}</span>
                   </div>
                 </div>
               </div>
-              <div className="timeline-item">
-                <div className="timeline-dot inactive">▣</div>
+              <div className={`timeline-item ${data.currentBatch.status === 'In Transit' ? 'active' : ''}`}>
+                <div className={`timeline-dot ${data.currentBatch.status !== 'In Transit' ? 'inactive' : ''}`}>▣</div>
                 <div className="timeline-content">
                   <div className="timeline-top">
                     <div><h3>Distributed</h3></div>
-                    <span>In Transit</span>
-                  </div>
-                </div>
-              </div>
-              <div className="timeline-item pending">
-                <div className="timeline-dot inactive">▢</div>
-                <div className="timeline-content">
-                  <div className="timeline-top">
-                    <div><h3>Buyer Arrival</h3></div>
-                    <span>Pending</span>
+                    <span>{data.currentBatch.status}</span>
                   </div>
                 </div>
               </div>
