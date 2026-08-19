@@ -197,6 +197,13 @@
   height: 202px;
   position: relative;
   overflow: hidden;
+  background-color: #000;
+}
+
+.quality-passport-root .produce-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Prevents unwanted cropping */
 }
 
 .quality-passport-root .image-label {
