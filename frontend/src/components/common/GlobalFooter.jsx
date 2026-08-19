@@ -1,6 +1,5 @@
-﻿import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 import NavyaLogo from './NavyaLogo';
 import '../../assets/css/layout.css';
 
@@ -17,10 +16,10 @@ const GlobalFooter = () => {
             Monitor produce conditions, predict spoilage risk, and make better decisions with AI.
           </p>
           <div className="footer-social">
-            <a href="#" aria-label="Facebook"><Facebook size={20} /></a>
-            <a href="#" aria-label="Twitter"><Twitter size={20} /></a>
-            <a href="#" aria-label="Instagram"><Instagram size={20} /></a>
-            <a href="#" aria-label="LinkedIn"><Linkedin size={20} /></a>
+            <a href="#" aria-label="Facebook">Facebook</a>
+            <a href="#" aria-label="Twitter">Twitter</a>
+            <a href="#" aria-label="Instagram">Instagram</a>
+            <a href="#" aria-label="LinkedIn">LinkedIn</a>
           </div>
         </div>
         
