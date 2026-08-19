@@ -84,7 +84,12 @@ const AggregatorDashboard = () => {
                 ))
               ) : (
                 <div style={{ textAlign: 'center', padding: '2rem 1rem', color: '#666' }}>
-                  <div style={{ fontSize: '2rem', marginBottom: '10px' }}>✅</div>
+                  <div style={{ marginBottom: '10px' }}>
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                  </div>
                   <p style={{ margin: 0 }}>All clear! No batches need your attention right now.</p>
                 </div>
               )}
