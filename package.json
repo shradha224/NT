@@ -1,0 +1,14 @@
+{
+  "name": "navya-iot-platform",
+  "version": "1.0.0",
+  "description": "Plug and play root workspace for Navya Agricultural Intelligence",
+  "scripts": {
+    "postinstall": "cd frontend && npm install && cd ../backend && npm install",
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:backend": "cd backend && npm run dev",
+    "start:frontend": "cd frontend && npm run dev"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

@@ -3,9 +3,11 @@ import { Link, useParams } from 'react-router-dom';
 import AggregatorNavbar from '../../components/navigation/AggregatorNavbar';
 import '../../assets/css/batch-assessment.css';
 import { Hourglass, CalendarDays, ArrowRight, BadgeCheck, Gauge, RadioTower, Thermometer, Wind, Droplets, Eye, Camera, Brain, CircleCheck } from 'lucide-react';
+import { mockIoTData } from '../../services/mockData';
 
 const BatchAssessment = () => {
   const { batchId } = useParams();
+  const data = mockIoTData;
 
   return (
     <div className="batch-assessment-root">
@@ -16,8 +18,8 @@ const BatchAssessment = () => {
         <section className="batch-header">
           <div className="batch-info">
             <div className="batch-title-row">
-              <h1>Tomato</h1>
-              <span className="batch-id">Batch ID: {batchId || 'TOM-024'}</span>
+              <h1>{data.currentBatch.type}</h1>
+              <span className="batch-id">Batch ID: {batchId || data.currentBatch.id}</span>
             </div>
             <div className="batch-meta">
               <span>
@@ -26,18 +28,18 @@ const BatchAssessment = () => {
               </span>
               <span>
                 <CalendarDays />
-                Harvested: 12 Aug 2026
+                Harvested: {data.currentBatch.harvestDate}
               </span>
             </div>
           </div>
           <div className="assessment-status">
-            <Link to={`/aggregator/batch-history/${batchId || 'TOM-024'}`} className="detailed-analysis">
+            <Link to={`/aggregator/batch-history/${batchId || data.currentBatch.id}`} className="detailed-analysis">
               View Detailed Analysis
               <ArrowRight />
             </Link>
             <div className="quality-badge">
               <BadgeCheck />
-              GOOD QUALITY
+              {data.qualitySummary.overallQuality.toUpperCase()} QUALITY
             </div>
           </div>
         </section>
@@ -53,7 +55,7 @@ const BatchAssessment = () => {
             <div className="score-area">
               <div className="score-ring">
                 <div className="score-inner">
-                  <strong>82</strong>
+                  <strong>{data.qualitySummary.conditionScore}</strong>
                   <span>/100</span>
                 </div>
               </div>
@@ -61,12 +63,12 @@ const BatchAssessment = () => {
             <div className="score-footer">
               <div>
                 <span>Spoilage Risk</span>
-                <strong className="risk-value">28%</strong>
+                <strong className="risk-value">{data.qualitySummary.spoilageRisk}</strong>
               </div>
               <div className="vertical-divider"></div>
               <div>
                 <span>Shelf Life</span>
-                <strong>4 Days</strong>
+                <strong>{data.qualitySummary.shelfLife}</strong>
               </div>
             </div>
           </div>
@@ -82,11 +84,11 @@ const BatchAssessment = () => {
               <div className="environment-item temperature">
                 <div className="environment-top">
                   <Thermometer />
-                  <span>↑ 3.4°C</span>
+                  <span>↑ 3.4{data.sensorReadings.temperature.unit}</span>
                 </div>
                 <h3>Temperature</h3>
-                <strong>28.4°C</strong>
-                <p>Above optimal range<br />(&lt; 25°C)</p>
+                <strong>{data.sensorReadings.temperature.peak}</strong>
+                <p>Above optimal range<br />(&lt; 25{data.sensorReadings.temperature.unit})</p>
               </div>
 
               {/* VOC */}
@@ -96,8 +98,8 @@ const BatchAssessment = () => {
                   <span>↑18%</span>
                 </div>
                 <h3>VOC/Gas</h3>
-                <strong>412 ppm</strong>
-                <p className="normal">Normal</p>
+                <strong>{data.sensorReadings.voc.current} {data.sensorReadings.voc.unit}</strong>
+                <p className={data.sensorReadings.voc.status === 'Normal' ? 'normal' : 'warning'}>{data.sensorReadings.voc.status}</p>
               </div>
 
               {/* Humidity */}
@@ -107,8 +109,8 @@ const BatchAssessment = () => {
                   <span>↓3%</span>
                 </div>
                 <h3>Humidity</h3>
-                <strong>72 %</strong>
-                <p className="normal">Normal</p>
+                <strong>{data.sensorReadings.humidity.current} {data.sensorReadings.humidity.unit}</strong>
+                <p className={data.sensorReadings.humidity.status === 'Optimal' ? 'normal' : 'warning'}>{data.sensorReadings.humidity.status}</p>
               </div>
             </div>
           </div>
@@ -124,9 +126,11 @@ const BatchAssessment = () => {
             </div>
             <div className="visual-content">
               <div className="produce-image">
-                <div style={{width: '100%', height: '100%', backgroundColor: '#374151', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#9ca3af', fontSize: '13px'}}>
-                  Produce Camera View
-                </div>
+                <img
+                  src={data.latestAssessment.image}
+                  alt="Produce Camera View"
+                  style={{width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px'}}
+                />
                 <div className="image-label">
                   <Camera />
                   Latest Produce Image
@@ -136,27 +140,27 @@ const BatchAssessment = () => {
               <div className="visual-metrics">
                 <div className="metric-box">
                   <span>Appearance</span>
-                  <strong>Good</strong>
+                  <strong>{data.visualMetrics.appearance}</strong>
                 </div>
                 <div className="metric-box">
                   <span>Ripeness</span>
-                  <strong className="orange">76%</strong>
+                  <strong className={data.visualMetrics.ripeness.cssClass}>{data.visualMetrics.ripeness.value}</strong>
                 </div>
                 <div className="metric-box">
                   <span>Colour Change</span>
-                  <strong>Low</strong>
+                  <strong>{data.visualMetrics.colourChange}</strong>
                 </div>
                 <div className="metric-box">
                   <span>Visible Defects</span>
-                  <strong>Low</strong>
+                  <strong>{data.visualMetrics.visibleDefects}</strong>
                 </div>
                 <div className="metric-box">
                   <span>Bruising</span>
-                  <strong>Minimal</strong>
+                  <strong>{data.visualMetrics.bruising}</strong>
                 </div>
                 <div className="metric-box">
                   <span>Deterioration</span>
-                  <strong className="orange">Early</strong>
+                  <strong className={data.visualMetrics.deterioration.cssClass}>{data.visualMetrics.deterioration.value}</strong>
                 </div>
               </div>
             </div>
@@ -169,20 +173,16 @@ const BatchAssessment = () => {
                 <Brain />
                 <h2>What NAVYA is seeing</h2>
               </div>
-              <span className="confidence">Confidence: 91%</span>
+              <span className="confidence">Confidence: {data.aiInsights.confidence}</span>
             </div>
             <p className="analysis-text">
-              Deterioration is increasing gradually based on visual
-              and environmental signals. The combination of slightly
-              elevated VOC and early visual ripening signs suggests
-              the batch will reach peak maturity sooner than initially
-              projected.
+              {data.aiInsights.analysisText}
             </p>
             <div className="storage-status">
               <CircleCheck />
               <div>
                 <strong>Storage Environment</strong>
-                <span>Status: Favourable</span>
+                <span>Status: {data.aiInsights.storageStatus}</span>
               </div>
             </div>
           </div>
@@ -196,13 +196,12 @@ const BatchAssessment = () => {
               <h2>AI Assessment</h2>
             </div>
             <p>
-              "Current conditions indicate good quality with a
-              relatively low spoilage risk."
+              {data.aiInsights.assessmentSummary}
             </p>
           </div>
           <div className="recommendation">
             <span>ACTION RECOMMENDATION</span>
-            <strong>Prioritize this batch for sale within 2 days.</strong>
+            <strong>{data.aiInsights.recommendation}</strong>
           </div>
         </section>
       </main>
