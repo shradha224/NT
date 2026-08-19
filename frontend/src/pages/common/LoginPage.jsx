@@ -151,12 +151,16 @@ const LoginPage = () => {
             
             {error && <div className="error-message">{error}</div>}
 
+            <div style={{ marginBottom: '10px', fontSize: '0.8rem', color: '#f59e0b', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>
+              * Hardware Simulation Mode
+            </div>
+            
             <div className={`giant-fingerprint-box ${isScanning ? 'scanning' : ''} ${scanSuccess ? 'success' : ''}`} onClick={handleFingerprintLogin}>
               <span className="fp-icon">◎</span>
             </div>
 
             <p className="fp-status-text">
-              {isScanning ? 'Scanning...' : scanSuccess ? 'Welcome back!' : 'Tap sensor to scan'}
+              {isScanning ? 'Scanning...' : scanSuccess ? 'Welcome back!' : 'Tap sensor to simulate login'}
             </p>
           </div>
         </main>

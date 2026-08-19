@@ -177,11 +177,11 @@ router.get('/me', authenticate, async (req, res) => {
 
 router.put('/me', authenticate, async (req, res) => {
   try {
-    const { name, email, phone } = req.body;
+    const { name, email, phone, username, organization, location } = req.body;
     
     const user = await User.findByIdAndUpdate(
       req.user.userId,
-      { $set: { name, email, phone, syncStatus: 'PENDING' } },
+      { $set: { name, email, phone, username, organization, location, syncStatus: 'PENDING' } },
       { new: true, runValidators: true }
     ).select('-passwordHash');
 
