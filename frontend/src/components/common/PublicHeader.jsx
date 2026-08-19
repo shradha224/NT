@@ -6,7 +6,7 @@ import { Home } from 'lucide-react';
 const PublicHeader = () => {
   const navigate = useNavigate();
   return (
-    <header className="navbar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', padding: '15px 30px', boxSizing: 'border-box', position: 'relative', top: 0, zIndex: 10 }}>
+    <header className="navbar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', padding: '10px 20px', boxSizing: 'border-box', position: 'relative', top: 0, zIndex: 10 }}>
       <Link to="/" style={{ textDecoration: 'none' }}>
         <NavyaLogo />
       </Link>
@@ -29,4 +29,5 @@ const PublicHeader = () => {
 };
 
 export default PublicHeader;
+
 
