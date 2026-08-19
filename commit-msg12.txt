@@ -1,0 +1,4 @@
+fix(profile): fix JWT token header syntax and phone registration
+
+- Fixed string interpolation bug in ProfilePage.jsx where the Bearer token was improperly evaluated, causing the fetch request to /api/auth/me to fail with a syntax error and fallback to offline empty profile data.
+- Added the missing phone field in RegisterPage.jsx's POST /api/auth/register body so that the user's phone number is correctly stored in the database.

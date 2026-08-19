@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User, Mail, Phone, MapPin, Building, LogOut, ArrowLeft, CloudSync, Edit2, Save, X } from 'lucide-react';
 import '../../assets/css/profile-page.css';
@@ -28,7 +28,7 @@ const ProfilePage = () => {
   const fetchProfile = async () => {
     try {
       const response = await fetch('http://localhost:5000/api/auth/me', {
-        headers: { 'Authorization': Bearer  }
+        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
       });
       if (response.status === 401) {
         return handleSessionExpired();
@@ -88,7 +88,7 @@ const ProfilePage = () => {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': Bearer 
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
         body: JSON.stringify(formData)
       });
