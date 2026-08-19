@@ -1,6 +1,0 @@
-feat(layout): add global header and footer to all pages
-
-- Created GlobalFooter and PublicHeader components to provide a consistent, professional corporate branding across the application.
-- Added layout.css to ensure the footer always sticks to the bottom of the viewport using flexbox page wrappers.
-- Injected GlobalFooter into LandingPage, QualityPassport, auth pages, and all dashboard pages.
-- Replaced standalone headers in auth pages and QualityPassport with the standardized PublicHeader.

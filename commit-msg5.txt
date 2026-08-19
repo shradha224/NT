@@ -1,6 +1,0 @@
-feat(auth/ui): Collect explicit Username and Email in Registration
-
-- Added dedicated Username and Email input fields to Step 2 of the Registration Wizard.
-- Updated form state and validation logic to require these new fields.
-- Replaced the implicit username/email mocking (derived from phone number) with the actual user inputs in the API payload.
-- This ensures users can create a personalized username and provide a real email address, matching standard authentication expectations.

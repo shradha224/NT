@@ -1,6 +1,0 @@
-feat(ui): Overhaul Profile Page and address UX issues
-
-- Added a 1.5-second success feedback state to RegisterPage before redirecting.
-- Replaced the flawed SVG fingerprint icon with the 'Fingerprint' icon from lucide-react in both login and register flows.
-- Implemented a custom QR file upload fallback below the scanner in FarmerScanBatch and AggregatorScanBatch so users can always choose an image file manually.
-- Completely redesigned ProfilePage.jsx and added profile-page.css to align with the global '#faf8f2' brand identity, utilizing clear card-based layouts and lucide-react iconography.

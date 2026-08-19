@@ -1,4 +1,0 @@
-style(ui): Fix passport image cropping and replace passport emojis
-
-- Added object-fit: contain; to .produce-image and black background to .produce-image-container in quality-passport.css to prevent unwanted cropping of the tomato camera view.
-- Replaced all emojis (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) in QualityPassport.jsx with professional inline SVGs to match the rest of the app's clean UI.

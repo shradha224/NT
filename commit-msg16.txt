@@ -1,4 +1,0 @@
-fix(layout): add missing NavyaLogo imports back to auth pages
-
-- Although the top header NavyaLogo was removed, the Login and Register cards still contain NavyaLogo inline elements.
-- Re-added the import statement for NavyaLogo to prevent the React ReferenceError.
