@@ -71,6 +71,7 @@ const RegisterPage = () => {
         body: JSON.stringify({ 
           username: username,
           email: email,
+          phone: phone,
           password: password, 
           name: fullName,
           role: role.toUpperCase(),
