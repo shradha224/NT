@@ -1,0 +1,7 @@
+style(layout): refine header and footer aesthetics based on feedback
+
+- Removed redundant inline NavyaLogos from the Login and Register page forms.
+- Updated PublicHeader with proper flexbox styling to right-align the Home button correctly.
+- Removed social media links from the GlobalFooter.
+- Updated the corporate address to ITER Bhubaneswar Odisha.
+- Reduced GlobalFooter padding to decrease its overall height so it stands out less.

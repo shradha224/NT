@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import NavyaLogo from './NavyaLogo';
 import '../../assets/css/layout.css';
@@ -15,12 +15,7 @@ const GlobalFooter = () => {
             Intelligent Post-Harvest Analysis.<br/>
             Monitor produce conditions, predict spoilage risk, and make better decisions with AI.
           </p>
-          <div className="footer-social">
-            <a href="#" aria-label="Facebook">Facebook</a>
-            <a href="#" aria-label="Twitter">Twitter</a>
-            <a href="#" aria-label="Instagram">Instagram</a>
-            <a href="#" aria-label="LinkedIn">LinkedIn</a>
-          </div>
+          
         </div>
         
         <div className="footer-links-group">
@@ -44,7 +39,7 @@ const GlobalFooter = () => {
           <a href="tel:+918001234567">+91 800-123-4567</a>
           <p style={{ color: '#a7f3d0', fontSize: '14px', marginTop: '10px' }}>
             Innovation Hub, <br/>
-            New Delhi, India
+            ITER Bhubaneswar Odisha
           </p>
         </div>
       </div>
@@ -57,3 +52,4 @@ const GlobalFooter = () => {
 };
 
 export default GlobalFooter;
+

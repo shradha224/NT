@@ -6,12 +6,12 @@ import { Home } from 'lucide-react';
 const PublicHeader = () => {
   const navigate = useNavigate();
   return (
-    <header className="navbar" style={{ position: 'relative', top: 0, zIndex: 10 }}>
+    <header className="navbar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', padding: '15px 30px', boxSizing: 'border-box', position: 'relative', top: 0, zIndex: 10 }}>
       <Link to="/" style={{ textDecoration: 'none' }}>
         <NavyaLogo />
       </Link>
       
-      <div style={{ marginLeft: 'auto' }}>
+      <div>
         <button 
           onClick={() => navigate('/')} 
           style={{ 
@@ -29,3 +29,4 @@ const PublicHeader = () => {
 };
 
 export default PublicHeader;
+
