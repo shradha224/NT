@@ -148,7 +148,12 @@ const RegisterPage = () => {
                     className={`role-card giant-role-card ${role === 'farmer' ? 'active' : ''}`}
                     onClick={() => setRole('farmer')}
                   >
-                    <div className="role-icon">🌿</div>
+                    <div className="role-icon">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+                        <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+                      </svg>
+                    </div>
                     <span>I am a Farmer</span>
                   </button>
                   <button
@@ -156,7 +161,13 @@ const RegisterPage = () => {
                     className={`role-card giant-role-card ${role === 'aggregator' ? 'active' : ''}`}
                     onClick={() => setRole('aggregator')}
                   >
-                    <div className="role-icon">▣</div>
+                    <div className="role-icon">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                      </svg>
+                    </div>
                     <span>I am an Aggregator</span>
                   </button>
                 </div>
@@ -241,7 +252,13 @@ const RegisterPage = () => {
                     * Hardware Simulation Mode
                   </div>
                   <div className={`giant-fingerprint-box ${isScanning ? 'scanning' : ''} ${fingerprintRegistered ? 'success' : ''}`} onClick={startFingerprintScan}>
-                    <span className="fp-icon">◎</span>
+                    <span className="fp-icon">
+                      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 2a10 10 0 0 0-10 10c0 5.5 4.5 10 10 10s10-4.5 10-10"></path>
+                        <path d="M12 6a6 6 0 0 0-6 6"></path>
+                        <path d="M12 10a2 2 0 0 0-2 2"></path>
+                      </svg>
+                    </span>
                   </div>
                   <p className="fp-status-text" style={{ marginBottom: '20px' }}>
                     {isScanning ? 'Scanning...' : fingerprintRegistered ? 'Fingerprint Saved!' : 'Tap sensor to simulate register'}

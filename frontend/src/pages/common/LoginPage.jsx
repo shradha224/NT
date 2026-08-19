@@ -100,7 +100,12 @@ const LoginPage = () => {
             
             <div className="method-buttons">
               <button className="giant-method-btn primary" onClick={() => setLoginMethod('fingerprint')}>
-                <span className="method-icon">👆</span>
+                <span className="method-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2v20"></path>
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                  </svg>
+                </span>
                 <div className="method-text">
                   <h3>Fingerprint Scan</h3>
                   <p>Fastest and easiest</p>
@@ -108,7 +113,12 @@ const LoginPage = () => {
               </button>
 
               <button className="giant-method-btn secondary" onClick={() => setLoginMethod('phone')}>
-                <span className="method-icon">📱</span>
+                <span className="method-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                  </svg>
+                </span>
                 <div className="method-text">
                   <h3>Phone Number</h3>
                   <p>Sign in using your mobile</p>
@@ -116,7 +126,12 @@ const LoginPage = () => {
               </button>
 
               <button className="giant-method-btn alt" onClick={() => setLoginMethod('email')}>
-                <span className="method-icon">📧</span>
+                <span className="method-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                </span>
                 <div className="method-text">
                   <h3>Username / Email</h3>
                   <p>Standard account login</p>
@@ -156,7 +171,13 @@ const LoginPage = () => {
             </div>
             
             <div className={`giant-fingerprint-box ${isScanning ? 'scanning' : ''} ${scanSuccess ? 'success' : ''}`} onClick={handleFingerprintLogin}>
-              <span className="fp-icon">◎</span>
+              <span className="fp-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 2a10 10 0 0 0-10 10c0 5.5 4.5 10 10 10s10-4.5 10-10"></path>
+                  <path d="M12 6a6 6 0 0 0-6 6"></path>
+                  <path d="M12 10a2 2 0 0 0-2 2"></path>
+                </svg>
+              </span>
             </div>
 
             <p className="fp-status-text">
