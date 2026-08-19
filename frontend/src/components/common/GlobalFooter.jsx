@@ -30,7 +30,6 @@ const GlobalFooter = () => {
           <h4>Legal</h4>
           <Link to="/privacy-policy">Privacy Policy</Link>
           <Link to="/terms-of-service">Terms of Service</Link>
-          <a href="#">Cookie Policy</a>
         </div>
 
         <div className="footer-links-group">
@@ -52,5 +51,6 @@ const GlobalFooter = () => {
 };
 
 export default GlobalFooter;
+
 
 
