@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Html5QrcodeScanner, Html5Qrcode } from 'html5-qrcode';
 import AggregatorNavbar from '../../components/navigation/AggregatorNavbar';
+import GlobalFooter from '../../components/common/GlobalFooter';
 import '../../assets/css/scan-qr.css';
 
 const AggregatorScanBatch = () => {
@@ -169,6 +170,7 @@ const AggregatorScanBatch = () => {
 
         </section>
       </main>
+      <GlobalFooter />
     </div>
   );
 };

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Fingerprint } from 'lucide-react';
 import '../../assets/css/register.css';
-import NavyaLogo from '../../components/common/NavyaLogo';
+import GlobalFooter from '../../components/common/GlobalFooter';
+import PublicHeader from '../../components/common/PublicHeader';
 import registerImage from '../../assets/register-image.jpg';
 
 const RegisterPage = () => {
@@ -107,7 +108,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="register-page-root">
+    <div className="register-page-root page-wrapper">
       <header className="site-header">
         <Link to="/" style={{ textDecoration: 'none' }}>
           <NavyaLogo />
@@ -317,6 +318,7 @@ const RegisterPage = () => {
           </div>
         </section>
       </main>
+      <GlobalFooter />
     </div>
   );
 };

@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../assets/css/style.css';
 import NavyaLogo from '../../components/common/NavyaLogo';
+import GlobalFooter from '../../components/common/GlobalFooter';
 
 const LandingPage = () => {
   return (
-    <div className="landing-page-root">
+    <div className="landing-page-root page-wrapper">
       {/* ================= HEADER ================= */}
       <header className="navbar">
         <Link to="/" style={{ textDecoration: 'none' }}>
@@ -153,6 +154,7 @@ const LandingPage = () => {
           </div>
         </section>
       </main>
+      <GlobalFooter />
     </div>
   );
 };

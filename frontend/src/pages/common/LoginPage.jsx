@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Fingerprint } from 'lucide-react';
 import '../../assets/css/login.css';
-import NavyaLogo from '../../components/common/NavyaLogo';
+import GlobalFooter from '../../components/common/GlobalFooter';
+import PublicHeader from '../../components/common/PublicHeader';
 
 const LoginPage = () => {
   const [loginMethod, setLoginMethod] = useState(null); // 'fingerprint', 'phone', 'email'
@@ -85,7 +86,7 @@ const LoginPage = () => {
   // Render Method Selection
   if (loginMethod === null) {
     return (
-      <div className="login-page-root">
+      <div className="login-page-root page-wrapper">
         <header className="top-logo">
           <Link to="/" style={{ textDecoration: 'none' }}>
             <NavyaLogo />
@@ -143,6 +144,7 @@ const LoginPage = () => {
             </div>
           </div>
         </main>
+        <GlobalFooter />
       </div>
     );
   }
@@ -150,7 +152,7 @@ const LoginPage = () => {
   // Render Fingerprint Screen
   if (loginMethod === 'fingerprint') {
     return (
-      <div className="login-page-root">
+      <div className="login-page-root page-wrapper">
         <header className="top-logo">
           <Link to="/" style={{ textDecoration: 'none' }}>
             <NavyaLogo />
@@ -179,13 +181,14 @@ const LoginPage = () => {
             </p>
           </div>
         </main>
+        <GlobalFooter />
       </div>
     );
   }
 
   // Render Form (Phone or Email)
   return (
-    <div className="login-page-root">
+    <div className="login-page-root page-wrapper">
       <header className="top-logo">
         <Link to="/" style={{ textDecoration: 'none' }}>
           <NavyaLogo />
@@ -242,6 +245,7 @@ const LoginPage = () => {
           </form>
         </div>
       </main>
+        <GlobalFooter />
     </div>
   );
 };

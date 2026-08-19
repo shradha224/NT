@@ -1,6 +1,7 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import AggregatorNavbar from '../../components/navigation/AggregatorNavbar';
+import GlobalFooter from '../../components/common/GlobalFooter';
 import '../../assets/css/aggregator-dashboard.css';
 import { mockDashboardData } from '../../services/mockData';
 
@@ -176,6 +177,7 @@ const AggregatorDashboard = () => {
           <span>{data.systemStatus.connected ? 'Monitoring System Connected' : 'System Offline'}</span>
         </div>
       </main>
+      <GlobalFooter />
     </div>
   );
 };
