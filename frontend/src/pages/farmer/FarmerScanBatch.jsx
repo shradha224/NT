@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Html5QrcodeScanner } from 'html5-qrcode';
+import { Html5QrcodeScanner, Html5Qrcode } from 'html5-qrcode';
 import FarmerNavbar from '../../components/navigation/FarmerNavbar';
 import '../../assets/css/scan-qr.css';
 
@@ -64,6 +64,41 @@ const FarmerScanBatch = () => {
       scanner.clear().catch(error => console.error("Failed to clear scanner", error));
     };
   }, [navigate]);
+
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const html5QrCode = new Html5Qrcode("file-reader");
+    html5QrCode.scanFileV2(file, false)
+      .then(result => {
+        const decodedText = result.decodedText || result;
+        
+        try {
+          const url = new URL(decodedText);
+          const pathParts = url.pathname.split('/');
+          const batchId = pathParts[pathParts.length - 1];
+          
+          const details = {
+            id: batchId,
+            qty: url.searchParams.get('qty'),
+            crop: url.searchParams.get('crop'),
+            origin: url.searchParams.get('origin')
+          };
+          
+          setBatchDetails(details);
+          setScanResult('assessed'); 
+          setTimeout(() => navigate(`/quality-passport/${batchId}`), 2500);
+        } catch (err) {
+          setScanResult('assessed');
+          setBatchDetails({ id: decodedText });
+          setTimeout(() => navigate(`/quality-passport/${decodedText}`), 2500);
+        }
+      })
+      .catch(err => {
+        alert("Could not detect a valid QR code in this image. Please try another.");
+      });
+  };
 
   return (
     <div className="scan-qr-root">
@@ -137,6 +172,24 @@ const FarmerScanBatch = () => {
               Point your camera at the QR code
             </p>
           )}
+
+          {/* Hidden element for manual file scanning */}
+          <div id="file-reader" style={{ display: 'none' }}></div>
+
+          <div style={{ marginTop: '30px', textAlign: 'center' }}>
+            <p style={{ fontSize: '14px', color: '#64748b', marginBottom: '10px' }}>Or scan from an image file:</p>
+            <label 
+              style={{ display: 'inline-block', backgroundColor: '#e2e8f0', color: '#334155', padding: '10px 20px', borderRadius: '8px', cursor: 'pointer', fontWeight: '500', fontSize: '14px' }}
+            >
+              Choose QR Image
+              <input 
+                type="file" 
+                accept="image/*" 
+                onChange={handleFileUpload} 
+                style={{ display: 'none' }} 
+              />
+            </label>
+          </div>
 
         </section>
       </main>
