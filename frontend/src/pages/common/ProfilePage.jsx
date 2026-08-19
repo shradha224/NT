@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User, Mail, Phone, MapPin, Building, LogOut, ArrowLeft, CloudSync, Edit2, Save, X } from 'lucide-react';
 import '../../assets/css/profile-page.css';
@@ -122,7 +122,7 @@ const ProfilePage = () => {
   if (isLoading) return <div className="loading" style={{textAlign: 'center', marginTop: '100px'}}>Loading Profile...</div>;
 
   return (
-    <div className="profile-page-root">
+    <div className="profile-page-root page-wrapper">
       <header className="profile-header-area">
         <button 
           onClick={() => navigate(-1)} 
@@ -282,6 +282,7 @@ const ProfilePage = () => {
         </button>
 
       </main>
+      <GlobalFooter />
     </div>
   );
 };

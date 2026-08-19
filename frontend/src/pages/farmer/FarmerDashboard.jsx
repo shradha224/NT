@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FarmerNavbar from '../../components/navigation/FarmerNavbar';
+import GlobalFooter from '../../components/common/GlobalFooter';
 import '../../assets/css/farmer-dashboard.css';
 
 const FarmerDashboard = () => {
@@ -141,6 +142,7 @@ const FarmerDashboard = () => {
           )}
         </section>
       </main>
+      <GlobalFooter />
     </div>
   );
 };

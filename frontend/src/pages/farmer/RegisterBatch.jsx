@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FarmerNavbar from '../../components/navigation/FarmerNavbar';
+import GlobalFooter from '../../components/common/GlobalFooter';
 import '../../assets/css/register-batch.css';
 
 const RegisterBatch = () => {
@@ -19,7 +20,7 @@ const RegisterBatch = () => {
   };
 
   return (
-    <div className="register-batch-root">
+    <div className="register-batch-root page-wrapper">
       <FarmerNavbar />
       <main className="page-container">
         <section className="page-heading">
@@ -136,6 +137,7 @@ const RegisterBatch = () => {
           </button>
         </div>
       </main>
+      <GlobalFooter />
     </div>
   );
 };

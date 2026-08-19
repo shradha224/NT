@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+﻿import React, { useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import AggregatorNavbar from '../../components/navigation/AggregatorNavbar';
+import GlobalFooter from '../../components/common/GlobalFooter';
 import '../../assets/css/batch-assessment.css';
 import { Hourglass, CalendarDays, ArrowRight, BadgeCheck, Gauge, RadioTower, Thermometer, Wind, Droplets, Eye, Camera, Brain, CircleCheck } from 'lucide-react';
 import { mockIoTData } from '../../services/mockData';
@@ -216,6 +217,7 @@ const BatchAssessment = () => {
           </div>
         </section>
       </main>
+      <GlobalFooter />
     </div>
   );
 };

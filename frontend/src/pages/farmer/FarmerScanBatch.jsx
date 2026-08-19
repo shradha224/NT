@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Html5QrcodeScanner, Html5Qrcode } from 'html5-qrcode';
 import FarmerNavbar from '../../components/navigation/FarmerNavbar';
+import GlobalFooter from '../../components/common/GlobalFooter';
 import '../../assets/css/scan-qr.css';
 
 const FarmerScanBatch = () => {
@@ -193,6 +194,7 @@ const FarmerScanBatch = () => {
 
         </section>
       </main>
+      <GlobalFooter />
     </div>
   );
 };
