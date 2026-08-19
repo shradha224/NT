@@ -4,6 +4,7 @@ import { Fingerprint } from 'lucide-react';
 import '../../assets/css/register.css';
 import GlobalFooter from '../../components/common/GlobalFooter';
 import PublicHeader from '../../components/common/PublicHeader';
+import NavyaLogo from '../../components/common/NavyaLogo';
 import registerImage from '../../assets/register-image.jpg';
 
 const RegisterPage = () => {
@@ -109,11 +110,7 @@ const RegisterPage = () => {
 
   return (
     <div className="register-page-root page-wrapper">
-      <header className="site-header">
-        <Link to="/" style={{ textDecoration: 'none' }}>
-          <NavyaLogo />
-        </Link>
-      </header>
+      <PublicHeader />
 
       <main className="register-container">
         <section className="image-panel">
@@ -324,4 +321,5 @@ const RegisterPage = () => {
 };
 
 export default RegisterPage;
+
 

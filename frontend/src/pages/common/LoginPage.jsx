@@ -4,6 +4,7 @@ import { Fingerprint } from 'lucide-react';
 import '../../assets/css/login.css';
 import GlobalFooter from '../../components/common/GlobalFooter';
 import PublicHeader from '../../components/common/PublicHeader';
+import NavyaLogo from '../../components/common/NavyaLogo';
 
 const LoginPage = () => {
   const [loginMethod, setLoginMethod] = useState(null); // 'fingerprint', 'phone', 'email'
