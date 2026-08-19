@@ -2,6 +2,8 @@
 import { useNavigate } from 'react-router-dom';
 import { User, Mail, Phone, MapPin, Building, LogOut, ArrowLeft, CloudSync, Edit2, Save, X } from 'lucide-react';
 import '../../assets/css/profile-page.css';
+import GlobalFooter from '../../components/common/GlobalFooter';
+import PublicHeader from '../../components/common/PublicHeader';
 
 const ProfilePage = () => {
   const [profile, setProfile] = useState(null);
@@ -123,14 +125,7 @@ const ProfilePage = () => {
 
   return (
     <div className="profile-page-root page-wrapper">
-      <header className="profile-header-area">
-        <button 
-          onClick={() => navigate(-1)} 
-          style={{ background: 'none', border: 'none', color: '#003f2d', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '15px', fontWeight: '500', padding: 0 }}
-        >
-          <ArrowLeft size={18} /> Back
-        </button>
-      </header>
+      <PublicHeader />
 
       <main className="profile-container">
         {error && <div style={{ background: '#fef2f2', color: '#991b1b', padding: '12px', borderRadius: '8px', marginBottom: '16px', fontSize: '14px' }}>{error}</div>}
@@ -288,3 +283,4 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
+
