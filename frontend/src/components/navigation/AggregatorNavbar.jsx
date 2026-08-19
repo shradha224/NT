@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import NavyaLogo from '../common/NavyaLogo';
+import ProfileDropdown from './ProfileDropdown';
 
 const AggregatorNavbar = () => {
   const location = useLocation();
@@ -21,13 +22,7 @@ const AggregatorNavbar = () => {
         </nav>
 
         {/* Profile */}
-        <Link to="/profile" className="profile-button" aria-label="Profile">
-          <svg viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="9.5"></circle>
-            <circle cx="12" cy="9" r="3"></circle>
-            <path d="M6.8 18c1.4-2.2 3.2-3.3 5.2-3.3s3.8 1.1 5.2 3.3"></path>
-          </svg>
-        </Link>
+        <ProfileDropdown />
       </div>
     </header>
   );

@@ -16,7 +16,6 @@ const RegisterPage = () => {
   const [location, setLocation] = useState('');
   
   // Security State
-  const [securityMethod, setSecurityMethod] = useState(null); // 'fingerprint' or 'password'
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isScanning, setIsScanning] = useState(false);
@@ -38,6 +37,10 @@ const RegisterPage = () => {
       setError("Please fill in your details.");
       return;
     }
+    if (step === 4 && (!password || password !== confirmPassword)) {
+      setError("Please enter a valid matching password.");
+      return;
+    }
     setStep(step + 1);
   };
 
@@ -57,16 +60,6 @@ const RegisterPage = () => {
   const createAccount = async () => {
     setError('');
     
-    if (securityMethod === 'password' && password !== confirmPassword) {
-      setError("Passwords do not match.");
-      return;
-    }
-
-    if (securityMethod === 'fingerprint' && !fingerprintRegistered) {
-      setError("Please scan your fingerprint first.");
-      return;
-    }
-
     try {
       const response = await fetch('http://localhost:5000/api/auth/register', {
         method: 'POST',
@@ -74,9 +67,10 @@ const RegisterPage = () => {
         body: JSON.stringify({ 
           username: phone, // Use phone as username for simplicity
           email: `${phone}@navya.com`, // Mock email
-          password: securityMethod === 'password' ? password : 'fp_' + phone, 
+          password: password, 
           name: fullName,
-          role: role.toUpperCase() 
+          role: role.toUpperCase(),
+          biometricId: fingerprintRegistered ? 'fp_' + phone : undefined
         })
       });
 
@@ -86,8 +80,17 @@ const RegisterPage = () => {
         throw new Error(data.error || 'Registration failed');
       }
 
-      alert('Account created successfully! You can now log in.');
-      navigate('/login');
+      // Auto-login successful
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('role', data.role);
+      localStorage.setItem('name', data.name);
+      
+      if (data.role === 'FARMER') {
+        navigate('/farmer');
+      } else {
+        navigate('/aggregator');
+      }
+      
     } catch (err) {
       setError(err.message);
     }
@@ -123,6 +126,8 @@ const RegisterPage = () => {
               <div className={`progress-step ${step >= 3 ? 'active' : ''}`}>3</div>
               <div className={`progress-line ${step >= 4 ? 'active' : ''}`}></div>
               <div className={`progress-step ${step >= 4 ? 'active' : ''}`}>4</div>
+              <div className={`progress-line ${step >= 5 ? 'active' : ''}`}></div>
+              <div className={`progress-step ${step >= 5 ? 'active' : ''}`}>5</div>
             </div>
 
             {error && <div className="error-message">{error}</div>}
@@ -192,52 +197,45 @@ const RegisterPage = () => {
               </div>
             )}
 
-            {/* STEP 4: SECURITY */}
+            {/* STEP 4: SECURITY (PASSWORD) */}
             {step === 4 && (
               <div className="wizard-step">
-                <h1>Secure your account</h1>
-                <p className="subtitle">Choose how you want to log in</p>
+                <h1>Create Password</h1>
+                <p className="subtitle">Secure your account</p>
 
-                {!securityMethod ? (
-                  <div className="security-options">
-                    <button className="giant-method-btn primary" onClick={() => setSecurityMethod('fingerprint')}>
-                      <span className="method-icon">👆</span>
-                      <div className="method-text">
-                        <h3>Use Fingerprint</h3>
-                        <p>Recommended for Farmers</p>
-                      </div>
+                <div className="password-setup">
+                  <div className="input-group">
+                    <label htmlFor="password">Create Password</label>
+                    <input className="giant-input" type="password" id="password" placeholder="Minimum 6 characters" value={password} onChange={e => setPassword(e.target.value)} />
+                  </div>
+                  <div className="input-group">
+                    <label htmlFor="confirmPassword">Confirm Password</label>
+                    <input className="giant-input" type="password" id="confirmPassword" placeholder="Type password again" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* STEP 5: FINGERPRINT (OPTIONAL) */}
+            {step === 5 && (
+              <div className="wizard-step">
+                <h1>Setup Fingerprint</h1>
+                <p className="subtitle">For faster logins on the farm (Optional)</p>
+
+                <div className="fingerprint-setup text-center">
+                  <div className={`giant-fingerprint-box ${isScanning ? 'scanning' : ''} ${fingerprintRegistered ? 'success' : ''}`} onClick={startFingerprintScan}>
+                    <span className="fp-icon">◎</span>
+                  </div>
+                  <p className="fp-status-text" style={{ marginBottom: '20px' }}>
+                    {isScanning ? 'Scanning...' : fingerprintRegistered ? 'Fingerprint Saved!' : 'Tap sensor to register fingerprint'}
+                  </p>
+                  
+                  {!fingerprintRegistered && (
+                    <button className="text-btn" onClick={createAccount} style={{ color: '#666', borderBottom: '1px solid #666' }}>
+                      Skip for now, create my account
                     </button>
-                    <button className="giant-method-btn alt" onClick={() => setSecurityMethod('password')}>
-                      <span className="method-icon">🔑</span>
-                      <div className="method-text">
-                        <h3>Use Password</h3>
-                        <p>Traditional login</p>
-                      </div>
-                    </button>
-                  </div>
-                ) : securityMethod === 'fingerprint' ? (
-                  <div className="fingerprint-setup text-center">
-                    <div className={`giant-fingerprint-box ${isScanning ? 'scanning' : ''} ${fingerprintRegistered ? 'success' : ''}`} onClick={startFingerprintScan}>
-                      <span className="fp-icon">◎</span>
-                    </div>
-                    <p className="fp-status-text">
-                      {isScanning ? 'Scanning...' : fingerprintRegistered ? 'Fingerprint Saved!' : 'Tap sensor to register fingerprint'}
-                    </p>
-                    <button className="text-btn" onClick={() => setSecurityMethod(null)}>Choose another method</button>
-                  </div>
-                ) : (
-                  <div className="password-setup">
-                    <div className="input-group">
-                      <label htmlFor="password">Create Password</label>
-                      <input className="giant-input" type="password" id="password" placeholder="Minimum 6 characters" value={password} onChange={e => setPassword(e.target.value)} />
-                    </div>
-                    <div className="input-group">
-                      <label htmlFor="confirmPassword">Confirm Password</label>
-                      <input className="giant-input" type="password" id="confirmPassword" placeholder="Type password again" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
-                    </div>
-                    <button className="text-btn" onClick={() => setSecurityMethod(null)}>Choose another method</button>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             )}
 
@@ -249,13 +247,13 @@ const RegisterPage = () => {
                 <div style={{width: '100px'}}></div> // Spacer
               )}
 
-              {step < 4 ? (
+              {step < 5 ? (
                 <button className="wizard-btn next" onClick={nextStep}>Next →</button>
               ) : (
                 <button 
                   className="wizard-btn create" 
                   onClick={createAccount}
-                  disabled={securityMethod === 'fingerprint' && !fingerprintRegistered}
+                  style={{ backgroundColor: '#059669' }}
                 >
                   Create Account
                 </button>

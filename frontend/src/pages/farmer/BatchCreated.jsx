@@ -1,13 +1,25 @@
 import React, { useRef } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import { QRCodeSVG } from 'qrcode.react';
 import '../../assets/css/qr-generated.css';
 import NavyaLogo from '../../components/common/NavyaLogo';
 
 const BatchCreated = () => {
   const { batchId } = useParams();
+  const location = useLocation();
   const currentBatchId = batchId || 'TOM-024';
   const qrRef = useRef(null);
+  const formData = location.state || { quantity: '100kg', crop: 'Tomato', origin: 'Pune Farm', date: '2023-10-01' };
+
+  // Create a rich URL for the QR code
+  const appBaseUrl = window.location.origin;
+  const qrUrl = new URL(`${appBaseUrl}/quality-passport/${currentBatchId}`);
+  qrUrl.searchParams.append('qty', formData.quantity);
+  qrUrl.searchParams.append('crop', formData.crop);
+  qrUrl.searchParams.append('origin', formData.origin);
+  qrUrl.searchParams.append('date', formData.date);
+  
+  const qrValue = qrUrl.toString();
 
   const downloadQR = () => {
     const svg = qrRef.current.querySelector('svg');
@@ -64,7 +76,7 @@ const BatchCreated = () => {
           <div className="qr-container">
             <div className="qr-image-wrapper" ref={qrRef} style={{ padding: '16px', background: 'white', borderRadius: '8px' }}>
               <QRCodeSVG 
-                value={currentBatchId} 
+                value={qrValue} 
                 size={200}
                 level={"H"}
                 fgColor={"#003d2d"}

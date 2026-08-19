@@ -89,8 +89,15 @@ router.post('/register', async (req, res) => {
       biometricId
     });
 
+    const token = jwt.sign({ userId: user._id, role: user.role }, JWT_SECRET, { expiresIn: '24h' });
+
     authLogger.info(`Normal Signup successful for user: ${username} - Role: ${role}`);
-    res.status(201).json({ message: 'User created successfully', userId: user._id });
+    res.status(201).json({ 
+      message: 'User created successfully', 
+      token, 
+      role: user.role, 
+      name: user.name 
+    });
   } catch (error) {
     authLogger.error(`Signup Error for username ${req.body.username || 'unknown'}: ${error.message}`);
     console.error(error);

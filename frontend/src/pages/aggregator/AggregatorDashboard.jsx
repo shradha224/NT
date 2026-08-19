@@ -6,6 +6,7 @@ import { mockDashboardData } from '../../services/mockData';
 
 const AggregatorDashboard = () => {
   const data = mockDashboardData;
+  const userName = localStorage.getItem('name') || 'Aggregator';
 
   return (
     <div className="aggregator-dashboard-root">
@@ -14,7 +15,7 @@ const AggregatorDashboard = () => {
       <main className="dashboard">
         {/* Welcome */}
         <section className="welcome-section">
-          <h1>Welcome, {data.user}</h1>
+          <h1>Welcome, {userName}</h1>
           <p>
             Monitor incoming produce and scan a batch to view its latest
             quality assessment.

@@ -7,6 +7,7 @@ import '../../assets/css/scan-qr.css';
 const FarmerScanBatch = () => {
   const navigate = useNavigate();
   const [scanResult, setScanResult] = useState(null);
+  const [batchDetails, setBatchDetails] = useState(null);
 
   useEffect(() => {
     // Only initialize the scanner once
@@ -22,12 +23,36 @@ const FarmerScanBatch = () => {
       (result) => {
         // Success callback
         scanner.clear(); // Stop scanning once successfully decoded
-        setScanResult('assessed'); // Dummy check for now
         
-        // Use the scanned text (which is the batchId) to navigate after a delay
-        setTimeout(() => {
-          navigate(`/quality-passport/${result}`);
-        }, 1500);
+        // Parse the URL to extract data
+        try {
+          const url = new URL(result);
+          // Extract the batch ID from the pathname (e.g. /quality-passport/TOM-024)
+          const pathParts = url.pathname.split('/');
+          const batchId = pathParts[pathParts.length - 1];
+          
+          const details = {
+            id: batchId,
+            qty: url.searchParams.get('qty'),
+            crop: url.searchParams.get('crop'),
+            origin: url.searchParams.get('origin')
+          };
+          
+          setBatchDetails(details);
+          setScanResult('assessed'); // Dummy check for now
+          
+          // Navigate after delay
+          setTimeout(() => {
+            navigate(`/quality-passport/${batchId}`);
+          }, 2500);
+        } catch (e) {
+          // Fallback if it's just a raw ID
+          setScanResult('assessed');
+          setBatchDetails({ id: result });
+          setTimeout(() => {
+            navigate(`/quality-passport/${result}`);
+          }, 2500);
+        }
       },
       (error) => {
         // Error callback (runs constantly as it fails to find a QR code, so just ignore it)
@@ -65,12 +90,19 @@ const FarmerScanBatch = () => {
                   )}
                 </div>
                 <div className="batch-info">
-                  <strong>Batch Found</strong>
-                  {scanResult === 'assessed' ? (
-                    <span>Quality Passport Available</span>
-                  ) : (
-                    <span style={{ color: '#d97706' }}>Not Yet Assessed</span>
+                  <strong>Batch Found: {batchDetails?.id}</strong>
+                  {batchDetails?.crop && (
+                    <div style={{ fontSize: '13px', color: '#475569', marginTop: '4px' }}>
+                      {batchDetails.crop} • {batchDetails.qty} • {batchDetails.origin}
+                    </div>
                   )}
+                  <div style={{ marginTop: '4px' }}>
+                    {scanResult === 'assessed' ? (
+                      <span style={{ color: '#059669', fontWeight: '500', fontSize: '13px' }}>Redirecting to Quality Passport...</span>
+                    ) : (
+                      <span style={{ color: '#d97706', fontWeight: '500', fontSize: '13px' }}>Not Yet Assessed</span>
+                    )}
+                  </div>
                 </div>
               </div>
             )}
