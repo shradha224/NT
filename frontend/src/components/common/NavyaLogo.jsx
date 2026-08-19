@@ -1,8 +1,8 @@
 import React from 'react';
 
-const NavyaLogo = ({ className = "logo" }) => {
+const NavyaLogo = ({ className = "logo", color = "#063b2c" }) => {
   return (
-    <div className={className} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: '#063b2c' }}>
+    <div className={className} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: color }}>
       <svg
         className="logo-icon"
         viewBox="0 0 32 32"
@@ -25,7 +25,7 @@ const NavyaLogo = ({ className = "logo" }) => {
           strokeLinecap="round"
         />
       </svg>
-      <span style={{ fontSize: '22px', fontWeight: '700', letterSpacing: '-0.5px', color: '#063b2c' }}>Navya</span>
+      <span style={{ fontSize: '22px', fontWeight: '700', letterSpacing: '-0.5px', color: color }}>Navya</span>
     </div>
   );
 };

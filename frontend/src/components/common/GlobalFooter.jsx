@@ -9,7 +9,7 @@ const GlobalFooter = () => {
       <div className="footer-content">
         <div className="footer-brand">
           <Link to="/" style={{ textDecoration: 'none' }}>
-            <NavyaLogo />
+            <NavyaLogo color="#ffffff" />
           </Link>
           <p>
             Intelligent Post-Harvest Analysis.<br/>
@@ -50,6 +50,7 @@ const GlobalFooter = () => {
 };
 
 export default GlobalFooter;
+
 
 
 
