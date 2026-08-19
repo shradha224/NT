@@ -1,0 +1,4 @@
+fix(auth): Resolve identifier lookup and duplicate registration bugs
+
+- uth.js: The POST /login route was previously querying { phone: undefined } because the frontend sends { email: identifier }. It now correctly maps the identifier variable against the phone field as well as email and username.
+- uth.js: The POST /register route now checks if the provided phone or email already exists across all users, and cleanly returns a 400 error if they do. Previously, it only explicitly checked if the username was taken, relying on MongoDB to throw an unhandled 500 duplicate key error for phone numbers.

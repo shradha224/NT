@@ -70,13 +70,25 @@ router.post('/register', async (req, res) => {
       return res.status(400).json({ error: 'Username is required' });
     }
     
-    // Check if username is taken
-    const existingUser = await User.findOne({ username });
+    // Check if username, phone, or email is taken
+    const existingUser = await User.findOne({
+      $or: [
+        { username },
+        { phone: phone || null }, // only match if phone is provided
+        { email: email || null }
+      ]
+    });
+    
     if (existingUser) {
-      if (username === phone) {
+      if (existingUser.username === username) {
+        return res.status(400).json({ error: 'Username is already taken' });
+      }
+      if (phone && existingUser.phone === phone) {
         return res.status(400).json({ error: 'This phone number is already registered. Please log in instead.' });
       }
-      return res.status(400).json({ error: 'Username is already taken' });
+      if (email && existingUser.email === email) {
+        return res.status(400).json({ error: 'This email is already registered. Please log in instead.' });
+      }
     }
 
     // Hash password
@@ -127,15 +139,15 @@ router.get('/check-username', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    const { email, phone, password } = req.body;
+    const { email, password } = req.body;
     
     const identifier = email; // The frontend input sends it as 'email'
 
     const user = await User.findOne({
       $or: [
-        { email: identifier || undefined },
-        { phone: phone || undefined },
-        { username: identifier || undefined }
+        { email: identifier },
+        { phone: identifier },
+        { username: identifier }
       ]
     });
 
