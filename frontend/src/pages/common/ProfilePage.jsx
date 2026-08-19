@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { User, Mail, Phone, MapPin, Building, LogOut, ArrowLeft, CloudSync, Edit2, Save, X } from 'lucide-react';
+import '../../assets/css/profile-page.css';
 
 const ProfilePage = () => {
   const [profile, setProfile] = useState(null);
@@ -26,7 +28,7 @@ const ProfilePage = () => {
   const fetchProfile = async () => {
     try {
       const response = await fetch('http://localhost:5000/api/auth/me', {
-        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+        headers: { 'Authorization': Bearer  }
       });
       if (response.status === 401) {
         return handleSessionExpired();
@@ -68,15 +70,10 @@ const ProfilePage = () => {
       });
       setError('You are offline. Showing cached profile data.');
     } else {
-      // Create a basic profile from login data
       const basicData = {
         name: localStorage.getItem('name') || 'User',
         role: localStorage.getItem('role') || 'farmer',
-        email: '',
-        phone: '',
-        username: '',
-        organization: '',
-        location: ''
+        email: '', phone: '', username: '', organization: '', location: ''
       };
       setProfile(basicData);
       setFormData(basicData);
@@ -91,7 +88,7 @@ const ProfilePage = () => {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': Bearer 
         },
         body: JSON.stringify(formData)
       });
@@ -116,226 +113,175 @@ const ProfilePage = () => {
   };
 
   const handleLogout = () => {
-    // Clear auth data
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     localStorage.removeItem('name');
-    
-    // Redirect to login
     navigate('/login');
   };
 
-  if (isLoading) return <div className="loading">Loading Profile...</div>;
+  if (isLoading) return <div className="loading" style={{textAlign: 'center', marginTop: '100px'}}>Loading Profile...</div>;
 
   return (
-    <div className="container" style={{ paddingBottom: '100px' }}>
-      <header className="page-header" style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center' }}>
-        <button onClick={() => navigate(-1)} className="btn btn-secondary" style={{ marginRight: '1rem' }}>
-          &larr; Back
+    <div className="profile-page-root">
+      <header className="profile-header-area">
+        <button 
+          onClick={() => navigate(-1)} 
+          style={{ background: 'none', border: 'none', color: '#003f2d', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '15px', fontWeight: '500', padding: 0 }}
+        >
+          <ArrowLeft size={18} /> Back
         </button>
-        <h1>My Profile</h1>
       </header>
 
-      {error && <div className="error-message" style={{ color: 'red', marginBottom: '1rem' }}>{error}</div>}
-      {message && <div className="success-message" style={{ color: 'green', marginBottom: '1rem' }}>{message}</div>}
+      <main className="profile-container">
+        {error && <div style={{ background: '#fef2f2', color: '#991b1b', padding: '12px', borderRadius: '8px', marginBottom: '16px', fontSize: '14px' }}>{error}</div>}
+        {message && <div style={{ background: '#ecfdf5', color: '#065f46', padding: '12px', borderRadius: '8px', marginBottom: '16px', fontSize: '14px' }}>{message}</div>}
 
-      <div className="card" style={{ padding: '2rem' }}>
-        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <div style={{
-            width: '80px', height: '80px', borderRadius: '50%', backgroundColor: '#4caf50', 
-            color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: '32px', fontWeight: 'bold', margin: '0 auto 1rem auto'
-          }}>
-            {profile?.name ? profile.name.charAt(0).toUpperCase() : 'U'}
+        <section className="profile-card">
+          <div className="profile-avatar-container">
+            <div className="profile-avatar">
+              {profile?.name ? profile.name.charAt(0).toUpperCase() : <User size={40} />}
+            </div>
+            <h1 className="profile-username">{profile?.username || 'User'}</h1>
+            <div className="profile-role-badge">{profile?.role || 'FARMER'}</div>
           </div>
-          <h2 style={{ margin: 0 }}>{profile?.username}</h2>
-          <p style={{ color: '#666', margin: '5px 0' }}>Role: <strong>{profile?.role}</strong></p>
-        </div>
 
-        {!isEditing ? (
-          <div>
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{ display: 'block', color: '#666', marginBottom: '0.5rem' }}>Full Name</label>
-              <div style={{ fontSize: '1.2rem', padding: '0.5rem 0', borderBottom: '1px solid #eee' }}>{profile?.name || 'Not set'}</div>
-            </div>
-            
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{ display: 'block', color: '#666', marginBottom: '0.5rem' }}>Username</label>
-              <div style={{ fontSize: '1.2rem', padding: '0.5rem 0', borderBottom: '1px solid #eee' }}>{profile?.username || 'Not set'}</div>
-            </div>
-            
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{ display: 'block', color: '#666', marginBottom: '0.5rem' }}>Email</label>
-              <div style={{ fontSize: '1.2rem', padding: '0.5rem 0', borderBottom: '1px solid #eee' }}>{profile?.email || 'Not set'}</div>
-            </div>
+          {!isEditing ? (
+            <div className="profile-details">
+              <div className="profile-info-row">
+                <div className="profile-info-icon"><User size={20} /></div>
+                <div className="profile-info-content">
+                  <div className="profile-info-label">Full Name</div>
+                  <div className="profile-info-value">{profile?.name || 'Not set'}</div>
+                </div>
+              </div>
+              
+              <div className="profile-info-row">
+                <div className="profile-info-icon"><Mail size={20} /></div>
+                <div className="profile-info-content">
+                  <div className="profile-info-label">Email Address</div>
+                  <div className="profile-info-value">{profile?.email || 'Not set'}</div>
+                </div>
+              </div>
 
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{ display: 'block', color: '#666', marginBottom: '0.5rem' }}>Phone Number</label>
-              <div style={{ fontSize: '1.2rem', padding: '0.5rem 0', borderBottom: '1px solid #eee' }}>{profile?.phone || 'Not set'}</div>
-            </div>
+              <div className="profile-info-row">
+                <div className="profile-info-icon"><Phone size={20} /></div>
+                <div className="profile-info-content">
+                  <div className="profile-info-label">Phone Number</div>
+                  <div className="profile-info-value">{profile?.phone || 'Not set'}</div>
+                </div>
+              </div>
 
-            <div style={{ marginBottom: '1.5rem' }}>
-              <label style={{ display: 'block', color: '#666', marginBottom: '0.5rem' }}>Organization</label>
-              <div style={{ fontSize: '1.2rem', padding: '0.5rem 0', borderBottom: '1px solid #eee' }}>{profile?.organization || 'Not set'}</div>
-            </div>
+              <div className="profile-info-row">
+                <div className="profile-info-icon"><Building size={20} /></div>
+                <div className="profile-info-content">
+                  <div className="profile-info-label">Organization</div>
+                  <div className="profile-info-value">{profile?.organization || 'Not set'}</div>
+                </div>
+              </div>
 
-            <div style={{ marginBottom: '2rem' }}>
-              <label style={{ display: 'block', color: '#666', marginBottom: '0.5rem' }}>Location</label>
-              <div style={{ fontSize: '1.2rem', padding: '0.5rem 0', borderBottom: '1px solid #eee' }}>{profile?.location || 'Not set'}</div>
-            </div>
+              <div className="profile-info-row">
+                <div className="profile-info-icon"><MapPin size={20} /></div>
+                <div className="profile-info-content">
+                  <div className="profile-info-label">Location</div>
+                  <div className="profile-info-value">{profile?.location || 'Not set'}</div>
+                </div>
+              </div>
 
+              <button className="profile-btn-primary" onClick={() => setIsEditing(true)}>
+                <Edit2 size={18} /> Edit Profile
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSave}>
+              <div className="profile-input-group">
+                <label>Full Name</label>
+                <input type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
+              </div>
+
+              <div className="profile-input-group">
+                <label>Username</label>
+                <input type="text" value={formData.username} onChange={e => setFormData({...formData, username: e.target.value})} />
+              </div>
+              
+              <div className="profile-input-group">
+                <label>Email Address</label>
+                <input type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
+              </div>
+
+              <div className="profile-input-group">
+                <label>Phone Number</label>
+                <input type="tel" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} />
+              </div>
+
+              <div className="profile-input-group">
+                <label>Organization</label>
+                <input type="text" value={formData.organization} onChange={e => setFormData({...formData, organization: e.target.value})} />
+              </div>
+
+              <div className="profile-input-group">
+                <label>Location</label>
+                <input type="text" value={formData.location} onChange={e => setFormData({...formData, location: e.target.value})} />
+              </div>
+
+              <div style={{ display: 'flex', gap: '12px', marginTop: '30px' }}>
+                <button type="submit" className="profile-btn-primary">
+                  <Save size={18} /> Save
+                </button>
+                <button type="button" className="profile-btn-secondary" onClick={() => setIsEditing(false)}>
+                  Cancel
+                </button>
+              </div>
+            </form>
+          )}
+        </section>
+
+        <section className="sync-card">
+          <div className="sync-card-header">
+            <CloudSync size={24} />
+            <h2>Offline Sync</h2>
+          </div>
+          <p>
+            Navya operates offline-first to save your data and battery. Your app automatically syncs with the cloud every 12 hours. You can force a manual sync if you currently have a stable internet connection.
+          </p>
+          <div className="sync-status-box">
+            <div>
+              <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.7)', marginBottom: '4px' }}>Last Synced</div>
+              <div style={{ fontWeight: '600' }}>Just now</div>
+            </div>
             <button 
-              className="btn btn-primary" 
-              style={{ width: '100%', padding: '15px', fontSize: '1.1rem', marginBottom: '1rem' }}
-              onClick={() => setIsEditing(true)}
-            >
-              Edit Profile
-            </button>
-          </div>
-        ) : (
-          <form onSubmit={handleSave}>
-            <div className="form-group" style={{ marginBottom: '1.5rem' }}>
-              <label>Full Name</label>
-              <input 
-                type="text" 
-                value={formData.name} 
-                onChange={e => setFormData({...formData, name: e.target.value})}
-                style={{ padding: '15px', fontSize: '1.1rem', width: '100%', boxSizing: 'border-box' }}
-              />
-            </div>
-
-            <div className="form-group" style={{ marginBottom: '1.5rem' }}>
-              <label>Username</label>
-              <input 
-                type="text" 
-                value={formData.username} 
-                onChange={e => setFormData({...formData, username: e.target.value})}
-                style={{ padding: '15px', fontSize: '1.1rem', width: '100%', boxSizing: 'border-box' }}
-              />
-            </div>
-            
-            <div className="form-group" style={{ marginBottom: '1.5rem' }}>
-              <label>Email</label>
-              <input 
-                type="email" 
-                value={formData.email} 
-                onChange={e => setFormData({...formData, email: e.target.value})}
-                style={{ padding: '15px', fontSize: '1.1rem', width: '100%', boxSizing: 'border-box' }}
-              />
-            </div>
-
-            <div className="form-group" style={{ marginBottom: '1.5rem' }}>
-              <label>Phone Number</label>
-              <input 
-                type="tel" 
-                value={formData.phone} 
-                onChange={e => setFormData({...formData, phone: e.target.value})}
-                style={{ padding: '15px', fontSize: '1.1rem', width: '100%', boxSizing: 'border-box' }}
-              />
-            </div>
-
-            <div className="form-group" style={{ marginBottom: '1.5rem' }}>
-              <label>Organization</label>
-              <input 
-                type="text" 
-                value={formData.organization} 
-                onChange={e => setFormData({...formData, organization: e.target.value})}
-                style={{ padding: '15px', fontSize: '1.1rem', width: '100%', boxSizing: 'border-box' }}
-              />
-            </div>
-
-            <div className="form-group" style={{ marginBottom: '2rem' }}>
-              <label>Location</label>
-              <input 
-                type="text" 
-                value={formData.location} 
-                onChange={e => setFormData({...formData, location: e.target.value})}
-                style={{ padding: '15px', fontSize: '1.1rem', width: '100%', boxSizing: 'border-box' }}
-              />
-            </div>
-
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <button type="submit" className="btn btn-primary" style={{ flex: 1, padding: '15px', fontSize: '1.1rem' }}>
-                Save Changes
-              </button>
-              <button type="button" className="btn btn-secondary" onClick={() => setIsEditing(false)} style={{ flex: 1, padding: '15px', fontSize: '1.1rem' }}>
-                Cancel
-              </button>
-            </div>
-          </form>
-        )}
-      </div>
-
-      {/* OFFLINE & CLOUD SYNC CARD */}
-      <div className="card" style={{ padding: '2rem', marginTop: '2rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4caf50" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '10px' }}>
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-            <polyline points="17 8 12 3 7 8"></polyline>
-            <line x1="12" y1="3" x2="12" y2="15"></line>
-          </svg>
-          <h2 style={{ margin: 0, fontSize: '1.5rem', color: '#003c2c' }}>Offline Sync</h2>
-        </div>
-        <p style={{ color: '#666', marginBottom: '1.5rem', lineHeight: '1.5' }}>
-          Navya operates offline-first to save your data and battery. Your app automatically syncs with the cloud every 12 hours. You can force a manual sync if you currently have a stable internet connection.
-        </p>
-        
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', backgroundColor: '#f8f9fa', padding: '15px', borderRadius: '8px', border: '1px solid #e9ecef' }}>
-          <div>
-            <div style={{ fontSize: '0.9rem', color: '#6c757d', marginBottom: '4px' }}>Last Synced</div>
-            <div style={{ fontWeight: '600', color: '#212529' }}>Just now</div>
-          </div>
-          <button 
-            onClick={async () => {
-              try {
-                const btn = document.getElementById('sync-btn');
+              className="sync-btn"
+              onClick={async (e) => {
+                const btn = e.currentTarget;
                 const originalText = btn.innerHTML;
-                btn.innerHTML = `Syncing... <svg style="display:inline;vertical-align:middle;margin-left:4px;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>`;
+                btn.innerHTML = 'Syncing...';
                 btn.disabled = true;
                 
-                await fetch('http://localhost:5000/api/sync/manual', { method: 'POST' });
-                
-                btn.innerHTML = `Synced! <svg style="display:inline;vertical-align:middle;margin-left:4px;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
-                btn.style.backgroundColor = '#28a745';
+                try {
+                  await fetch('http://localhost:5000/api/sync/manual', { method: 'POST' });
+                  btn.innerHTML = 'Synced!';
+                  btn.style.color = '#059669';
+                } catch (err) {
+                  btn.innerHTML = 'Failed';
+                  btn.style.color = '#dc2626';
+                }
                 
                 setTimeout(() => {
                   btn.innerHTML = originalText;
-                  btn.style.backgroundColor = '';
+                  btn.style.color = '';
                   btn.disabled = false;
                 }, 3000);
-              } catch (e) {
-                console.error(e);
-              }
-            }}
-            id="sync-btn"
-            style={{
-              padding: '10px 20px',
-              backgroundColor: '#003c2c',
-              color: 'white',
-              border: 'none',
-              borderRadius: '6px',
-              fontWeight: '600',
-              cursor: 'pointer',
-              transition: 'all 0.2s'
-            }}
-          >
-            Sync Now
-          </button>
-        </div>
-      </div>
+              }}
+            >
+              Sync Now
+            </button>
+          </div>
+        </section>
 
-      <div style={{ marginTop: '3rem', textAlign: 'center' }}>
-        <button 
-          onClick={handleLogout}
-          style={{ 
-            backgroundColor: '#ff4d4d', color: 'white', border: 'none', borderRadius: '8px',
-            padding: '15px 30px', fontSize: '1.2rem', fontWeight: 'bold', width: '100%',
-            cursor: 'pointer', boxShadow: '0 4px 6px rgba(255, 77, 77, 0.2)'
-          }}
-        >
-          Log Out
+        <button className="profile-btn-danger" onClick={handleLogout}>
+          <LogOut size={18} /> Log Out
         </button>
-      </div>
+
+      </main>
     </div>
   );
 };
