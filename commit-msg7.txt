@@ -1,7 +1,0 @@
-style(ui): Replace all emojis with professional SVG icons
-
-- Swapped out the emojis in LoginPage.jsx (fingerprint, phone, email) with clean, minimal SVGs.
-- Updated role selection in RegisterPage.jsx with professional leaf and box vectors.
-- Swapped the giant fingerprint emoji with an actual fingerprint scan SVG.
-- Replaced the dashboard empty state emojis with nicely styled SVG illustrations.
-- Updated ProfilePage.jsx inline sync emojis with SVG paths.

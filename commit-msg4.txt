@@ -1,5 +1,0 @@
-fix(backend): Graceful shutdown and MongoDB persistence
-
-- Added SIGINT and SIGTERM handlers to cleanly close the HTTP server and Mongoose connection.
-- Implemented stopLocalMongo in mongoWaker.js to shut down mongodb-memory-server.
-- Explicitly passed { doCleanup: false } to mongodServer.stop() to ensure the .mongo_data directory is never wiped upon graceful restarts, preserving all offline data.

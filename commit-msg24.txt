@@ -1,4 +1,0 @@
-style(layout): reduce footer height and shorten address
-
-- Replaced the verbose ITER address with a much cleaner, shortened 2-line format.
-- Reduced overall padding, gaps, and line heights within layout.css for all footer elements, effectively shrinking the footer height while maintaining readability.

@@ -1,3 +1,0 @@
-style(layout): add vertical padding to login container
-
-- Added 40px vertical padding to .login-container to ensure there is always spacing between the login methods box and the footer/header, even on shorter screens where the vertically centered box was previously touching the boundaries.

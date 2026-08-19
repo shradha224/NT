@@ -1,5 +1,0 @@
-fix(layout): remove missing lucide-react social icons
-
-- Removed Facebook, Twitter, Instagram, Linkedin icons from GlobalFooter.
-- These imports were causing Vite to fail the build with [MISSING_EXPORT] errors, which resulted in a blank white screen on the frontend for all routes.
-- Replaced the icons with standard text links to restore application functionality.

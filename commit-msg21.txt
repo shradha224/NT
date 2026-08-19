@@ -1,5 +1,0 @@
-fix(profile): add missing layout imports and fix page crash
-
-- Added missing imports for PublicHeader and GlobalFooter in ProfilePage.jsx.
-- Replaced the standalone back button header with PublicHeader to unify the design language across all pages.
-- This resolves the ReferenceError that was causing a white screen crash when navigating to the Profile page.
