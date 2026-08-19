@@ -4,7 +4,6 @@ import { Fingerprint } from 'lucide-react';
 import '../../assets/css/login.css';
 import GlobalFooter from '../../components/common/GlobalFooter';
 import PublicHeader from '../../components/common/PublicHeader';
-import NavyaLogo from '../../components/common/NavyaLogo';
 
 const LoginPage = () => {
   const [loginMethod, setLoginMethod] = useState(null); // 'fingerprint', 'phone', 'email'
@@ -91,9 +90,7 @@ const LoginPage = () => {
         <PublicHeader />
         <main className="login-container">
           <div className="login-card selection-card">
-            <div className="login-logo-box">
-              <NavyaLogo />
-            </div>
+            
             <h1>Welcome Back</h1>
             <p className="subtitle">How would you like to sign in?</p>
             
@@ -240,4 +237,5 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
 
