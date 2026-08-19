@@ -37,8 +37,7 @@ const GlobalFooter = () => {
           <a href="mailto:support@navya.com">support@navya.com</a>
           <a href="tel:+918001234567">+91 800-123-4567</a>
           <p style={{ color: '#a7f3d0', fontSize: '14px', marginTop: '10px' }}>
-            Innovation Hub, <br/>
-            ITER Bhubaneswar Odisha
+            Institute of Technical Education and Research (ITER)<br/>Siksha 'O' Anusandhan (SOA) University<br/>Jagamara, Khandagiri, Bhubaneswar, Odisha 751030
           </p>
         </div>
       </div>
@@ -51,6 +50,7 @@ const GlobalFooter = () => {
 };
 
 export default GlobalFooter;
+
 
 
 

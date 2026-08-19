@@ -1,0 +1,5 @@
+style(layout): restore login card and update footer address
+
+- Restored the accidentally deleted .login-card and form styles in login.css so the login methods no longer float around.
+- Reduced the vertical padding in PublicHeader to optimize UI/UX and reduce wasted height.
+- Updated the footer contact address to the full, proper ITER (Siksha 'O' Anusandhan) address.
