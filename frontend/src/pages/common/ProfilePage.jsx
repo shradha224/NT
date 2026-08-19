@@ -4,12 +4,20 @@ import { useNavigate } from 'react-router-dom';
 const ProfilePage = () => {
   const [profile, setProfile] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', username: '', organization: '', location: '' });
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   
   const navigate = useNavigate();
+
+  const handleSessionExpired = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    localStorage.removeItem('name');
+    alert("Your session has expired. Please log in again.");
+    navigate('/login');
+  };
 
   useEffect(() => {
     fetchProfile();
@@ -20,10 +28,20 @@ const ProfilePage = () => {
       const response = await fetch('http://localhost:5000/api/auth/me', {
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
       });
+      if (response.status === 401) {
+        return handleSessionExpired();
+      }
       if (response.ok) {
         const data = await response.json();
         setProfile(data);
-        setFormData({ name: data.name || '', email: data.email || '', phone: data.phone || '' });
+        setFormData({ 
+          name: data.name || '', 
+          email: data.email || '', 
+          phone: data.phone || '',
+          username: data.username || '',
+          organization: data.organization || '',
+          location: data.location || ''
+        });
         localStorage.setItem('cachedProfile', JSON.stringify(data));
       } else {
         loadOfflineProfile();
@@ -40,7 +58,14 @@ const ProfilePage = () => {
     if (cached) {
       const data = JSON.parse(cached);
       setProfile(data);
-      setFormData({ name: data.name || '', email: data.email || '', phone: data.phone || '' });
+      setFormData({ 
+        name: data.name || '', 
+        email: data.email || '', 
+        phone: data.phone || '',
+        username: data.username || '',
+        organization: data.organization || '',
+        location: data.location || ''
+      });
       setError('You are offline. Showing cached profile data.');
     } else {
       // Create a basic profile from login data
@@ -48,7 +73,10 @@ const ProfilePage = () => {
         name: localStorage.getItem('name') || 'User',
         role: localStorage.getItem('role') || 'farmer',
         email: '',
-        phone: ''
+        phone: '',
+        username: '',
+        organization: '',
+        location: ''
       };
       setProfile(basicData);
       setFormData(basicData);
@@ -67,6 +95,9 @@ const ProfilePage = () => {
         },
         body: JSON.stringify(formData)
       });
+      if (response.status === 401) {
+        return handleSessionExpired();
+      }
       if (response.ok) {
         const updated = await response.json();
         setProfile(updated);
@@ -129,13 +160,28 @@ const ProfilePage = () => {
             </div>
             
             <div style={{ marginBottom: '1.5rem' }}>
+              <label style={{ display: 'block', color: '#666', marginBottom: '0.5rem' }}>Username</label>
+              <div style={{ fontSize: '1.2rem', padding: '0.5rem 0', borderBottom: '1px solid #eee' }}>{profile?.username || 'Not set'}</div>
+            </div>
+            
+            <div style={{ marginBottom: '1.5rem' }}>
               <label style={{ display: 'block', color: '#666', marginBottom: '0.5rem' }}>Email</label>
               <div style={{ fontSize: '1.2rem', padding: '0.5rem 0', borderBottom: '1px solid #eee' }}>{profile?.email || 'Not set'}</div>
             </div>
 
-            <div style={{ marginBottom: '2rem' }}>
+            <div style={{ marginBottom: '1.5rem' }}>
               <label style={{ display: 'block', color: '#666', marginBottom: '0.5rem' }}>Phone Number</label>
               <div style={{ fontSize: '1.2rem', padding: '0.5rem 0', borderBottom: '1px solid #eee' }}>{profile?.phone || 'Not set'}</div>
+            </div>
+
+            <div style={{ marginBottom: '1.5rem' }}>
+              <label style={{ display: 'block', color: '#666', marginBottom: '0.5rem' }}>Organization</label>
+              <div style={{ fontSize: '1.2rem', padding: '0.5rem 0', borderBottom: '1px solid #eee' }}>{profile?.organization || 'Not set'}</div>
+            </div>
+
+            <div style={{ marginBottom: '2rem' }}>
+              <label style={{ display: 'block', color: '#666', marginBottom: '0.5rem' }}>Location</label>
+              <div style={{ fontSize: '1.2rem', padding: '0.5rem 0', borderBottom: '1px solid #eee' }}>{profile?.location || 'Not set'}</div>
             </div>
 
             <button 
@@ -157,6 +203,16 @@ const ProfilePage = () => {
                 style={{ padding: '15px', fontSize: '1.1rem', width: '100%', boxSizing: 'border-box' }}
               />
             </div>
+
+            <div className="form-group" style={{ marginBottom: '1.5rem' }}>
+              <label>Username</label>
+              <input 
+                type="text" 
+                value={formData.username} 
+                onChange={e => setFormData({...formData, username: e.target.value})}
+                style={{ padding: '15px', fontSize: '1.1rem', width: '100%', boxSizing: 'border-box' }}
+              />
+            </div>
             
             <div className="form-group" style={{ marginBottom: '1.5rem' }}>
               <label>Email</label>
@@ -168,12 +224,32 @@ const ProfilePage = () => {
               />
             </div>
 
-            <div className="form-group" style={{ marginBottom: '2rem' }}>
+            <div className="form-group" style={{ marginBottom: '1.5rem' }}>
               <label>Phone Number</label>
               <input 
                 type="tel" 
                 value={formData.phone} 
                 onChange={e => setFormData({...formData, phone: e.target.value})}
+                style={{ padding: '15px', fontSize: '1.1rem', width: '100%', boxSizing: 'border-box' }}
+              />
+            </div>
+
+            <div className="form-group" style={{ marginBottom: '1.5rem' }}>
+              <label>Organization</label>
+              <input 
+                type="text" 
+                value={formData.organization} 
+                onChange={e => setFormData({...formData, organization: e.target.value})}
+                style={{ padding: '15px', fontSize: '1.1rem', width: '100%', boxSizing: 'border-box' }}
+              />
+            </div>
+
+            <div className="form-group" style={{ marginBottom: '2rem' }}>
+              <label>Location</label>
+              <input 
+                type="text" 
+                value={formData.location} 
+                onChange={e => setFormData({...formData, location: e.target.value})}
                 style={{ padding: '15px', fontSize: '1.1rem', width: '100%', boxSizing: 'border-box' }}
               />
             </div>

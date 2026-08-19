@@ -70,17 +70,24 @@ const AggregatorDashboard = () => {
 
               <div className="divider"></div>
 
-              {data.activeBatches.map((batch, index) => (
-                <div className="alert-item" key={index}>
-                  <div className="alert-icon">
-                    <span></span>
+              {data.activeBatches && data.activeBatches.length > 0 ? (
+                data.activeBatches.map((batch, index) => (
+                  <div className="alert-item" key={index}>
+                    <div className="alert-icon">
+                      <span></span>
+                    </div>
+                    <div className="alert-content">
+                      <p>{batch.alert}</p>
+                      <span>Batch: {batch.id}</span>
+                    </div>
                   </div>
-                  <div className="alert-content">
-                    <p>{batch.alert}</p>
-                    <span>Batch: {batch.id}</span>
-                  </div>
+                ))
+              ) : (
+                <div style={{ textAlign: 'center', padding: '2rem 1rem', color: '#666' }}>
+                  <div style={{ fontSize: '2rem', marginBottom: '10px' }}>✅</div>
+                  <p style={{ margin: 0 }}>All clear! No batches need your attention right now.</p>
                 </div>
-              ))}
+              )}
             </section>
 
             {/* MONITORING UNIT */}

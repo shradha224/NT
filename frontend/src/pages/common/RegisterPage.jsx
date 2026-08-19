@@ -237,11 +237,14 @@ const RegisterPage = () => {
                 <p className="subtitle">For faster logins on the farm (Optional)</p>
 
                 <div className="fingerprint-setup text-center">
+                  <div style={{ marginBottom: '10px', fontSize: '0.8rem', color: '#f59e0b', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                    * Hardware Simulation Mode
+                  </div>
                   <div className={`giant-fingerprint-box ${isScanning ? 'scanning' : ''} ${fingerprintRegistered ? 'success' : ''}`} onClick={startFingerprintScan}>
                     <span className="fp-icon">◎</span>
                   </div>
                   <p className="fp-status-text" style={{ marginBottom: '20px' }}>
-                    {isScanning ? 'Scanning...' : fingerprintRegistered ? 'Fingerprint Saved!' : 'Tap sensor to register fingerprint'}
+                    {isScanning ? 'Scanning...' : fingerprintRegistered ? 'Fingerprint Saved!' : 'Tap sensor to simulate register'}
                   </p>
                   
                   {!fingerprintRegistered && (

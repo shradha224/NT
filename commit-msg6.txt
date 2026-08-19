@@ -1,0 +1,6 @@
+feat(ui/ux): Comprehensive QoL Upgrades & Bridge Fixes
+
+- Profile Sync: PUT /api/auth/me and ProfilePage.jsx now correctly read/write username, organization, and location.
+- Empty States: Added a friendly empty state to FarmerDashboard.jsx (with a CTA to register their first crop) and AggregatorDashboard.jsx.
+- Token Expiration: FarmerDashboard.jsx and ProfilePage.jsx now explicitly catch 401 Unauthorized errors to automatically log the user out and redirect them to /login rather than failing silently.
+- Demo Clarity: Added explicit 'Hardware Simulation Mode' badges to the fingerprint scanner in Login and Register pages for clarity during demos.
