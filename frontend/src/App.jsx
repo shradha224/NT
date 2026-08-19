@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 // Pages
@@ -17,6 +17,7 @@ import BatchAssessment from './pages/aggregator/BatchAssessment';
 import BatchHistory from './pages/aggregator/BatchHistory';
 
 import QualityPassport from './pages/public/QualityPassport';
+import LegalPage from './pages/public/LegalPage';
 
 import ProfilePage from './pages/common/ProfilePage';
 
@@ -61,6 +62,8 @@ function App() {
 
         {/* Public Routes */}
         <Route path="/quality-passport/:batchId" element={<QualityPassport />} />
+        <Route path="/privacy-policy" element={<LegalPage type="privacy" />} />
+        <Route path="/terms-of-service" element={<LegalPage type="terms" />} />
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
@@ -70,3 +73,4 @@ function App() {
 }
 
 export default App;
+

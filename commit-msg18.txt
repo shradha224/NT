@@ -1,0 +1,6 @@
+feat(legal): add privacy and terms pages; fix footer layouts
+
+- Created LegalPage.jsx to serve mild Privacy Policy and Terms of Service content as requested.
+- Added /privacy-policy and /terms-of-service routes to App.jsx.
+- Removed the unnecessary 'Cookie Policy' link from GlobalFooter and linked the remaining legal pages correctly.
+- Removed structural padding from .login-page-root and .register-page-root in their respective CSS files to fix the issue where the GlobalFooter appeared cropped on the sides and awkwardly raised off the bottom of the screen.
