@@ -64,7 +64,7 @@ router.post('/google', async (req, res) => {
 
 router.post('/register', async (req, res) => {
   try {
-    const { username, email, phone, password, name, role, biometricId } = req.body;
+    const { username, email, phone, password, name, role, biometricId, organization, location } = req.body;
     
     if (!username) {
       return res.status(400).json({ error: 'Username is required' });
@@ -73,6 +73,9 @@ router.post('/register', async (req, res) => {
     // Check if username is taken
     const existingUser = await User.findOne({ username });
     if (existingUser) {
+      if (username === phone) {
+        return res.status(400).json({ error: 'This phone number is already registered. Please log in instead.' });
+      }
       return res.status(400).json({ error: 'Username is already taken' });
     }
 
@@ -86,7 +89,9 @@ router.post('/register', async (req, res) => {
       passwordHash,
       name,
       role,
-      biometricId
+      biometricId,
+      organization,
+      location
     });
 
     const token = jwt.sign({ userId: user._id, role: user.role }, JWT_SECRET, { expiresIn: '24h' });
