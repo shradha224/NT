@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    LOGIN PAGE STYLES — SCOPED (.login-page-root)
    ========================================================= */
 
@@ -35,6 +35,9 @@
 .login-page-root .login-container {
   width: 100%;
   max-width: 550px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -387,7 +390,7 @@
 
 @media (max-width: 700px) {
   .login-page-root {
-    padding: 80px 16px 30px;
+    padding: 80px 0 0;
   }
 
   .login-page-root .top-logo {
@@ -407,7 +410,7 @@
 
 @media (max-width: 420px) {
   .login-page-root {
-    padding: 70px 12px 20px;
+    padding: 70px 0 0;
   }
 
   .login-page-root .login-card {
@@ -418,7 +421,7 @@
 
 @media (max-width: 280px) {
   .login-page-root {
-    padding: 60px 8px 16px;
+    padding: 60px 0 0;
   }
 
   .login-page-root .top-logo {
@@ -440,3 +443,4 @@
     height: 18px;
   }
 }
+

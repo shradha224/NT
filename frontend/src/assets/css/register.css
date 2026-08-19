@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    REGISTER PAGE STYLES — SCOPED (.register-page-root)
    ========================================================= */
 
@@ -9,7 +9,7 @@
   color: #063b2b;
   font-family: Arial, Helvetica, sans-serif;
   position: relative;
-  padding-bottom: 40px;
+  
   overflow-x: hidden;
 }
 
@@ -624,3 +624,4 @@
     padding: 12px 14px;
   }
 }
+
