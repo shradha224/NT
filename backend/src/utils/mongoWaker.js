@@ -42,4 +42,13 @@ const wakeLocalMongo = async () => {
   }
 };
 
-module.exports = { wakeLocalMongo };
+const stopLocalMongo = async () => {
+  if (mongodServer) {
+    systemLogger.info('Stopping embedded MongoDB gracefully...');
+    // doCleanup: false ensures the local db directory isn't wiped
+    await mongodServer.stop({ doCleanup: false });
+    systemLogger.info('Embedded MongoDB stopped.');
+  }
+};
+
+module.exports = { wakeLocalMongo, stopLocalMongo };
