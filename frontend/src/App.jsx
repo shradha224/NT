@@ -18,6 +18,8 @@ import BatchHistory from './pages/aggregator/BatchHistory';
 
 import QualityPassport from './pages/public/QualityPassport';
 
+import ProfilePage from './pages/common/ProfilePage';
+
 // Protected Route component
 const ProtectedRoute = ({ children, allowedRole }) => {
   const token = localStorage.getItem('token');
@@ -43,6 +45,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
 
         {/* Farmer Routes */}
         <Route path="/farmer/dashboard" element={<ProtectedRoute allowedRole="FARMER"><FarmerDashboard /></ProtectedRoute>} />

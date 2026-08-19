@@ -240,6 +240,148 @@
 }
 
 /* ================================
+   NEW WIZARD STYLES (FARMER UI)
+   ================================ */
+
+.login-page-root .selection-card {
+  gap: 15px;
+}
+
+.login-page-root .method-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.login-page-root .giant-method-btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 25px 20px;
+  border-radius: 16px;
+  border: 2px solid #bdc9c4;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.login-page-root .giant-method-btn.primary {
+  border-color: #003d2b;
+  background: #f0f7f4;
+}
+
+.login-page-root .giant-method-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  border-color: #003d2b;
+}
+
+.login-page-root .method-icon {
+  font-size: 40px;
+  margin-right: 20px;
+}
+
+.login-page-root .method-text h3 {
+  margin: 0;
+  font-size: 22px;
+  color: #043c2b;
+}
+
+.login-page-root .method-text p {
+  margin: 5px 0 0 0;
+  color: #666;
+  font-size: 16px;
+}
+
+.login-page-root .back-btn {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  color: #003d2b;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+.login-page-root .back-btn:hover {
+  text-decoration: underline;
+}
+
+.login-page-root .text-center {
+  align-items: center;
+  text-align: center;
+}
+
+.login-page-root .giant-fingerprint-box {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: #f0f7f4;
+  border: 4px solid #003d2b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px auto;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-page-root .giant-fingerprint-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 61, 43, 0.2);
+}
+
+.login-page-root .giant-fingerprint-box.scanning {
+  animation: pulseScan 1.5s infinite;
+  background: #003d2b;
+}
+
+.login-page-root .giant-fingerprint-box.scanning .fp-icon {
+  color: white;
+}
+
+.login-page-root .giant-fingerprint-box.success {
+  background: #28a745;
+  border-color: #28a745;
+}
+
+.login-page-root .fp-icon {
+  font-size: 80px;
+  color: #003d2b;
+}
+
+.login-page-root .giant-fingerprint-box.success .fp-icon {
+  color: white;
+}
+
+.login-page-root .fp-status-text {
+  font-size: 20px;
+  color: #5b625f;
+  font-weight: 600;
+}
+
+.login-page-root .error-message {
+  width: 100%;
+  padding: 15px;
+  background: #ffebee;
+  color: #c62828;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+@keyframes pulseScan {
+  0% { box-shadow: 0 0 0 0 rgba(0, 61, 43, 0.4); }
+  70% { box-shadow: 0 0 0 30px rgba(0, 61, 43, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 61, 43, 0); }
+}
+
+/* ================================
    RESPONSIVE BREAKPOINTS
    ================================ */
 

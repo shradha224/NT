@@ -4,8 +4,13 @@ import '../../assets/css/login.css';
 import NavyaLogo from '../../components/common/NavyaLogo';
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
+  const [loginMethod, setLoginMethod] = useState(null); // 'fingerprint', 'phone', 'email'
+  
+  const [identifier, setIdentifier] = useState(''); // Stores phone or email depending on mode
   const [password, setPassword] = useState('');
+  
+  const [isScanning, setIsScanning] = useState(false);
+  const [scanSuccess, setScanSuccess] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -16,10 +21,8 @@ const LoginPage = () => {
     try {
       const response = await fetch('http://localhost:5000/api/auth/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: identifier, password })
       });
 
       const data = await response.json();
@@ -43,114 +46,182 @@ const LoginPage = () => {
     }
   };
 
+  const handleFingerprintLogin = () => {
+    setIsScanning(true);
+    setError('');
+    
+    // Simulate fingerprint login success after 2 seconds
+    setTimeout(async () => {
+      setIsScanning(false);
+      setScanSuccess(true);
+      
+      try {
+        // Mocking a successful fingerprint login for demo
+        // In real life, you'd send a WebAuthn payload here
+        const response = await fetch('http://localhost:5000/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: 'farmer1@navya.com', password: 'password123' }) // Mock user
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('role', data.role);
+          navigate('/farmer/dashboard');
+        } else {
+          setScanSuccess(false);
+          setError("Fingerprint not recognized.");
+        }
+      } catch (err) {
+        setScanSuccess(false);
+        setError("Network error during fingerprint scan.");
+      }
+    }, 2000);
+  };
+
+  // Render Method Selection
+  if (loginMethod === null) {
+    return (
+      <div className="login-page-root">
+        <header className="top-logo">
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <NavyaLogo />
+          </Link>
+        </header>
+        <main className="login-container">
+          <div className="login-card selection-card">
+            <div className="login-logo-box">
+              <NavyaLogo />
+            </div>
+            <h1>Welcome Back</h1>
+            <p className="subtitle">How would you like to sign in?</p>
+            
+            <div className="method-buttons">
+              <button className="giant-method-btn primary" onClick={() => setLoginMethod('fingerprint')}>
+                <span className="method-icon">👆</span>
+                <div className="method-text">
+                  <h3>Fingerprint Scan</h3>
+                  <p>Fastest and easiest</p>
+                </div>
+              </button>
+
+              <button className="giant-method-btn secondary" onClick={() => setLoginMethod('phone')}>
+                <span className="method-icon">📱</span>
+                <div className="method-text">
+                  <h3>Phone Number</h3>
+                  <p>Sign in using your mobile</p>
+                </div>
+              </button>
+
+              <button className="giant-method-btn alt" onClick={() => setLoginMethod('email')}>
+                <span className="method-icon">📧</span>
+                <div className="method-text">
+                  <h3>Username / Email</h3>
+                  <p>Standard account login</p>
+                </div>
+              </button>
+            </div>
+
+            <div className="divider"></div>
+            <div className="register-text">
+              Don't have an account? <Link to="/register">Create one here</Link>
+            </div>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  // Render Fingerprint Screen
+  if (loginMethod === 'fingerprint') {
+    return (
+      <div className="login-page-root">
+        <header className="top-logo">
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <NavyaLogo />
+          </Link>
+        </header>
+        <main className="login-container">
+          <div className="login-card text-center">
+            <button className="back-btn" onClick={() => setLoginMethod(null)}>← Go Back</button>
+            <h1 style={{ marginTop: '20px' }}>Fingerprint Login</h1>
+            <p className="subtitle">Place your finger on the sensor</p>
+            
+            {error && <div className="error-message">{error}</div>}
+
+            <div className={`giant-fingerprint-box ${isScanning ? 'scanning' : ''} ${scanSuccess ? 'success' : ''}`} onClick={handleFingerprintLogin}>
+              <span className="fp-icon">◎</span>
+            </div>
+
+            <p className="fp-status-text">
+              {isScanning ? 'Scanning...' : scanSuccess ? 'Welcome back!' : 'Tap sensor to scan'}
+            </p>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  // Render Form (Phone or Email)
   return (
     <div className="login-page-root">
-      {/* Top-left Navya Logo */}
       <header className="top-logo">
         <Link to="/" style={{ textDecoration: 'none' }}>
           <NavyaLogo />
         </Link>
       </header>
 
-      {/* Login Section */}
       <main className="login-container">
         <div className="login-card">
-          {/* Small Logo */}
-          <div className="login-logo-box">
-            <NavyaLogo className="" />
-          </div>
+          <button className="back-btn" onClick={() => { setLoginMethod(null); setError(''); }}>← Go Back</button>
+          
+          <h1 style={{ marginTop: '20px' }}>
+            {loginMethod === 'phone' ? 'Phone Login' : 'Email Login'}
+          </h1>
+          <p className="subtitle">Enter your details below</p>
 
-          {/* Heading */}
-          <h1>Welcome to Navya</h1>
-          <p className="subtitle">Sign in to your agricultural dashboard</p>
+          {error && <div className="error-message">{error}</div>}
 
-          {error && <div style={{ color: '#c72222', marginBottom: '1rem', textAlign: 'center', fontSize: '14px', fontWeight: '500' }}>{error}</div>}
-
-          {/* Login Form */}
           <form className="login-form" onSubmit={handleLogin}>
-            {/* Email */}
             <div className="form-group">
-              <label htmlFor="email">Email / Phone</label>
-              <div className="input-wrapper">
-                <svg
-                  className="input-icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
+              <label htmlFor="identifier">
+                {loginMethod === 'phone' ? 'Mobile Number' : 'Email or Username'}
+              </label>
+              <div className="input-wrapper giant-input">
                 <input
-                  type="text"
-                  id="email"
-                  placeholder="Enter your email or phone"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  type={loginMethod === 'phone' ? 'tel' : 'text'}
+                  id="identifier"
+                  placeholder={loginMethod === 'phone' ? 'e.g. 9876543210' : 'Enter your email'}
+                  value={identifier}
+                  onChange={(e) => setIdentifier(e.target.value)}
                   required
+                  style={{ fontSize: '1.2rem', padding: '15px 20px' }}
                 />
               </div>
             </div>
 
-            {/* Password */}
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <div className="input-wrapper">
-                <svg
-                  className="input-icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <rect x="3" y="11" width="18" height="10" rx="2"></rect>
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                </svg>
+              <div className="input-wrapper giant-input">
                 <input
                   type="password"
                   id="password"
-                  placeholder="Enter your password"
+                  placeholder="Enter password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  style={{ fontSize: '1.2rem', padding: '15px 20px' }}
                 />
               </div>
             </div>
 
-            {/* Forgot Password */}
-            <div className="forgot-wrapper">
-              <a href="#">Forgot password?</a>
-            </div>
-
-            {/* Login Button */}
-            <button type="submit" className="login-button">
-              <span>Login</span>
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
+            <button type="submit" className="login-button giant-submit">
+              <span>Sign In</span>
             </button>
           </form>
-
-          {/* Divider */}
-          <div className="divider"></div>
-
-          {/* Register */}
-          <div className="register-text">
-            Don't have an account? <Link to="/register">Register</Link>
-          </div>
         </div>
-
-        {/* Security Text */}
-        <p className="security-text">
-          Secure connection. Powered by Navya System.
-        </p>
       </main>
     </div>
   );

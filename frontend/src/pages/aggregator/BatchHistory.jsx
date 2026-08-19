@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import '../../assets/css/batch-history.css';
+import { mockIoTData, mockDashboardData } from '../../services/mockData';
 
 const BatchHistory = () => {
   const { batchId } = useParams();
   const [activeTab, setActiveTab] = useState('Temperature');
+  const data = mockIoTData;
+  const dashboardData = mockDashboardData;
 
   return (
     <div className="batch-history-root">
       {/* HEADER */}
       <header className="top-header">
-        <Link to={`/aggregator/batch-assessment/${batchId || 'TOM-024'}`} className="back-link">
+        <Link to={`/aggregator/batch-assessment/${batchId || data.currentBatch.id}`} className="back-link">
           <span className="back-arrow">←</span>
           <span>Back to Assessment</span>
         </Link>
@@ -20,8 +23,8 @@ const BatchHistory = () => {
         </div>
         <div className="batch-mini-info">
           <div>
-            <strong>Tomato</strong>
-            <span>{batchId || 'TOM-024'}</span>
+            <strong>{data.currentBatch.type}</strong>
+            <span>{batchId || data.currentBatch.id}</span>
           </div>
           <div className="tomato-image">
             <div style={{width: '38px', height: '38px', backgroundColor: '#ef4444', borderRadius: '50%'}}></div>
@@ -34,48 +37,21 @@ const BatchHistory = () => {
         <section className="card journey-card">
           <div className="section-title-row">
             <h2>Batch Journey</h2>
-            <Link to={`/aggregator/batch-assessment/${batchId || 'TOM-024'}`} className="details-button">
+            <Link to={`/aggregator/batch-assessment/${batchId || data.currentBatch.id}`} className="details-button">
               Click for Details
             </Link>
           </div>
           <div className="journey-scroll-wrap">
             <div className="journey">
               <div className="journey-line"></div>
-              {/* STEP 1 */}
-              <div className="journey-step completed">
-                <div className="journey-circle">1</div>
-                <h3>Harvested</h3>
-                <p>Cond: 96</p>
-                <span className="status-tag fresh">Fresh</span>
-              </div>
-              {/* STEP 2 */}
-              <div className="journey-step completed">
-                <div className="journey-circle">2</div>
-                <h3>Monitoring</h3>
-                <p>Cond: 92</p>
-                <span className="status-tag stable">Stable</span>
-              </div>
-              {/* STEP 3 */}
-              <div className="journey-step current">
-                <div className="journey-circle">3</div>
-                <h3>Today</h3>
-                <p>Cond: 82</p>
-                <span className="status-tag monitor">Monitor</span>
-              </div>
-              {/* STEP 4 */}
-              <div className="journey-step projected">
-                <div className="journey-circle">4</div>
-                <h3>Projected</h3>
-                <p>Cond: 74</p>
-                <span className="status-tag projected-tag">Projected</span>
-              </div>
-              {/* STEP 5 */}
-              <div className="journey-step projected">
-                <div className="journey-circle">5</div>
-                <h3>Projected</h3>
-                <p>Cond: 65</p>
-                <span className="status-tag projected-tag">Projected</span>
-              </div>
+              {data.journey.map((step, index) => (
+                <div className={`journey-step ${step.cssClass}`} key={index}>
+                  <div className="journey-circle">{step.step}</div>
+                  <h3>{step.title}</h3>
+                  <p>Cond: {step.score}</p>
+                  <span className={`status-tag ${step.tagClass}`}>{step.statusText}</span>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -104,18 +80,16 @@ const BatchHistory = () => {
                 <circle cx="455" cy="205" r="6" className="projected-point"/>
                 <circle cx="570" cy="250" r="6" className="projected-point"/>
               </svg>
-              <span className="chart-value value-1">96</span>
-              <span className="chart-value value-2">92</span>
-              <span className="chart-value value-3">82</span>
-              <span className="chart-value value-4">74</span>
-              <span className="chart-value value-5">65</span>
+              {data.trajectory.values.map((val, index) => (
+                <span className={`chart-value value-${index + 1}`} key={index}>{val}</span>
+              ))}
               <div className="x-axis">
                 <span>Day 1</span><span>Day 2</span><strong>Day 3</strong><span>Day 4</span><span>Day 5</span>
               </div>
             </div>
             <div className="trajectory-message">
               <span className="trend-icon">⌁</span>
-              <span>Trajectory: Deterioration is increasing gradually.</span>
+              <span>{data.trajectory.message}</span>
             </div>
           </section>
 
@@ -149,9 +123,9 @@ const BatchHistory = () => {
                 )}
               </svg>
               <div className="peak-label">
-                {activeTab === 'Temperature' && 'Peak: 28.4°C'}
-                {activeTab === 'Humidity' && 'Peak: 74%'}
-                {activeTab === 'VOC / Gas' && 'Peak: 420 ppm'}
+                {activeTab === 'Temperature' && `Peak: ${data.sensorReadings.temperature.peak}`}
+                {activeTab === 'Humidity' && `Peak: ${data.sensorReadings.humidity.peak}`}
+                {activeTab === 'VOC / Gas' && `Peak: ${data.sensorReadings.voc.peak}`}
               </div>
               <div className="sensor-x-axis">
                 <span>Day 1</span><span>Day 2</span><span>Day 3</span>
@@ -176,9 +150,14 @@ const BatchHistory = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><td>TOM-021</td><td>Tomato</td><td>Oct 10</td><td className="score">88</td></tr>
-                  <tr><td>TOM-022</td><td>Tomato</td><td>Oct 12</td><td className="score">72</td></tr>
-                  <tr><td>TOM-023</td><td>Tomato</td><td>Oct 18</td><td className="score">91</td></tr>
+                  {dashboardData.previousBatches.map((batch, index) => (
+                    <tr key={index}>
+                      <td>{batch.id}</td>
+                      <td>{batch.type}</td>
+                      <td>{batch.lastMonitored}</td>
+                      <td className="score">{batch.score}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -188,30 +167,31 @@ const BatchHistory = () => {
           <section className="card comparison-card">
             <h2>Batch Comparison</h2>
             <div className="comparison-controls">
-              <select defaultValue="TOM-024 (Current)">
-                <option value="TOM-024 (Current)">TOM-024 (Current)</option>
-                <option value="TOM-023">TOM-023</option>
-                <option value="TOM-022">TOM-022</option>
+              <select defaultValue={`${data.currentBatch.id} (Current)`}>
+                <option value={`${data.currentBatch.id} (Current)`}>{data.currentBatch.id} (Current)</option>
+                {dashboardData.previousBatches.map((batch, index) => (
+                  <option value={batch.id} key={index}>{batch.id}</option>
+                ))}
               </select>
               <span className="vs">vs</span>
-              <select defaultValue="TOM-023">
-                <option value="TOM-023">TOM-023</option>
-                <option value="TOM-022">TOM-022</option>
-                <option value="TOM-021">TOM-021</option>
+              <select defaultValue={dashboardData.comparison.compareId}>
+                {dashboardData.previousBatches.map((batch, index) => (
+                  <option value={batch.id} key={index}>{batch.id}</option>
+                ))}
               </select>
             </div>
             <div className="comparison-results">
               <div className="comparison-side">
-                <span>Day 3 Cond.</span><strong>82</strong><small>TOM-024</small>
+                <span>Day 3 Cond.</span><strong>{dashboardData.comparison.currentScore}</strong><small>{data.currentBatch.id}</small>
               </div>
               <div className="comparison-icon">⇆</div>
               <div className="comparison-side">
-                <span>Day 3 Cond.</span><strong>86</strong><small>TOM-023</small>
+                <span>Day 3 Cond.</span><strong>{dashboardData.comparison.compareScore}</strong><small>{dashboardData.comparison.compareId}</small>
               </div>
             </div>
             <div className="warning-box">
               <span className="warning-icon">⚠</span>
-              <span>Current batch is deteriorating slightly faster than TOM-023.</span>
+              <span>{dashboardData.comparison.warning}</span>
             </div>
           </section>
         </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import FarmerNavbar from '../../components/navigation/FarmerNavbar';
 import '../../assets/css/farmer-dashboard.css';
+import { mockDashboardData } from '../../services/mockData';
 
 const FarmerDashboard = () => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const FarmerDashboard = () => {
       <FarmerNavbar />
       <main className="dashboard">
         <section className="welcome-section">
-          <h1>Welcome, Rajesh</h1>
+          <h1>Welcome, {mockDashboardData.farmerUser}</h1>
           <p>
             Register a new produce batch or scan a batch to view its latest assessment.
           </p>
