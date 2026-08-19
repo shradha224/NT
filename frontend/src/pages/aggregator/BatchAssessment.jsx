@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import AggregatorNavbar from '../../components/navigation/AggregatorNavbar';
 import '../../assets/css/batch-assessment.css';
 import { Hourglass, CalendarDays, ArrowRight, BadgeCheck, Gauge, RadioTower, Thermometer, Wind, Droplets, Eye, Camera, Brain, CircleCheck } from 'lucide-react';
@@ -7,6 +7,7 @@ import { mockIoTData } from '../../services/mockData';
 
 const BatchAssessment = () => {
   const { batchId } = useParams();
+  const navigate = useNavigate();
   const data = mockIoTData;
 
   return (
@@ -14,6 +15,16 @@ const BatchAssessment = () => {
       <AggregatorNavbar />
 
       <main className="page-container">
+        {/* BACK BUTTON */}
+        <div style={{ marginBottom: '16px' }}>
+          <button 
+            onClick={() => navigate(-1)} 
+            style={{ background: 'none', border: 'none', color: '#003f2d', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '14px', fontWeight: '500', padding: 0 }}
+          >
+            <ArrowRight size={16} style={{ transform: 'rotate(180deg)' }} /> Back
+          </button>
+        </div>
+
         {/* BATCH HEADER */}
         <section className="batch-header">
           <div className="batch-info">

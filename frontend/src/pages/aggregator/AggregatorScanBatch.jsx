@@ -70,6 +70,16 @@ const AggregatorScanBatch = () => {
       <AggregatorNavbar />
       
       <main className="scan-page">
+        {/* BACK BUTTON */}
+        <div style={{ marginBottom: '16px', padding: '0 20px' }}>
+          <button 
+            onClick={() => navigate('/aggregator/dashboard')} 
+            style={{ background: 'none', border: 'none', color: '#003f2d', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '14px', fontWeight: '500', padding: 0 }}
+          >
+            ← Back to Dashboard
+          </button>
+        </div>
+
         <section className="scan-container">
           <h1>Scan Batch</h1>
           <p className="subtitle">

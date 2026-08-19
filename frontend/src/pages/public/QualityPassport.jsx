@@ -1,19 +1,34 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import '../../assets/css/quality-passport.css';
 import NavyaLogo from '../../components/common/NavyaLogo';
 import { mockIoTData } from '../../services/mockData';
 
 const QualityPassport = () => {
   const { batchId } = useParams();
+  const navigate = useNavigate();
   const data = mockIoTData;
+
+  const handleBack = () => {
+    if (window.history.length > 2) {
+      navigate(-1);
+    } else {
+      navigate('/'); // fallback
+    }
+  };
 
   return (
     <div className="quality-passport-root">
-      <header className="header">
+      <header className="header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div className="brand">
           <NavyaLogo />
         </div>
+        <button 
+          onClick={handleBack}
+          style={{ background: 'none', border: '1px solid #e6e3da', borderRadius: '24px', color: '#003f2d', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '14px', fontWeight: '500', padding: '6px 16px' }}
+        >
+          Close Passport
+        </button>
       </header>
 
       <main className="passport-container">
