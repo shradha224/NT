@@ -1,0 +1,4 @@
+fix(layout): remove cookie policy and properly anchor login footer
+
+- Using flex: 1 on .login-container instead of centering the entire page wrapper ensures the GlobalFooter is pushed flush against the bottom of the viewport.
+- Successfully removed the remaining 'Cookie Policy' anchor tag from the footer layout.
