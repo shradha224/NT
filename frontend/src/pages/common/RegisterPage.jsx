@@ -11,6 +11,8 @@ const RegisterPage = () => {
   // Form State
   const [role, setRole] = useState(null);
   const [fullName, setFullName] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [organization, setOrganization] = useState('');
   const [location, setLocation] = useState('');
@@ -29,8 +31,8 @@ const RegisterPage = () => {
       setError("Please select a role to continue.");
       return;
     }
-    if (step === 2 && (!fullName || !phone)) {
-      setError("Name and Phone Number are required.");
+    if (step === 2 && (!fullName || !phone || !username || !email)) {
+      setError("Name, Username, Email, and Phone Number are required.");
       return;
     }
     if (step === 3 && (!organization || !location)) {
@@ -65,12 +67,14 @@ const RegisterPage = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
-          username: phone, // Use phone as username for simplicity
-          email: `${phone}@navya.com`, // Mock email
+          username: username,
+          email: email,
           password: password, 
           name: fullName,
           role: role.toUpperCase(),
-          biometricId: fingerprintRegistered ? 'fp_' + phone : undefined
+          biometricId: fingerprintRegistered ? 'fp_' + phone : undefined,
+          organization: organization,
+          location: location
         })
       });
 
@@ -168,6 +172,16 @@ const RegisterPage = () => {
                 <div className="input-group">
                   <label htmlFor="fullName">Full Name</label>
                   <input className="giant-input" type="text" id="fullName" placeholder="Enter your full name" value={fullName} onChange={e => setFullName(e.target.value)} />
+                </div>
+                
+                <div className="input-group">
+                  <label htmlFor="username">Username</label>
+                  <input className="giant-input" type="text" id="username" placeholder="Choose a unique username" value={username} onChange={e => setUsername(e.target.value)} />
+                </div>
+                
+                <div className="input-group">
+                  <label htmlFor="email">Email Address</label>
+                  <input className="giant-input" type="email" id="email" placeholder="e.g. you@example.com" value={email} onChange={e => setEmail(e.target.value)} />
                 </div>
                 
                 <div className="input-group">
