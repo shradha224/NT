@@ -1,25 +1,44 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Html5QrcodeScanner } from 'html5-qrcode';
 import FarmerNavbar from '../../components/navigation/FarmerNavbar';
 import '../../assets/css/scan-qr.css';
 
 const FarmerScanBatch = () => {
   const navigate = useNavigate();
-  const [scanResult, setScanResult] = useState(null); // 'assessed', 'unassessed', null
+  const [scanResult, setScanResult] = useState(null);
 
-  const handleScan = () => {
-    // Dummy scan implementation: randomly pick assessed or unassessed, or just toggle
-    const isAssessed = Math.random() > 0.5;
-    
-    if (isAssessed) {
-      setScanResult('assessed');
-      setTimeout(() => {
-        navigate('/quality-passport/TOM-024');
-      }, 1500);
-    } else {
-      setScanResult('unassessed');
-    }
-  };
+  useEffect(() => {
+    // Only initialize the scanner once
+    const scanner = new Html5QrcodeScanner('reader', {
+      qrbox: {
+        width: 250,
+        height: 250,
+      },
+      fps: 10,
+    });
+
+    scanner.render(
+      (result) => {
+        // Success callback
+        scanner.clear(); // Stop scanning once successfully decoded
+        setScanResult('assessed'); // Dummy check for now
+        
+        // Use the scanned text (which is the batchId) to navigate after a delay
+        setTimeout(() => {
+          navigate(`/quality-passport/${result}`);
+        }, 1500);
+      },
+      (error) => {
+        // Error callback (runs constantly as it fails to find a QR code, so just ignore it)
+      }
+    );
+
+    // Cleanup function when component unmounts
+    return () => {
+      scanner.clear().catch(error => console.error("Failed to clear scanner", error));
+    };
+  }, [navigate]);
 
   return (
     <div className="scan-qr-root">
@@ -32,27 +51,8 @@ const FarmerScanBatch = () => {
             Scan the QR code attached to the produce batch.
           </p>
 
-          {/* ================= SCANNER ================= */}
           <div className="scanner">
-            <div className="scanner-background" style={{ backgroundColor: '#1f2937', width: '100%', height: '100%' }}></div>
-            <div className="scanner-overlay"></div>
-
-            {/* Top scanning line */}
-            <div className="scan-line"></div>
-
-            {/* Scanner corners */}
-            <div className="corner top-left"></div>
-            <div className="corner top-right"></div>
-            <div className="corner bottom-left"></div>
-            <div className="corner bottom-right"></div>
-
-            {/* Scanner interface text */}
-            <div className="scanner-message">
-              <span className="scanner-title">QR Scanner Interface</span>
-              <span className="scanner-subtitle">
-                Align QR code within the frame
-              </span>
-            </div>
+            <div id="reader" style={{ width: '100%', border: 'none', borderRadius: '12px', overflow: 'hidden' }}></div>
 
             {/* Batch Found notification */}
             {scanResult && (
@@ -65,7 +65,7 @@ const FarmerScanBatch = () => {
                   )}
                 </div>
                 <div className="batch-info">
-                  <strong>Batch Found (TOM-024)</strong>
+                  <strong>Batch Found</strong>
                   {scanResult === 'assessed' ? (
                     <span>Quality Passport Available</span>
                   ) : (
@@ -84,7 +84,7 @@ const FarmerScanBatch = () => {
                 This batch has been registered successfully, but quality assessment is not available yet. An aggregator must monitor the batch before its quality passport can be generated.
               </p>
               <button 
-                onClick={() => setScanResult(null)} 
+                onClick={() => window.location.reload()} 
                 style={{ marginTop: '15px', padding: '8px 16px', backgroundColor: '#92400e', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer' }}
               >
                 Scan Another Batch
@@ -96,13 +96,6 @@ const FarmerScanBatch = () => {
             </p>
           )}
 
-          {/* Scan button */}
-          {!scanResult && (
-            <button className="scan-button" onClick={handleScan}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 7 4 4 7 4"></polyline><polyline points="20 7 20 4 17 4"></polyline><polyline points="4 17 4 20 7 20"></polyline><polyline points="20 17 20 20 17 20"></polyline><line x1="4" y1="12" x2="20" y2="12"></line></svg>
-              <span>Scan QR</span>
-            </button>
-          )}
         </section>
       </main>
     </div>

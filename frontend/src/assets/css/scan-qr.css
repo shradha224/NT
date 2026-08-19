@@ -290,6 +290,41 @@
 }
 
 /* =========================
+   HTML5 QR CODE OVERRIDES
+   ========================= */
+
+#reader {
+  background: #ffffff;
+  padding: 10px;
+}
+
+#reader button {
+  background-color: #064531;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 5px;
+}
+
+#reader button:hover {
+  background-color: #043425;
+}
+
+#reader select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin: 5px;
+}
+
+#reader a {
+  color: #064531 !important;
+}
+
+/* =========================
    RESPONSIVE
    ========================= */
 

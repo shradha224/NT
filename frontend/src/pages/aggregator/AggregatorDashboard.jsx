@@ -2,8 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import AggregatorNavbar from '../../components/navigation/AggregatorNavbar';
 import '../../assets/css/aggregator-dashboard.css';
+import { mockDashboardData } from '../../services/mockData';
 
 const AggregatorDashboard = () => {
+  const data = mockDashboardData;
+
   return (
     <div className="aggregator-dashboard-root">
       <AggregatorNavbar />
@@ -11,7 +14,7 @@ const AggregatorDashboard = () => {
       <main className="dashboard">
         {/* Welcome */}
         <section className="welcome-section">
-          <h1>Welcome, Sarah</h1>
+          <h1>Welcome, {data.user}</h1>
           <p>
             Monitor incoming produce and scan a batch to view its latest
             quality assessment.
@@ -66,22 +69,24 @@ const AggregatorDashboard = () => {
 
               <div className="divider"></div>
 
-              <div className="alert-item">
-                <div className="alert-icon">
-                  <span></span>
+              {data.activeBatches.map((batch, index) => (
+                <div className="alert-item" key={index}>
+                  <div className="alert-icon">
+                    <span></span>
+                  </div>
+                  <div className="alert-content">
+                    <p>{batch.alert}</p>
+                    <span>Batch: {batch.id}</span>
+                  </div>
                 </div>
-                <div className="alert-content">
-                  <p>Temperature above preferred range</p>
-                  <span>Batch: TOM-024</span>
-                </div>
-              </div>
+              ))}
             </section>
 
             {/* MONITORING UNIT */}
             <section className="monitoring-card">
               <div className="monitoring-header">
                 <h2>Monitoring Unit</h2>
-                <span>Last Sync: 2 min ago</span>
+                <span>Last Sync: {data.systemStatus.lastSync}</span>
               </div>
 
               <div className="divider"></div>
@@ -96,7 +101,7 @@ const AggregatorDashboard = () => {
                   </svg>
                   <span>Device</span>
                 </div>
-                <span className="status-dot green"></span>
+                <span className={`status-dot ${data.systemStatus.sensors.device}`}></span>
               </div>
 
               {/* Camera */}
@@ -108,7 +113,7 @@ const AggregatorDashboard = () => {
                   </svg>
                   <span>Camera</span>
                 </div>
-                <span className="status-dot green"></span>
+                <span className={`status-dot ${data.systemStatus.sensors.camera}`}></span>
               </div>
 
               {/* Temperature */}
@@ -121,7 +126,7 @@ const AggregatorDashboard = () => {
                   </svg>
                   <span>Temperature</span>
                 </div>
-                <span className="status-dot orange"></span>
+                <span className={`status-dot ${data.systemStatus.sensors.temperature}`}></span>
               </div>
 
               {/* Humidity */}
@@ -132,7 +137,7 @@ const AggregatorDashboard = () => {
                   </svg>
                   <span>Humidity</span>
                 </div>
-                <span className="status-dot green"></span>
+                <span className={`status-dot ${data.systemStatus.sensors.humidity}`}></span>
               </div>
 
               {/* VOC */}
@@ -146,7 +151,7 @@ const AggregatorDashboard = () => {
                   </svg>
                   <span>VOC/Gas</span>
                 </div>
-                <span className="status-dot green"></span>
+                <span className={`status-dot ${data.systemStatus.sensors.voc}`}></span>
               </div>
             </section>
           </div>
@@ -155,7 +160,7 @@ const AggregatorDashboard = () => {
         {/* SYSTEM STATUS */}
         <div className="system-status">
           <span className="system-dot"></span>
-          <span>Monitoring System Connected</span>
+          <span>{data.systemStatus.connected ? 'Monitoring System Connected' : 'System Offline'}</span>
         </div>
       </main>
     </div>
