@@ -1,0 +1,5 @@
+fix(layout): fix missing NavyaLogo import reference error
+
+- Fixed an issue where the NavyaLogo import was removed from LoginPage and RegisterPage, but the actual <NavyaLogo /> JSX components were accidentally left in the code due to a failed multi-line regex replacement during the system overhaul.
+- This caused a runtime ReferenceError that crashed the React application when navigating to any authentication page.
+- Fully replaced the old header blocks with the new PublicHeader component.
