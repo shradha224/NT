@@ -1,0 +1,6 @@
+feat(ui): Add missing navigation controls across app pages
+
+- Added '? Back to Dashboard' links to both Farmer and Aggregator QR scanner pages.
+- Added a 'Cancel' button to the RegisterBatch form.
+- Added a '? Back' button to the BatchAssessment detail page.
+- Added a smart 'Close Passport' button to the QualityPassport public page header that returns to the previous app view or the landing page.

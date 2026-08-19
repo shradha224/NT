@@ -119,24 +119,22 @@ const RegisterBatch = () => {
           </div>
         </section>
 
-        {/* Generate Button */}
-        <button type="button" className="generate-button" onClick={handleGenerate}>
-          <span className="plus-icon">
-            <svg
-              width="21"
-              height="21"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="3"
-            >
-              <circle cx="12" cy="12" r="9"></circle>
-              <path d="M12 8v8"></path>
-              <path d="M8 12h8"></path>
-            </svg>
-          </span>
-          <span>Generate Batch Profile</span>
-        </button>
+        {/* Actions */}
+        <div className="action-row" style={{ display: 'flex', gap: '16px', marginTop: '32px' }}>
+          <button type="button" className="cancel-button" onClick={() => navigate('/farmer/dashboard')} style={{ flex: 1, padding: '16px', background: '#fff', border: '1px solid #d1d5db', borderRadius: '10px', fontSize: '16px', fontWeight: '500', color: '#4b5563', cursor: 'pointer' }}>
+            Cancel
+          </button>
+          <button type="button" className="generate-button" onClick={handleGenerate} style={{ flex: 2, marginTop: 0 }}>
+            <span className="plus-icon">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 8v8"></path>
+                <path d="M8 12h8"></path>
+              </svg>
+            </span>
+            <span>Generate Batch Profile</span>
+          </button>
+        </div>
       </main>
     </div>
   );
