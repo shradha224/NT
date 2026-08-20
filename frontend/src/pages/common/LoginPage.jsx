@@ -49,6 +49,11 @@ const LoginPage = () => {
   };
 
   const handleFingerprintLogin = () => {
+    if (!identifier) {
+      setError('Please enter your username first');
+      return;
+    }
+    
     setIsScanning(true);
     setError('');
     
@@ -63,7 +68,7 @@ const LoginPage = () => {
         const response = await fetch('http://localhost:5000/api/auth/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ identifier: 'farmer1@navya.com', password: 'password123' }) // Mock user
+          body: JSON.stringify({ identifier: identifier, password: 'password123' }) // Assumes test users use password123
         });
 
         const data = await response.json();
@@ -160,14 +165,30 @@ const LoginPage = () => {
               * Hardware Simulation Mode
             </div>
             
-            <div className={`giant-fingerprint-box ${isScanning ? 'scanning' : ''} ${scanSuccess ? 'success' : ''}`} onClick={handleFingerprintLogin}>
+            <div className="form-group text-left" style={{textAlign: 'left', marginBottom: '20px'}}>
+              <label htmlFor="fp-identifier">Username or Phone</label>
+              <div className="input-wrapper giant-input">
+                <input
+                  type="text"
+                  id="fp-identifier"
+                  placeholder="Enter username to simulate"
+                  value={identifier}
+                  onChange={(e) => setIdentifier(e.target.value)}
+                  style={{ fontSize: '1.2rem', padding: '15px 20px', width: '100%', boxSizing: 'border-box' }}
+                />
+              </div>
+            </div>
+            
+            <div className={`giant-fingerprint-box ${isScanning ? 'scanning' : ''} ${scanSuccess ? 'success' : ''}`} 
+                 onClick={handleFingerprintLogin}
+                 style={{ opacity: identifier ? 1 : 0.5, pointerEvents: identifier ? 'auto' : 'none' }}>
               <span className="fp-icon">
                 <Fingerprint size={48} strokeWidth={1.5} />
               </span>
             </div>
 
             <p className="fp-status-text">
-              {isScanning ? 'Scanning...' : scanSuccess ? 'Welcome back!' : 'Tap sensor to simulate login'}
+              {!identifier ? 'Enter username first' : isScanning ? 'Scanning...' : scanSuccess ? 'Welcome back!' : 'Tap sensor to simulate login'}
             </p>
           </div>
         </main>

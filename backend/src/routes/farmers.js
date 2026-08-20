@@ -12,16 +12,31 @@ router.post('/batches', async (req, res) => {
   try {
     const { produceType, variety, quantity, harvestDate, origin } = req.body;
     
-    // Generate unique batch ID
-    const batchIdStr = `${produceType.substring(0,3).toUpperCase()}-${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`;
+    // 1. Validate Input to prevent TypeErrors and NaN
+    if (!produceType || typeof produceType !== 'string' || produceType.length < 3) {
+      return res.status(400).json({ error: 'produceType is required and must be at least 3 characters' });
+    }
+    const parsedQuantity = parseFloat(quantity);
+    if (isNaN(parsedQuantity) || parsedQuantity <= 0) {
+      return res.status(400).json({ error: 'quantity must be a valid positive number' });
+    }
+    const parsedDate = new Date(harvestDate);
+    if (isNaN(parsedDate.getTime())) {
+      return res.status(400).json({ error: 'harvestDate must be a valid date' });
+    }
+
+    // 2. Generate unique batch ID safely
+    const crypto = require('crypto');
+    const randomHex = crypto.randomBytes(3).toString('hex').toUpperCase(); // 6 chars hex
+    const batchIdStr = `${produceType.substring(0,3).toUpperCase()}-${randomHex}`;
     
     const batch = await Batch.create({
       batchId: batchIdStr,
       farmer: req.user.userId,
       produceType,
       variety,
-      quantity: parseFloat(quantity),
-      harvestDate: new Date(harvestDate),
+      quantity: parsedQuantity,
+      harvestDate: parsedDate,
       origin,
       status: 'CREATED'
     });
