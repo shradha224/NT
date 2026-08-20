@@ -20,9 +20,7 @@ const { wakeLocalMongo, stopLocalMongo } = require('./utils/mongoWaker');
   await connectDB();
 
 const authRoutes = require('./routes/auth');
-const farmerRoutes = require('./routes/farmers');
-const aggregatorRoutes = require('./routes/aggregators');
-const publicRoutes = require('./routes/public');
+const batchRoutes = require('./routes/batches');
 const syncRoutes = require('./routes/sync');
 
 const app = express();
@@ -34,9 +32,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
-app.use('/api/farmers', farmerRoutes);
-app.use('/api/aggregators', aggregatorRoutes);
-app.use('/api/public', publicRoutes);
+app.use('/api/batches', batchRoutes);
 app.use('/api/sync', syncRoutes);
 
 // Health check

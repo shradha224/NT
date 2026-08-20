@@ -23,7 +23,7 @@ const FarmerDashboard = () => {
   useEffect(() => {
     const fetchBatches = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/farmers/batches`, {
+        const response = await fetch(`${API_BASE_URL}/batches`, {
           headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
         });
         if (response.status === 401) {
@@ -41,6 +41,25 @@ const FarmerDashboard = () => {
     };
     fetchBatches();
   }, []);
+
+  const handleDispatch = async (batchId) => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/batches/${batchId}/status`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({ status: 'DISTRIBUTED' })
+      });
+      if (response.ok) {
+        // Update local state to immediately remove it from view or mark as dispatched
+        setBatches(batches.map(b => b._id === batchId ? { ...b, status: 'DISTRIBUTED' } : b));
+      }
+    } catch (err) {
+      console.error('Failed to dispatch batch:', err);
+    }
+  };
 
   return (
     <div className="farmer-dashboard-root">
@@ -119,7 +138,7 @@ const FarmerDashboard = () => {
             </div>
           ) : (
             <div className="batches-list" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              {batches.slice(0, 5).map(batch => (
+              {batches.filter(b => b.status !== 'DISTRIBUTED' && b.status !== 'COMPLETED').slice(0, 5).map(batch => (
                 <div key={batch._id} style={{ 
                   padding: '1.5rem', backgroundColor: 'white', borderRadius: '8px', 
                   boxShadow: '0 2px 4px rgba(0,0,0,0.05)', display: 'flex', justifyContent: 'space-between',
@@ -131,14 +150,40 @@ const FarmerDashboard = () => {
                       ID: {batch.batchId} | Date: {new Date(batch.harvestDate).toLocaleDateString()}
                     </p>
                   </div>
-                  <div style={{ 
-                    backgroundColor: '#e6f4ea', color: '#137333', padding: '5px 12px', 
-                    borderRadius: '20px', fontSize: '0.85rem', fontWeight: 'bold' 
-                  }}>
-                    {batch.quantity} kg
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <div style={{ 
+                      backgroundColor: '#e6f4ea', color: '#137333', padding: '5px 12px', 
+                      borderRadius: '20px', fontSize: '0.85rem', fontWeight: 'bold' 
+                    }}>
+                      {batch.quantity} kg
+                    </div>
+                    <button 
+                      onClick={() => handleDispatch(batch._id)}
+                      style={{
+                        backgroundColor: 'transparent',
+                        color: '#059669',
+                        border: '1px solid #059669',
+                        padding: '5px 10px',
+                        borderRadius: '4px',
+                        cursor: 'pointer',
+                        fontSize: '0.85rem',
+                        fontWeight: 'bold'
+                      }}
+                      onMouseOver={(e) => { e.target.style.backgroundColor = '#059669'; e.target.style.color = 'white'; }}
+                      onMouseOut={(e) => { e.target.style.backgroundColor = 'transparent'; e.target.style.color = '#059669'; }}
+                    >
+                      Dispatch
+                    </button>
                   </div>
                 </div>
               ))}
+              {batches.filter(b => b.status === 'DISTRIBUTED' || b.status === 'COMPLETED').length > 0 && (
+                <div style={{ textAlign: 'center', marginTop: '10px' }}>
+                  <p style={{ color: '#666', fontSize: '0.9rem' }}>
+                    {batches.filter(b => b.status === 'DISTRIBUTED' || b.status === 'COMPLETED').length} batch(es) marked as dispatched and hidden.
+                  </p>
+                </div>
+              )}
             </div>
           )}
         </section>

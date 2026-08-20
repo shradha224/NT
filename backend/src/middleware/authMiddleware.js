@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const JWT_SECRET = process.env.JWT_SECRET;
-if (!JWT_SECRET) throw new Error('JWT_SECRET is missing in environment variables');
+const JWT_SECRET = process.env.JWT_SECRET || 'navya_dev_secret_do_not_use_in_prod';
 
 const authenticate = (req, res, next) => {
   const authHeader = req.headers.authorization;

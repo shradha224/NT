@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ChevronDown, MapPin, ChevronRight, PlusCircle } from 'lucide-react';
 import FarmerNavbar from '../../components/navigation/FarmerNavbar';
 import GlobalFooter from '../../components/common/GlobalFooter';
+import { API_BASE_URL } from '../../config/env';
 import '../../assets/css/register-batch.css';
 
 const RegisterBatch = () => {
@@ -13,11 +14,42 @@ const RegisterBatch = () => {
     date: '',
     origin: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Uses native HTML5 validation before reaching here!
-    const batchId = `BATCH-${Math.floor(Math.random() * 10000)}`;
-    navigate(`/farmer/batch-created/${batchId}`, { state: formData });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError('');
+    
+    try {
+      const response = await fetch(`${API_BASE_URL}/batches`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({
+          produceType: formData.crop,
+          variety: formData.crop, // Currently using crop as variety as well for simplicity
+          quantity: formData.quantity,
+          harvestDate: formData.date,
+          origin: formData.origin
+        })
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to register batch');
+      }
+      
+      navigate(`/farmer/batch-created/${data.batch.batchId}`, { state: formData });
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -28,6 +60,8 @@ const RegisterBatch = () => {
           <h1>Register New Batch</h1>
           <p>Enter details to initiate tracking for a new harvest cycle.</p>
         </section>
+
+        {error && <div className="error-message" style={{color: 'red', marginBottom: '1rem', textAlign: 'center'}}>{error}</div>}
 
         <form onSubmit={handleSubmit}>
           <section className="form-card">

@@ -1,64 +1,75 @@
-const mongoose = require('mongoose');
+﻿const mongoose = require('mongoose');
 const Batch = require('../models/Batch');
 const User = require('../models/User');
-const QualityAssessment = require('../models/QualityAssessment');
-const SensorReading = require('../models/SensorReading');
 const Device = require('../models/Device');
 const MonitoringSession = require('../models/MonitoringSession');
 const { systemLogger } = require('../utils/logger');
 
-const CLOUD_API_URL = process.env.CLOUD_API_URL;
-const CLOUD_API_KEY = process.env.CLOUD_API_KEY;
-
-if (!CLOUD_API_URL || !CLOUD_API_KEY) {
-  syncLogger.warn('CLOUD_API_URL or CLOUD_API_KEY is missing. Manual fallback sync via HTTP will fail.');
-}
+const CLOUD_API_URL = process.env.CLOUD_API_URL || 'http://localhost:5000/api';
+const CLOUD_API_KEY = process.env.CLOUD_API_KEY || 'DEV_MOCK_KEY';
 
 class SyncManager {
   static async pullFromCloud() {
     try {
       systemLogger.info('Checking cloud for any new updates...');
       
-      // In a real scenario:
-      // 1. Fetch last known sync timestamp from a local settings document.
-      // 2. Fetch from cloud: /sync/pull?since=<timestamp>
-      // 3. Process records with Conflict Resolution (Last-Write-Wins based on updatedAt).
-      // Example:
-      // const updates = await fetch(`${CLOUD_API_URL}/pull?since=${lastSyncTime}`).then(r => r.json());
-      // for (const cloudRecord of updates.batches) {
-      //   const localRecord = await Batch.findById(cloudRecord._id);
-      //   if (!localRecord || new Date(cloudRecord.updatedAt) > new Date(localRecord.updatedAt)) {
-      //     await Batch.findByIdAndUpdate(cloudRecord._id, { ...cloudRecord, syncStatus: 'SYNCED', lastCloudSync: new Date() }, { upsert: true });
-      //   }
-      // }
+      const response = await fetch(`${CLOUD_API_URL}/sync/pull`, {
+        headers: { 'Authorization': `Bearer ${CLOUD_API_KEY}` }
+      });
       
-      // Simulated delay
-      await new Promise(resolve => setTimeout(resolve, 500));
-      systemLogger.info('Cloud pull completed.');
+      if (!response.ok) {
+        throw new Error(`Cloud API responded with status ${response.status}`);
+      }
+
+      const updates = await response.json();
+      const modelsMap = {
+        'Batch': Batch,
+        'User': User,
+        'Device': Device,
+        'MonitoringSession': MonitoringSession
+      };
+
+      let totalPulled = 0;
+
+      for (const [modelName, records] of Object.entries(updates)) {
+        const Model = modelsMap[modelName];
+        if (!Model || !records || records.length === 0) continue;
+
+        for (const cloudRecord of records) {
+          const localRecord = await Model.findById(cloudRecord._id);
+          
+          if (!localRecord || new Date(cloudRecord.updatedAt) > new Date(localRecord.updatedAt)) {
+            const updatePayload = { ...cloudRecord, syncStatus: 'SYNCED', lastCloudSync: new Date() };
+            delete updatePayload._id; 
+
+            await Model.findByIdAndUpdate(cloudRecord._id, updatePayload, { upsert: true, new: true, runValidators: false });
+            totalPulled++;
+          }
+        }
+      }
+      
+      systemLogger.info(`Cloud pull completed. Synced ${totalPulled} records to local.`);
     } catch (error) {
       systemLogger.error(`Cloud pull failed: ${error.message}`);
-      throw error; // If pull fails, we shouldn't push to avoid immediate overwrites
+      throw error;
     }
   }
 
   static async pushToCloud() {
-    let cloudDb = null;
     try {
-      if (!process.env.CLOUD_MONGO_URI) {
-        systemLogger.warn('CLOUD_MONGO_URI is not set. Aborting sync.');
-        return;
-      }
-      
       systemLogger.info('Syncing local data back up to the cloud...');
-      cloudDb = await mongoose.createConnection(process.env.CLOUD_MONGO_URI).asPromise();
       
-      const BATCH_LIMIT = 500; // Prevent payload overload
-      const models = [Batch, User, QualityAssessment, SensorReading, Device, MonitoringSession];
+      const BATCH_LIMIT = 100;
+      const modelsMap = {
+        'Batch': Batch,
+        'User': User,
+        'Device': Device,
+        'MonitoringSession': MonitoringSession
+      };
       
       let totalPushed = 0;
 
-      for (const Model of models) {
-        const CloudModel = cloudDb.model(Model.modelName, Model.schema);
+      for (const [modelName, Model] of Object.entries(modelsMap)) {
         let hasMore = true;
         
         while (hasMore) {
@@ -69,28 +80,26 @@ class SyncManager {
             break;
           }
 
-          const bulkOps = pendingRecords.map(doc => {
-            const obj = doc.toObject();
-            obj.syncStatus = 'SYNCED';
-            obj.lastCloudSync = new Date();
-            return {
-              updateOne: {
-                filter: { _id: doc._id },
-                update: { $set: obj },
-                upsert: true
-              }
-            };
+          const response = await fetch(`${CLOUD_API_URL}/sync/push`, {
+            method: 'POST',
+            headers: { 
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${CLOUD_API_KEY}` 
+            },
+            body: JSON.stringify({
+              modelName,
+              records: pendingRecords
+            })
           });
 
-          if (bulkOps.length > 0) {
-            await CloudModel.bulkWrite(bulkOps);
+          if (!response.ok) {
+            throw new Error(`Cloud API responded with status ${response.status}`);
           }
 
           const ids = pendingRecords.map(r => r._id);
           const now = new Date();
-          await Model.updateMany({ _id: { $in: ids } }, { $set: { syncStatus: 'SYNCED', lastCloudSync: now } });
           
-          await Model.deleteMany({ _id: { $in: ids }, isDeleted: true });
+          await Model.updateMany({ _id: { $in: ids } }, { $set: { syncStatus: 'SYNCED', lastCloudSync: now } });
 
           totalPushed += pendingRecords.length;
           
@@ -100,13 +109,9 @@ class SyncManager {
         }
       }
 
-      systemLogger.info(`Push completed. Successfully synced ${totalPushed} records.`);
+      systemLogger.info(`Push completed. Successfully pushed ${totalPushed} records via API.`);
     } catch (error) {
       systemLogger.error(`Push failed: ${error.message}`);
-    } finally {
-      if (cloudDb) {
-        await cloudDb.close();
-      }
     }
   }
 
@@ -121,7 +126,7 @@ class SyncManager {
 
   static startSyncLoop(intervalMs = 60000) {
     setInterval(() => this.syncCycle(), intervalMs);
-    systemLogger.info(`SyncManager started two-way sync loop with interval ${intervalMs}ms`);
+    systemLogger.info(`SyncManager started HTTP two-way sync loop with interval ${intervalMs}ms`);
   }
 }
 

@@ -47,7 +47,6 @@
   font-size: 14px;
   transition: color 0.2s;
 }
-}
 
 .footer-links-group a:hover {
   color: #ffffff;
@@ -83,4 +82,3 @@
   flex-direction: column;
   min-height: 100vh;
 }
-

@@ -6,8 +6,10 @@ const { OAuth2Client } = require('google-auth-library');
 const User = require('../models/User');
 const { authLogger } = require('../utils/logger');
 
-const JWT_SECRET = process.env.JWT_SECRET;
-if (!JWT_SECRET) throw new Error('JWT_SECRET is missing in environment variables');
+const JWT_SECRET = process.env.JWT_SECRET || 'navya_dev_secret_do_not_use_in_prod';
+if (JWT_SECRET === 'navya_dev_secret_do_not_use_in_prod') {
+  console.warn('WARNING: JWT_SECRET is not set in the environment. Using an insecure fallback secret for development.');
+}
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 const normalizePhone = (phone) => {
