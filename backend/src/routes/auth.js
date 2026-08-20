@@ -9,6 +9,12 @@ const { authLogger } = require('../utils/logger');
 const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret';
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
+const normalizePhone = (phone) => {
+  if (!phone) return undefined;
+  const cleaned = phone.replace(/[\s\-\(\)\.]/g, '');
+  return cleaned === '' ? undefined : cleaned;
+};
+
 router.post('/google', async (req, res) => {
   try {
     const { credential, role, username } = req.body;
@@ -64,8 +70,9 @@ router.post('/google', async (req, res) => {
 
 router.post('/register', async (req, res) => {
   try {
-    const { username, email, phone, password, name, role, biometricId, organization, location } = req.body;
+    let { username, email, phone, password, name, role, biometricId, organization, location } = req.body;
     
+    phone = normalizePhone(phone);    
     if (!username) {
       return res.status(400).json({ error: 'Username is required' });
     }
@@ -139,14 +146,22 @@ router.get('/check-username', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    const { email, password } = req.body;
-    
-    const identifier = email; // The frontend input sends it as 'email'
+    const { password } = req.body;
+    const identifier = req.body.identifier || req.body.email;
+
+    if (!identifier) {
+      return res.status(400).json({ error: 'Identifier is required' });
+    }
+
+    let searchIdentifier = identifier;
+    if (/^\+?[\d\s\-\(\)\.]+$/.test(identifier)) {
+      searchIdentifier = normalizePhone(identifier);
+    }
 
     const user = await User.findOne({
       $or: [
         { email: identifier },
-        { phone: identifier },
+        { phone: searchIdentifier },
         { username: identifier }
       ]
     });
@@ -189,8 +204,9 @@ router.get('/me', authenticate, async (req, res) => {
 
 router.put('/me', authenticate, async (req, res) => {
   try {
-    const { name, email, phone, username, organization, location } = req.body;
+    let { name, email, phone, username, organization, location } = req.body;
     
+    phone = normalizePhone(phone);
     const user = await User.findByIdAndUpdate(
       req.user.userId,
       { $set: { name, email, phone, username, organization, location, syncStatus: 'PENDING' } },

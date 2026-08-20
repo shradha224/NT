@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Fingerprint } from 'lucide-react';
 import '../../assets/css/login.css';
@@ -24,7 +24,7 @@ const LoginPage = () => {
       const response = await fetch('http://localhost:5000/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: identifier, password })
+        body: JSON.stringify({ identifier, password })
       });
 
       const data = await response.json();
@@ -63,7 +63,7 @@ const LoginPage = () => {
         const response = await fetch('http://localhost:5000/api/auth/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: 'farmer1@navya.com', password: 'password123' }) // Mock user
+          body: JSON.stringify({ identifier: 'farmer1@navya.com', password: 'password123' }) // Mock user
         });
 
         const data = await response.json();

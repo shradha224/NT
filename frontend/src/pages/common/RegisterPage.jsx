@@ -72,7 +72,7 @@ const RegisterPage = () => {
         body: JSON.stringify({ 
           username: username,
           email: email,
-          phone: phone,
+          phone: phone || undefined,
           password: password, 
           name: fullName,
           role: role.toUpperCase(),
@@ -320,6 +320,7 @@ const RegisterPage = () => {
 };
 
 export default RegisterPage;
+
 
 
 
