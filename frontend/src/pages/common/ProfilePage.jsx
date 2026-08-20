@@ -1,6 +1,6 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { User, Mail, Phone, MapPin, Building, LogOut, ArrowLeft, CloudSync, Edit2, Save, X } from 'lucide-react';
+import { User, Mail, Phone, MapPin, Building, LogOut, CloudSync, Edit2, Save } from 'lucide-react';
 import '../../assets/css/profile-page.css';
 import GlobalFooter from '../../components/common/GlobalFooter';
 import PublicHeader from '../../components/common/PublicHeader';

@@ -1,4 +1,4 @@
-﻿import React, { useEffect } from 'react';
+import React from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import AggregatorNavbar from '../../components/navigation/AggregatorNavbar';
 import GlobalFooter from '../../components/common/GlobalFooter';
