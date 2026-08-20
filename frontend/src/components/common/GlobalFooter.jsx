@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import NavyaLogo from './NavyaLogo';
 import '../../assets/css/layout.css';
@@ -34,7 +34,7 @@ const GlobalFooter = () => {
 
         <div className="footer-links-group">
           <h4>Contact Us</h4>
-          <a href="mailto:support@navya.com">support@navya.com</a>
+          <a href="mailto:contact@navyaindia.com">contact@navyaindia.com</a>
           <a href="tel:+918001234567">+91 800-123-4567</a>
           <p style={{ color: '#a7f3d0', fontSize: '14px', marginTop: '10px' }}>
             ITER (SOA University)<br/>Bhubaneswar, Odisha 751030

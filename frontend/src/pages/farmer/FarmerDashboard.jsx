@@ -1,5 +1,6 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../../config/env';
 import FarmerNavbar from '../../components/navigation/FarmerNavbar';
 import GlobalFooter from '../../components/common/GlobalFooter';
 import '../../assets/css/farmer-dashboard.css';
@@ -22,7 +23,7 @@ const FarmerDashboard = () => {
   useEffect(() => {
     const fetchBatches = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/farmers/batches', {
+        const response = await fetch(`${API_BASE_URL}/farmers/batches`, {
           headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
         });
         if (response.status === 401) {

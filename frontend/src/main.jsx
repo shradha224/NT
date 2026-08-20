@@ -4,7 +4,7 @@ import App from './App.jsx';
 import './index.css';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
-const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID_HERE'; // Replace with real ID later
+import { GOOGLE_CLIENT_ID } from './config/env';
 
 // Global Fetch Interceptor to handle 401 Unauthorized (Token Expiration)
 const originalFetch = window.fetch;

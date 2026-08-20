@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../../config/env';
 import { User, Mail, Phone, MapPin, Building, LogOut, CloudSync, Edit2, Save } from 'lucide-react';
 import '../../assets/css/profile-page.css';
 import GlobalFooter from '../../components/common/GlobalFooter';
@@ -29,7 +30,7 @@ const ProfilePage = () => {
 
   const fetchProfile = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/auth/me', {
+      const response = await fetch(`${API_BASE_URL}/auth/me`, {
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
       });
       if (response.status === 401) {
@@ -86,7 +87,7 @@ const ProfilePage = () => {
   const handleSave = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/auth/me', {
+      const response = await fetch(`${API_BASE_URL}/auth/me`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -252,7 +253,7 @@ const ProfilePage = () => {
                 btn.disabled = true;
                 
                 try {
-                  await fetch('http://localhost:5000/api/sync/manual', { method: 'POST' });
+                  await fetch(`${API_BASE_URL}/sync/manual`, { method: 'POST' });
                   btn.innerHTML = 'Synced!';
                   btn.style.color = '#059669';
                 } catch (err) {

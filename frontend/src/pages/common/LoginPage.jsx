@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../../config/env';
 import { Fingerprint } from 'lucide-react';
 import '../../assets/css/login.css';
 import GlobalFooter from '../../components/common/GlobalFooter';
@@ -21,7 +22,7 @@ const LoginPage = () => {
     setError('');
     
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+        const response = await fetch(`${API_BASE_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ identifier, password })
@@ -65,7 +66,7 @@ const LoginPage = () => {
       try {
         // Mocking a successful fingerprint login for demo
         // In real life, you'd send a WebAuthn payload here
-        const response = await fetch('http://localhost:5000/api/auth/login', {
+        const response = await fetch(`${API_BASE_URL}/auth/login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ identifier: identifier, password: 'password123' }) // Assumes test users use password123

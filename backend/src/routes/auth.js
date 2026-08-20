@@ -6,7 +6,8 @@ const { OAuth2Client } = require('google-auth-library');
 const User = require('../models/User');
 const { authLogger } = require('../utils/logger');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret';
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) throw new Error('JWT_SECRET is missing in environment variables');
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 const normalizePhone = (phone) => {

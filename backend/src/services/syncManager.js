@@ -7,8 +7,12 @@ const Device = require('../models/Device');
 const MonitoringSession = require('../models/MonitoringSession');
 const { systemLogger } = require('../utils/logger');
 
-const CLOUD_API_URL = process.env.CLOUD_API_URL || 'https://cloud-api.example.com/sync';
-const CLOUD_API_KEY = process.env.CLOUD_API_KEY || 'default-key';
+const CLOUD_API_URL = process.env.CLOUD_API_URL;
+const CLOUD_API_KEY = process.env.CLOUD_API_KEY;
+
+if (!CLOUD_API_URL || !CLOUD_API_KEY) {
+  syncLogger.warn('CLOUD_API_URL or CLOUD_API_KEY is missing. Manual fallback sync via HTTP will fail.');
+}
 
 class SyncManager {
   static async pullFromCloud() {
