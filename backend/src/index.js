@@ -13,6 +13,7 @@ const { wakeLocalMongo, stopLocalMongo } = require('./utils/mongoWaker');
 
   // 2. Override MONGO_URI to enforce Local Edge Node usage (localhost)
   // Optional: only override if an EDGE_NODE env var is set, but we'll force it for now.
+  process.env.CLOUD_MONGO_URI = process.env.MONGO_URI;
   process.env.MONGO_URI = process.env.LOCAL_MONGO_URI || 'mongodb://127.0.0.1:27017/agri-iot';
 
   // 3. Connect to MongoDB

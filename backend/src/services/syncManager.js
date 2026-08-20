@@ -38,15 +38,25 @@ class SyncManager {
   }
 
   static async pushToCloud() {
+    let cloudDb = null;
     try {
+      if (!process.env.CLOUD_MONGO_URI) {
+        systemLogger.warn('CLOUD_MONGO_URI is not set. Aborting sync.');
+        return;
+      }
+      
       systemLogger.info('Syncing local data back up to the cloud...');
+      cloudDb = await mongoose.createConnection(process.env.CLOUD_MONGO_URI).asPromise();
+      
       const BATCH_LIMIT = 500; // Prevent payload overload
       const models = [Batch, User, QualityAssessment, SensorReading, Device, MonitoringSession];
       
       let totalPushed = 0;
 
       for (const Model of models) {
+        const CloudModel = cloudDb.model(Model.modelName, Model.schema);
         let hasMore = true;
+        
         while (hasMore) {
           const pendingRecords = await Model.find({ syncStatus: 'PENDING' }).limit(BATCH_LIMIT);
           
@@ -55,20 +65,27 @@ class SyncManager {
             break;
           }
 
-          // 2. Push to cloud API
-          // const response = await fetch(`${CLOUD_API_URL}/push`, {
-          //   method: 'POST',
-          //   body: JSON.stringify({ modelName: Model.modelName, records: pendingRecords })
-          // });
-          
-          await new Promise(resolve => setTimeout(resolve, 500));
+          const bulkOps = pendingRecords.map(doc => {
+            const obj = doc.toObject();
+            obj.syncStatus = 'SYNCED';
+            obj.lastCloudSync = new Date();
+            return {
+              updateOne: {
+                filter: { _id: doc._id },
+                update: { $set: obj },
+                upsert: true
+              }
+            };
+          });
 
-          // 3. Update local status
+          if (bulkOps.length > 0) {
+            await CloudModel.bulkWrite(bulkOps);
+          }
+
           const ids = pendingRecords.map(r => r._id);
           const now = new Date();
           await Model.updateMany({ _id: { $in: ids } }, { $set: { syncStatus: 'SYNCED', lastCloudSync: now } });
           
-          // 4. Handle Tombstones (Purge soft-deleted records ONLY after successful sync)
           await Model.deleteMany({ _id: { $in: ids }, isDeleted: true });
 
           totalPushed += pendingRecords.length;
@@ -82,6 +99,10 @@ class SyncManager {
       systemLogger.info(`Push completed. Successfully synced ${totalPushed} records.`);
     } catch (error) {
       systemLogger.error(`Push failed: ${error.message}`);
+    } finally {
+      if (cloudDb) {
+        await cloudDb.close();
+      }
     }
   }
 
