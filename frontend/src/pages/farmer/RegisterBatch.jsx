@@ -11,7 +11,7 @@ const RegisterBatch = () => {
     quantity: '',
     crop: '',
     date: '',
-    origin: 'Pune Farm'
+    origin: ''
   });
 
   const handleSubmit = (e) => {
@@ -76,12 +76,19 @@ const RegisterBatch = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="origin">Origin Field</label>
-              <button type="button" className="origin-field" id="origin">
-                <span className="location-icon"><MapPin size={20} /></span>
-                <span className="origin-placeholder">{formData.origin}</span>
-                <span className="origin-arrow"><ChevronRight size={20} /></span>
-              </button>
+              <label htmlFor="origin">Origin Farm Location</label>
+              <div className="input-wrapper">
+                <span className="location-icon" style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#9ca3af' }}><MapPin size={20} /></span>
+                <input
+                  type="text"
+                  id="origin"
+                  required
+                  placeholder="e.g. Pune Farm, Plot A"
+                  value={formData.origin}
+                  onChange={(e) => setFormData({...formData, origin: e.target.value})}
+                  style={{ paddingLeft: '40px', width: '100%', boxSizing: 'border-box' }}
+                />
+              </div>
             </div>
           </section>
 

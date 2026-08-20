@@ -1,10 +1,21 @@
+const today = new Date();
+const yesterday = new Date(today);
+yesterday.setDate(yesterday.getDate() - 1);
+const dayBefore = new Date(today);
+dayBefore.setDate(dayBefore.getDate() - 2);
+const lastWeek = new Date(today);
+lastWeek.setDate(lastWeek.getDate() - 7);
+
+const formatDate = (date) => date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+const formatShortDate = (date) => date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
 export const mockIoTData = {
   currentBatch: {
     id: 'TOM-024',
     type: 'Tomato',
-    originFarm: 'Sunnyvale Acres, California',
-    harvestDate: 'Oct 23, 2023 - 06:00 AM',
-    qualityMonitoredDate: 'Oct 23, 2023 - 02:00 PM',
+    originFarm: 'Navya Precision Farm, Sector A',
+    harvestDate: `${formatDate(dayBefore)} - 06:00 AM`,
+    qualityMonitoredDate: `${formatDate(today)} - 02:00 PM`,
     status: 'In Transit',
   },
   qualitySummary: {
@@ -81,8 +92,8 @@ export const mockIoTData = {
     { day: 'Yesterday (Day 3)', result: 'Good' },
     { day: 'Yesterday (Day 3)', result: 'Good' },
     { day: 'Yesterday (Day 3)', result: 'Good' },
-    { day: 'Oct 24 (Day 2)', result: 'Excellent' },
-    { day: 'Oct 23 (Day 1)', result: 'Fresh Picked' }
+    { day: `${formatShortDate(dayBefore)} (Day 2)`, result: 'Excellent' },
+    { day: `${formatShortDate(new Date(today.getTime() - 3*24*60*60*1000))} (Day 1)`, result: 'Fresh Picked' }
   ],
   journey: [
     { step: 1, title: 'Harvested', score: '96', statusText: 'Fresh', cssClass: 'completed', tagClass: 'fresh' },
@@ -98,15 +109,15 @@ export const mockIoTData = {
 };
 
 export const mockDashboardData = {
-  user: 'Sarah',
-  farmerUser: 'Rajesh',
+  user: 'Partner',
+  farmerUser: 'Primary Grower',
   activeBatches: [
     { id: 'TOM-024', status: 'Warning', alert: 'Temperature above preferred range' }
   ],
   previousBatches: [
-    { id: 'TOM-021', type: 'Tomato', lastMonitored: 'Oct 10', score: '88' },
-    { id: 'TOM-022', type: 'Tomato', lastMonitored: 'Oct 12', score: '72' },
-    { id: 'TOM-023', type: 'Tomato', lastMonitored: 'Oct 18', score: '91' }
+    { id: 'TOM-021', type: 'Tomato', lastMonitored: formatShortDate(lastWeek), score: '88' },
+    { id: 'TOM-022', type: 'Tomato', lastMonitored: formatShortDate(dayBefore), score: '72' },
+    { id: 'TOM-023', type: 'Tomato', lastMonitored: formatShortDate(yesterday), score: '91' }
   ],
   comparison: {
     currentScore: '82',

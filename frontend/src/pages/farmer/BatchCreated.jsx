@@ -9,7 +9,7 @@ const BatchCreated = () => {
   const location = useLocation();
   const currentBatchId = batchId || 'TOM-024';
   const qrRef = useRef(null);
-  const formData = location.state || { quantity: '100kg', crop: 'Tomato', origin: 'Pune Farm', date: '2023-10-01' };
+  const formData = location.state || { quantity: 'N/A', crop: 'Unknown', origin: 'Not Specified', date: 'N/A' };
 
   // Create a rich URL for the QR code
   const appBaseUrl = window.location.origin;
