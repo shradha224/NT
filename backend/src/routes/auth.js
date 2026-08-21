@@ -150,9 +150,9 @@ router.get('/check-username', async (req, res) => {
 const rateLimit = require('express-rate-limit');
 
 const loginLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 20, // Limit each IP to 20 login requests per window (relaxed for dev)
-  message: { error: 'Too many login attempts from this IP, please try again after 15 minutes' }
+  windowMs: 60 * 1000, // 1 minute
+  max: 5, // 5 attempts per minute
+  message: { error: 'Too many login attempts, please try again after a minute' }
 });
 
 router.post('/login', loginLimiter, async (req, res) => {
