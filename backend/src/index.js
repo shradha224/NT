@@ -19,6 +19,10 @@ const { wakeLocalMongo, stopLocalMongo } = require('./utils/mongoWaker');
   // 3. Connect to MongoDB
   await connectDB();
 
+  // 4. Seed demo users if database is empty (first-time setup)
+  const { seedDefaultUsers } = require('./utils/seeder');
+  await seedDefaultUsers();
+
 const authRoutes = require('./routes/auth');
 const batchRoutes = require('./routes/batches');
 const syncRoutes = require('./routes/sync');
