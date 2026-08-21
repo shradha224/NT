@@ -45,7 +45,11 @@ const LoginPage = () => {
         navigate('/');
       }
     } catch (err) {
-      setError(err.message);
+      if (err.message === 'Failed to fetch') {
+        setError('Cannot connect to the server. Make sure the backend is running (npm start).');
+      } else {
+        setError(err.message);
+      }
     }
   };
 
